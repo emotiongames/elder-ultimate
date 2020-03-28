@@ -22,7 +22,7 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.764
+    "zoomFactor": 0.62
   },
   "objectsGroups": [],
   "variables": [
@@ -171,7 +171,7 @@
       "leftMargin": 0,
       "name": "Pos1",
       "rightMargin": 0,
-      "tags": "limit",
+      "tags": "",
       "texture": "",
       "tiled": true,
       "topMargin": 0,
@@ -186,7 +186,7 @@
       "leftMargin": 0,
       "name": "Pos4",
       "rightMargin": 0,
-      "tags": "limit",
+      "tags": "",
       "texture": "",
       "tiled": true,
       "topMargin": 0,
@@ -242,7 +242,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "Background",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
