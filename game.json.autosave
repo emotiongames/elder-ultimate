@@ -13,7 +13,7 @@
     "macExecutableFilename": "",
     "orientation": "landscape",
     "packageName": "com.emotiongames.elderultimate.coronavirus",
-    "projectFile": "/home/sanctae/GDevelop projects/Elder Ultimate/game.json",
+    "projectFile": "/home/sanctae/GDevelop projects/elder-ultimate/game.json",
     "scaleMode": "linear",
     "sizeOnStartupMode": "adaptWidth",
     "useExternalSourceFiles": false,
