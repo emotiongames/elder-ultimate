@@ -8,6 +8,7 @@
   },
   "properties": {
     "adMobAppId": "",
+    "adaptGameResolutionAtRuntime": false,
     "folderProject": true,
     "linuxExecutableFilename": "",
     "macExecutableFilename": "",
@@ -22,11 +23,11 @@
     "winExecutableIconFile": "",
     "name": "Elder Ultimate: Corona Virus",
     "author": "Emotion Games",
-    "windowWidth": 854,
-    "windowHeight": 480,
+    "windowWidth": 1280,
+    "windowHeight": 720,
     "latestCompilationDirectory": "",
     "maxFPS": 60,
-    "minFPS": 30,
+    "minFPS": 60,
     "verticalSync": false,
     "platformSpecificAssets": {},
     "loadingScreen": {
@@ -135,6 +136,60 @@
         "name": "resources/sprites/background/hd/test_landscape_city.png",
         "smoothed": true,
         "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/background/hd/landscape_temp.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/background/hd/landscape_temp.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/corona/hd/coronavirus_PNG-Images-Transparent-Background.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/corona/hd/coronavirus_PNG-Images-Transparent-Background.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/corona/hd/coronavirus_PNG-Images-Transparent-Background-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/corona/hd/coronavirus_PNG-Images-Transparent-Background-1.png",
+        "smoothed": true,
+        "userAdded": false
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/car-l/hd/car.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/car-l/hd/car.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/car-l/hd/car-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/car-l/hd/car-1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/car-l/hd/car-1-0.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/car-l/hd/car-1-0.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
