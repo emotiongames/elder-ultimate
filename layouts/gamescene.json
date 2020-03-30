@@ -22,28 +22,63 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.548
+    "zoomFactor": 0.524
   },
-  "objectsGroups": [],
+  "objectsGroups": [
+    {
+      "name": "GameOverScreen",
+      "objects": [
+        {
+          "name": "OverlayScreen"
+        },
+        {
+          "name": "ResumeButton"
+        },
+        {
+          "name": "MainMenuButton"
+        }
+      ]
+    },
+    {
+      "name": "CanSpawn",
+      "objects": [
+        {
+          "name": "CoronaEnemy"
+        },
+        {
+          "name": "CarLEnemy"
+        },
+        {
+          "name": "CarREnemy"
+        },
+        {
+          "name": "BusREnemy"
+        },
+        {
+          "name": "AlcoholLife"
+        }
+      ]
+    }
+  ],
   "variables": [
     {
       "name": "ScrollSpeed",
       "value": "0"
     },
     {
-      "name": "STEnemySpawn",
+      "name": "STSpawn",
       "value": "0"
     },
     {
-      "name": "SDEnemySpawn",
+      "name": "SDSpawn",
       "value": "0"
     },
     {
-      "name": "SLEnemySpawn",
+      "name": "SLSpawn",
       "value": "0"
     },
     {
-      "name": "SREnemySpawn",
+      "name": "SRSpawn",
       "value": "0"
     },
     {
@@ -56,6 +91,18 @@
     },
     {
       "name": "ScenePoints",
+      "value": "0.0"
+    },
+    {
+      "name": "ScenePointsWidth",
+      "value": "0"
+    },
+    {
+      "name": "KillAllSpawnedObjects",
+      "value": "0"
+    },
+    {
+      "name": "ResumeScene",
       "value": "0"
     }
   ],
@@ -141,7 +188,7 @@
       "height": 0,
       "layer": "",
       "locked": false,
-      "name": "SidewalkTopEnemySpawn",
+      "name": "SidewalkTopSpawn",
       "width": 0,
       "x": 1296,
       "y": 528,
@@ -156,7 +203,7 @@
       "height": 0,
       "layer": "",
       "locked": false,
-      "name": "SidewalkDownEnemySpawn",
+      "name": "SidewalkDownSpawn",
       "width": 0,
       "x": 1296,
       "y": 672,
@@ -171,24 +218,9 @@
       "height": 0,
       "layer": "",
       "locked": false,
-      "name": "StreetLEnemySpawn",
+      "name": "StreetRSpawn",
       "width": 0,
-      "x": 1296,
-      "y": 576,
-      "zOrder": 12,
-      "numberProperties": [],
-      "stringProperties": [],
-      "initialVariables": []
-    },
-    {
-      "angle": 0,
-      "customSize": false,
-      "height": 0,
-      "layer": "",
-      "locked": false,
-      "name": "StreetREnemySpawn",
-      "width": 0,
-      "x": -48,
+      "x": -192,
       "y": 624,
       "zOrder": 13,
       "numberProperties": [],
@@ -218,9 +250,84 @@
       "locked": false,
       "name": "PointsCounter",
       "width": 0,
-      "x": 1008,
-      "y": 48,
+      "x": 48,
+      "y": 96,
       "zOrder": 15,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "StreetLSpawn",
+      "width": 0,
+      "x": 1296,
+      "y": 576,
+      "zOrder": 16,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "OverlayScreen",
+      "width": 0,
+      "x": 192,
+      "y": 144,
+      "zOrder": 17,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "ResumeButton",
+      "width": 0,
+      "x": 576,
+      "y": 288,
+      "zOrder": 18,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "MainMenuButton",
+      "width": 0,
+      "x": 576,
+      "y": 432,
+      "zOrder": 19,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "PointsCounter1",
+      "width": 0,
+      "x": 1200,
+      "y": 48,
+      "zOrder": 20,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -449,6 +556,50 @@
       "tags": "",
       "type": "Sprite",
       "updateIfNotVisible": false,
+      "variables": [
+        {
+          "name": "MovementArea",
+          "value": "0"
+        }
+      ],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "car-1-0",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "resources/sprites/enemies/car-r/hd/car-1-0.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BusREnemy",
+      "tags": "enemy",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
       "variables": [],
       "behaviors": [],
       "animations": []
@@ -457,9 +608,9 @@
       "bottomMargin": 0,
       "height": 48,
       "leftMargin": 0,
-      "name": "SidewalkTopEnemySpawn",
+      "name": "SidewalkTopSpawn",
       "rightMargin": 0,
-      "tags": "",
+      "tags": "spawn",
       "texture": "",
       "tiled": false,
       "topMargin": 0,
@@ -472,9 +623,9 @@
       "bottomMargin": 0,
       "height": 48,
       "leftMargin": 0,
-      "name": "SidewalkDownEnemySpawn",
+      "name": "SidewalkDownSpawn",
       "rightMargin": 0,
-      "tags": "",
+      "tags": "spawn",
       "texture": "",
       "tiled": false,
       "topMargin": 0,
@@ -487,9 +638,9 @@
       "bottomMargin": 0,
       "height": 48,
       "leftMargin": 0,
-      "name": "StreetLEnemySpawn",
+      "name": "StreetLSpawn",
       "rightMargin": 0,
-      "tags": "",
+      "tags": "spawn",
       "texture": "",
       "tiled": false,
       "topMargin": 0,
@@ -502,9 +653,9 @@
       "bottomMargin": 0,
       "height": 48,
       "leftMargin": 0,
-      "name": "StreetREnemySpawn",
+      "name": "StreetRSpawn",
       "rightMargin": 0,
-      "tags": "",
+      "tags": "spawn",
       "texture": "",
       "tiled": false,
       "topMargin": 0,
@@ -518,7 +669,7 @@
       "italic": false,
       "name": "LifeCounter",
       "smoothed": true,
-      "tags": "",
+      "tags": "ui",
       "type": "TextObject::Text",
       "underlined": false,
       "variables": [],
@@ -533,23 +684,105 @@
       }
     },
     {
-      "bold": true,
-      "italic": false,
       "name": "PointsCounter",
-      "smoothed": true,
-      "tags": "",
-      "type": "TextObject::Text",
-      "underlined": false,
+      "tags": "ui",
+      "type": "BBText::BBText",
       "variables": [],
       "behaviors": [],
-      "string": "0",
-      "font": "",
-      "characterSize": 52,
-      "color": {
-        "b": 255,
-        "g": 255,
-        "r": 255
+      "content": {
+        "text": "[b]0.0[/b]",
+        "opacity": 255,
+        "fontSize": "52",
+        "visible": true,
+        "color": "#ffffff",
+        "fontFamily": "Arial",
+        "align": "right",
+        "wordWrap": true
       }
+    },
+    {
+      "name": "AlcoholLife",
+      "tags": "buff",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "alcool-70-1l-prolink-15274-01",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "resources/sprites/buffs/acohol/hd/alcool-70-1l-prolink-15274-01-1.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "bottomMargin": 0,
+      "height": 480,
+      "leftMargin": 0,
+      "name": "OverlayScreen",
+      "rightMargin": 0,
+      "tags": "ui",
+      "texture": "resources/sprites/ui/screen-elements/screen-background/game-over/gameOver-1.png",
+      "tiled": false,
+      "topMargin": 0,
+      "type": "PanelSpriteObject::PanelSprite",
+      "width": 853,
+      "variables": [],
+      "behaviors": []
+    },
+    {
+      "bottomMargin": 0,
+      "height": 96,
+      "leftMargin": 0,
+      "name": "ResumeButton",
+      "rightMargin": 0,
+      "tags": "button, ui",
+      "texture": "resources/sprites/ui/screen-elements/buttons/restart/restartButton.png",
+      "tiled": false,
+      "topMargin": 0,
+      "type": "PanelSpriteObject::PanelSprite",
+      "width": 96,
+      "variables": [],
+      "behaviors": []
+    },
+    {
+      "bottomMargin": 0,
+      "height": 48,
+      "leftMargin": 0,
+      "name": "MainMenuButton",
+      "rightMargin": 0,
+      "tags": "ui, button",
+      "texture": "",
+      "tiled": false,
+      "topMargin": 0,
+      "type": "PanelSpriteObject::PanelSprite",
+      "width": 96,
+      "variables": [],
+      "behaviors": []
     }
   ],
   "events": [
@@ -598,6 +831,28 @@
               },
               "parameters": [
                 "Pos4"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "ScenePointsWidth",
+                "=",
+                "PointsCounter_.Width()"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "GameOverScreen"
               ],
               "subInstructions": []
             }
@@ -727,12 +982,100 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Timer"
+                "value": "VarScene"
               },
               "parameters": [
-                "",
-                "0.5",
-                "\"pointsCounterTimer\""
+                "ScrollSpeed",
+                "!=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "0.3",
+                    "\"pointsCounterTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "ScenePoints",
+                    "+",
+                    "0.1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"pointsCounterTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BBText::SetBBText"
+                  },
+                  "parameters": [
+                    "PointsCounter",
+                    "=",
+                    "\"[b]\" + LargeNumberToString(trunc(Variable(ScenePoints) * 10)/10) + \"m\" + \"[/b]\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "KillAllSpawnedObjects",
+                "=",
+                "1"
               ],
               "subInstructions": []
             }
@@ -744,20 +1087,82 @@
                 "value": "ModVarScene"
               },
               "parameters": [
-                "ScenePoints",
-                "+",
-                "1"
+                "KillAllSpawnedObjects",
+                "=",
+                "0"
               ],
               "subInstructions": []
             },
             {
               "type": {
                 "inverted": false,
-                "value": "ResetTimer"
+                "value": "Delete"
               },
               "parameters": [
-                "",
-                "\"pointsCounterTimer\""
+                "CanSpawn",
+                "CoronaEnemy"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "AdMob",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "ResumeScene",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "AdMob::LoadInterstitial"
+              },
+              "parameters": [
+                "\"\"",
+                "\"ca-app-pub-2060928383792093/1202001222\"",
+                "yes",
+                "no"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "ResumeScene",
+                "=",
+                "0"
               ],
               "subInstructions": []
             }
@@ -768,22 +1173,208 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "AdMob::VideoReward"
+              },
+              "parameters": [
+                "yes"
+              ],
+              "subInstructions": []
+            }
+          ],
           "actions": [
             {
               "type": {
                 "inverted": false,
-                "value": "TextObject::String"
+                "value": "ModVarScene"
               },
               "parameters": [
-                "PointsCounter",
+                "ScrollSpeed",
                 "=",
-                "LargeNumberToString(Variable(ScenePoints))"
+                "5"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "GameOverScreen"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "=",
+                "2"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "KillAllSpawnedObjects",
+                "=",
+                "1"
               ],
               "subInstructions": []
             }
           ],
           "events": []
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": false,
+      "name": "UX-UI",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Game Over Screen",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "ResumeButton",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MouseButtonReleased"
+                  },
+                  "parameters": [
+                    "",
+                    "Left"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "ResumeScene",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisSurObjet"
+                  },
+                  "parameters": [
+                    "MainMenuButton",
+                    "",
+                    "",
+                    ""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MouseButtonReleased"
+                  },
+                  "parameters": [
+                    "",
+                    "Left"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Quit"
+                  },
+                  "parameters": [
+                    ""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
         }
       ],
       "parameters": []
@@ -807,66 +1398,205 @@
             {
               "type": {
                 "inverted": false,
-                "value": "SourisBouton"
+                "value": "VarScene"
               },
               "parameters": [
-                "",
-                "Left"
+                "ScrollSpeed",
+                "!=",
+                "0"
               ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": [],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarGlobal"
-              },
-              "parameters": [
-                "CursorLastPosY",
-                "=",
-                "MouseY(\"\", 0)"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": true,
-                "value": "SourisBouton"
-              },
-              "parameters": [
-                "",
-                "Left"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "BuiltinCommonInstructions::Once"
-              },
-              "parameters": [],
               "subInstructions": []
             }
           ],
           "actions": [],
           "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "SourisBouton"
+                  },
+                  "parameters": [
+                    "",
+                    "Left"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarGlobal"
+                  },
+                  "parameters": [
+                    "CursorLastPosY",
+                    "=",
+                    "MouseY(\"\", 0)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "SourisBouton"
+                  },
+                  "parameters": [
+                    "",
+                    "Left"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": [],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementTrigger",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "VarGlobal"
+                          },
+                          "parameters": [
+                            "CursorLastPosY",
+                            "<",
+                            "MouseY(\"\", 0)"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "PosY"
+                          },
+                          "parameters": [
+                            "Player",
+                            "=",
+                            "Pos1.Y()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "MovementTrigger",
+                            "=",
+                            "1"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    },
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "VarGlobal"
+                          },
+                          "parameters": [
+                            "CursorLastPosY",
+                            "<",
+                            "MouseY(\"\", 0)"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": true,
+                            "value": "PosY"
+                          },
+                          "parameters": [
+                            "Player",
+                            "=",
+                            "Pos4.Y()"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "MovementTrigger",
+                            "=",
+                            "2"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "disabled": false,
               "folded": false,
@@ -881,376 +1611,259 @@
                     "Player",
                     "MovementTrigger",
                     "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "UpMovement",
+                    "+",
+                    "Player.Variable(Speed)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementTrigger",
+                    "=",
+                    "2"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "DownMovement",
+                    "+",
+                    "Player.Variable(Speed)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "UpMovement",
+                    ">",
                     "0"
                   ],
                   "subInstructions": []
                 }
               ],
-              "actions": [],
-              "events": [
+              "actions": [
                 {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": true,
-                        "value": "VarGlobal"
-                      },
-                      "parameters": [
-                        "CursorLastPosY",
-                        "<",
-                        "MouseY(\"\", 0)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": true,
-                        "value": "PosY"
-                      },
-                      "parameters": [
-                        "Player",
-                        "=",
-                        "Pos1.Y()"
-                      ],
-                      "subInstructions": []
-                    }
+                  "type": {
+                    "inverted": false,
+                    "value": "MettreY"
+                  },
+                  "parameters": [
+                    "Player",
+                    "-",
+                    "Player.Variable(Speed)"
                   ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "MovementTrigger",
-                        "=",
-                        "1"
-                      ],
-                      "subInstructions": []
-                    }
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "DownMovement",
+                    ">",
+                    "0"
                   ],
-                  "events": []
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "MettreY"
+                  },
+                  "parameters": [
+                    "Player",
+                    "+",
+                    "Player.Variable(Speed)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "UpMovement",
+                    ">=",
+                    "48"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "UpMovement",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
                 },
                 {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarGlobal"
-                      },
-                      "parameters": [
-                        "CursorLastPosY",
-                        "<",
-                        "MouseY(\"\", 0)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": true,
-                        "value": "PosY"
-                      },
-                      "parameters": [
-                        "Player",
-                        "=",
-                        "Pos4.Y()"
-                      ],
-                      "subInstructions": []
-                    }
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementTrigger",
+                    "=",
+                    "0"
                   ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "MovementTrigger",
-                        "=",
-                        "2"
-                      ],
-                      "subInstructions": []
-                    }
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementArea",
+                    "-",
+                    "1"
                   ],
-                  "events": []
+                  "subInstructions": []
                 }
-              ]
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "DownMovement",
+                    ">=",
+                    "48"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "DownMovement",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementTrigger",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementArea",
+                    "+",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
             }
           ]
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarObjet"
-              },
-              "parameters": [
-                "Player",
-                "MovementTrigger",
-                "=",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "UpMovement",
-                "+",
-                "Player.Variable(Speed)"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarObjet"
-              },
-              "parameters": [
-                "Player",
-                "MovementTrigger",
-                "=",
-                "2"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "DownMovement",
-                "+",
-                "Player.Variable(Speed)"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarObjet"
-              },
-              "parameters": [
-                "Player",
-                "UpMovement",
-                ">",
-                "0"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "MettreY"
-              },
-              "parameters": [
-                "Player",
-                "-",
-                "Player.Variable(Speed)"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarObjet"
-              },
-              "parameters": [
-                "Player",
-                "DownMovement",
-                ">",
-                "0"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "MettreY"
-              },
-              "parameters": [
-                "Player",
-                "+",
-                "Player.Variable(Speed)"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarObjet"
-              },
-              "parameters": [
-                "Player",
-                "UpMovement",
-                ">=",
-                "48"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "UpMovement",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "MovementTrigger",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "MovementArea",
-                "-",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarObjet"
-              },
-              "parameters": [
-                "Player",
-                "DownMovement",
-                ">=",
-                "48"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "DownMovement",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "MovementTrigger",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarObjet"
-              },
-              "parameters": [
-                "Player",
-                "MovementArea",
-                "+",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
         }
       ],
       "parameters": []
@@ -1262,7 +1875,7 @@
       "creationTime": 0,
       "disabled": false,
       "folded": false,
-      "name": "EnemySpawn",
+      "name": "ObjectSpawn",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
       "events": [
@@ -1274,42 +1887,33 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Timer"
+                "value": "VarScene"
               },
               "parameters": [
-                "",
-                "3",
-                "\"stESTimer\""
+                "ScrollSpeed",
+                "!=",
+                "0"
               ],
               "subInstructions": []
             }
           ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "STEnemySpawn",
-                "=",
-                "RandomInRange(0, 1)"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ResetTimer"
-              },
-              "parameters": [
-                "",
-                "\"stESTimer\""
-              ],
-              "subInstructions": []
-            }
-          ],
+          "actions": [],
           "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "Buffs",
+              "comment2": ""
+            },
             {
               "disabled": false,
               "folded": false,
@@ -1318,12 +1922,12 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "VarScene"
+                    "value": "Timer"
                   },
                   "parameters": [
-                    "STEnemySpawn",
-                    "=",
-                    "1"
+                    "",
+                    "RandomInRange(1, 5)",
+                    "\"stESTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -1335,43 +1939,668 @@
                     "value": "ModVarScene"
                   },
                   "parameters": [
-                    "STEnemySpawn",
+                    "STSpawn",
                     "=",
-                    "0"
+                    "RandomInRange(1, 30)"
                   ],
                   "subInstructions": []
                 },
                 {
                   "type": {
                     "inverted": false,
-                    "value": "Create"
+                    "value": "ResetTimer"
                   },
                   "parameters": [
                     "",
-                    "CoronaEnemy",
-                    "SidewalkTopEnemySpawn.X()",
-                    "SidewalkTopEnemySpawn.Y()",
-                    ""
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "CoronaEnemy",
-                    "MovementArea",
-                    "=",
-                    "1"
+                    "\"stESTimer\""
                   ],
                   "subInstructions": []
                 }
               ],
-              "events": []
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "STSpawn",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "STSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "AlcoholLife",
+                        "SidewalkTopSpawn.X()",
+                        "SidewalkTopSpawn.Y()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "AlcoholLife",
+                        "MovementArea",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "RandomInRange(1, 5)",
+                    "\"sdESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "SDSpawn",
+                    "=",
+                    "RandomInRange(1, 30)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"sdESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "SDSpawn",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "SDSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "AlcoholLife",
+                        "SidewalkDownSpawn.X()",
+                        "SidewalkDownSpawn.Y()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "AlcoholLife",
+                        "MovementArea",
+                        "=",
+                        "4"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Comment",
+              "color": {
+                "b": 109,
+                "g": 230,
+                "r": 255,
+                "textB": 0,
+                "textG": 0,
+                "textR": 0
+              },
+              "comment": "Enemies",
+              "comment2": ""
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "RandomInRange(1, 5)",
+                    "\"stESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "STSpawn",
+                    "=",
+                    "RandomInRange(1, 6)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"stESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "STSpawn",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "STSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "CoronaEnemy",
+                        "SidewalkTopSpawn.X()",
+                        "SidewalkTopSpawn.Y()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "CoronaEnemy",
+                        "MovementArea",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "RandomInRange(3, 7)",
+                    "\"slESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "SLSpawn",
+                    "=",
+                    "RandomInRange(1, 4)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"slESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "SLSpawn",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "SLSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "CarLEnemy",
+                        "StreetLSpawn.X()",
+                        "StreetLSpawn.Y() - Variable(GridSize)",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "CarLEnemy",
+                        "MovementArea",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "RandomInRange(3, 7)",
+                    "\"srESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "SRSpawn",
+                    "=",
+                    "RandomInRange(1, 4)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"srESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "SRSpawn",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "SRSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "CarREnemy",
+                        "StreetRSpawn.X()",
+                        "StreetRSpawn.Y() - Variable(GridSize)",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "CarREnemy",
+                        "MovementArea",
+                        "=",
+                        "3"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "RandomInRange(1, 5)",
+                    "\"sdESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "SDSpawn",
+                    "=",
+                    "RandomInRange(1, 6)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"sdESTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "SDSpawn",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "SDSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "CoronaEnemy",
+                        "SidewalkDownSpawn.X()",
+                        "SidewalkDownSpawn.Y()",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "CoronaEnemy",
+                        "MovementArea",
+                        "=",
+                        "4"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
             }
           ]
+        }
+      ],
+      "parameters": []
+    },
+    {
+      "colorB": 228,
+      "colorG": 176,
+      "colorR": 74,
+      "creationTime": 0,
+      "disabled": false,
+      "folded": false,
+      "name": "BuffController",
+      "source": "",
+      "type": "BuiltinCommonInstructions::Group",
+      "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Alcohol",
+          "comment2": ""
         },
         {
           "disabled": false,
@@ -1381,12 +2610,13 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Timer"
+                "value": "VarObjet"
               },
               "parameters": [
-                "",
-                "3",
-                "\"slESTimer\""
+                "AlcoholLife",
+                "MovementArea",
+                "=",
+                "1"
               ],
               "subInstructions": []
             }
@@ -1395,90 +2625,76 @@
             {
               "type": {
                 "inverted": false,
-                "value": "ModVarScene"
+                "value": "MettreX"
               },
               "parameters": [
-                "SLEnemySpawn",
-                "=",
-                "RandomInRange(0, 3)"
+                "AlcoholLife",
+                "-",
+                "Variable(ScrollSpeed) * 0.3"
               ],
               "subInstructions": []
             },
             {
               "type": {
                 "inverted": false,
-                "value": "ResetTimer"
+                "value": "MettreY"
               },
               "parameters": [
-                "",
-                "\"slESTimer\""
+                "AlcoholLife",
+                "=",
+                "SidewalkTopSpawn.Y() - (Variable(GridSize)/2)"
               ],
               "subInstructions": []
             }
           ],
-          "events": [
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
             {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarScene"
-                  },
-                  "parameters": [
-                    "SLEnemySpawn",
-                    "=",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "AlcoholLife",
+                "MovementArea",
+                "=",
+                "4"
               ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "SLEnemySpawn",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "Create"
-                  },
-                  "parameters": [
-                    "",
-                    "CarLEnemy",
-                    "StreetLEnemySpawn.X()",
-                    "StreetLEnemySpawn.Y() - Variable(GridSize)",
-                    ""
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "CarLEnemy",
-                    "MovementArea",
-                    "=",
-                    "2"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
+              "subInstructions": []
             }
-          ]
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "AlcoholLife",
+                "-",
+                "Variable(ScrollSpeed) * 0.3"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "AlcoholLife",
+                "=",
+                "SidewalkDownSpawn.Y() - (Variable(GridSize)/2)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "parameters": []
@@ -1497,8 +2713,37 @@
         {
           "disabled": false,
           "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Corona",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "CoronaEnemy",
+                "MovementArea",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
           "actions": [
             {
               "type": {
@@ -1520,7 +2765,54 @@
               "parameters": [
                 "CoronaEnemy",
                 "=",
-                "SidewalkTopEnemySpawn.Y() - (Variable(GridSize)/2)"
+                "SidewalkTopSpawn.Y() - (Variable(GridSize)/2)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "CoronaEnemy",
+                "MovementArea",
+                "=",
+                "4"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "CoronaEnemy",
+                "-",
+                "Variable(ScrollSpeed)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "CoronaEnemy",
+                "=",
+                "SidewalkDownSpawn.Y() - (Variable(GridSize)/2)"
               ],
               "subInstructions": []
             }
@@ -1540,7 +2832,7 @@
               "parameters": [
                 "Player",
                 "CoronaEnemy",
-                "10",
+                "((Player.Width()/2) + (CoronaEnemy.Width()/2)) + 30",
                 ""
               ],
               "subInstructions": []
@@ -1556,6 +2848,14 @@
                 "=",
                 "Player.Variable(MovementArea)"
               ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
               "subInstructions": []
             }
           ],
@@ -1611,6 +2911,21 @@
         {
           "disabled": false,
           "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "CarLEnemy",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [],
           "actions": [
@@ -1634,7 +2949,7 @@
               "parameters": [
                 "CarLEnemy",
                 "=",
-                "StreetLEnemySpawn.Y() - (Variable(GridSize)*2)"
+                "StreetLSpawn.Y() - (Variable(GridSize) * 2)"
               ],
               "subInstructions": []
             }
@@ -1654,7 +2969,7 @@
               "parameters": [
                 "Player",
                 "CarLEnemy",
-                "10",
+                "((Player.Width()/2) + (CarLEnemy.Width()/2)) + 30",
                 ""
               ],
               "subInstructions": []
@@ -1670,6 +2985,14 @@
                 "=",
                 "Player.Variable(MovementArea)"
               ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
               "subInstructions": []
             }
           ],
@@ -1715,6 +3038,143 @@
               },
               "parameters": [
                 "CarLEnemy",
+                ""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "CarREnemy",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "CarREnemy",
+                "+",
+                "Variable(ScrollSpeed)*3"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "CarREnemy",
+                "=",
+                "StreetRSpawn.Y() - (Variable(GridSize)*2)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Distance"
+              },
+              "parameters": [
+                "Player",
+                "CarREnemy",
+                "((Player.Width()/2) + (CarREnemy.Width()/2)) + 30",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "CarREnemy",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "ScenePoints",
+                "+",
+                "30"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosX"
+              },
+              "parameters": [
+                "CarREnemy",
+                ">",
+                "SceneWindowWidth() + CarREnemy.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "CarREnemy",
                 ""
               ],
               "subInstructions": []
@@ -1808,6 +3268,78 @@
               },
               "parameters": [
                 "Player",
+                "AlcoholLife",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "AlcoholLife",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "<",
+                "2"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "AlcoholLife",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "+",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Player",
                 "CarLEnemy",
                 "",
                 "",
@@ -1837,6 +3369,66 @@
               },
               "parameters": [
                 "CarLEnemy",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "-",
+                "Variable(PlayerLife)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Player",
+                "CarREnemy",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "CarREnemy",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "CarREnemy",
                 ""
               ],
               "subInstructions": []
@@ -1958,10 +3550,23 @@
             {
               "type": {
                 "inverted": false,
-                "value": "Quit"
+                "value": "Montre"
               },
               "parameters": [
+                "GameOverScreen",
                 ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "ScrollSpeed",
+                "=",
+                "0"
               ],
               "subInstructions": []
             }
