@@ -1350,7 +1350,16 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Not"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
           "actions": [
             {
               "type": {
@@ -1445,54 +1454,7 @@
               "subInstructions": []
             }
           ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "ScrollSpeed",
-                "=",
-                "5"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Cache"
-              },
-              "parameters": [
-                "GameOverScreen"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "PlayerLife",
-                "=",
-                "2"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "KillAllSpawnedObjects",
-                "=",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
+          "actions": [],
           "events": []
         }
       ],
@@ -1582,6 +1544,52 @@
                   },
                   "parameters": [
                     "ResumeScene",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "ScrollSpeed",
+                    "=",
+                    "5"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "GameOverScreen"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "PlayerLife",
+                    "=",
+                    "2"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "KillAllSpawnedObjects",
                     "=",
                     "1"
                   ],
@@ -2322,7 +2330,7 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(1, 5)",
+                    "RandomInRange(1, 15)",
                     "\"stAlcoholTimer\""
                   ],
                   "subInstructions": []
@@ -2337,7 +2345,7 @@
                   "parameters": [
                     "STSpawn",
                     "=",
-                    "RandomInRange(1, 30)"
+                    "RandomInRange(1, 40)"
                   ],
                   "subInstructions": []
                 },
@@ -2429,7 +2437,7 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(1, 5)",
+                    "RandomInRange(1, 15)",
                     "\"sdAlcoholTimer\""
                   ],
                   "subInstructions": []
@@ -2444,7 +2452,7 @@
                   "parameters": [
                     "SDSpawn",
                     "=",
-                    "RandomInRange(1, 30)"
+                    "RandomInRange(1, 40)"
                   ],
                   "subInstructions": []
                 },
@@ -2551,7 +2559,7 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(1, 5)",
+                    "RandomInRange(2, 8)",
                     "\"stCoronaTimer\""
                   ],
                   "subInstructions": []
@@ -2658,7 +2666,7 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(1, 5)",
+                    "RandomInRange(3, 7)",
                     "\"slCarLTimer\""
                   ],
                   "subInstructions": []
@@ -2908,7 +2916,7 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(1, 5)",
+                    "RandomInRange(3, 7)",
                     "\"srCarRTimer\""
                   ],
                   "subInstructions": []
@@ -3170,7 +3178,7 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(1, 5)",
+                    "RandomInRange(2, 8)",
                     "\"sdCoronaTimer\""
                   ],
                   "subInstructions": []
