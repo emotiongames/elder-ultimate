@@ -7,7 +7,7 @@
     "revision": 0
   },
   "properties": {
-    "adMobAppId": "",
+    "adMobAppId": "ca-app-pub-2060928383792093~4678211804",
     "adaptGameResolutionAtRuntime": false,
     "folderProject": true,
     "linuxExecutableFilename": "",
@@ -26,7 +26,7 @@
     "windowWidth": 1280,
     "windowHeight": 720,
     "latestCompilationDirectory": "",
-    "maxFPS": 60,
+    "maxFPS": 0,
     "minFPS": 60,
     "verticalSync": false,
     "platformSpecificAssets": {},
@@ -188,6 +188,69 @@
         "kind": "image",
         "metadata": "",
         "name": "resources/sprites/enemies/car-l/hd/car-1-0.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/car-r/hd/car-1-0.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/car-r/hd/car-1-0.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/buffs/acohol/hd/alcool-70-1l-prolink-15274-01.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/buffs/acohol/hd/alcool-70-1l-prolink-15274-01.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/buffs/acohol/hd/alcool-70-1l-prolink-15274-01-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/buffs/acohol/hd/alcool-70-1l-prolink-15274-01-1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "NewFile-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "NewFile-1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "NewFile-1-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "NewFile-1-1.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/ui/screen-elements/buttons/restart/restartButton.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/ui/screen-elements/buttons/restart/restartButton.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/ui/screen-elements/screen-background/game-over/gameOver-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/ui/screen-elements/screen-background/game-over/gameOver-1.png",
         "smoothed": true,
         "userAdded": true
       }
