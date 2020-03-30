@@ -271,6 +271,24 @@
         "name": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car-1.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/police-car-r/hd/police.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/police-car-r/hd/police.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/police-car-r/hd/police-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/police-car-r/hd/police-1.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []

@@ -22,7 +22,7 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.524
+    "zoomFactor": 0.548
   },
   "objectsGroups": [
     {
@@ -118,6 +118,10 @@
     {
       "name": "PoliceSpawnedR",
       "value": "0"
+    },
+    {
+      "name": "PoliceRBlockPlayer",
+      "value": "0"
     }
   ],
   "instances": [
@@ -125,13 +129,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "Player layer",
       "locked": false,
       "name": "Pos1",
       "width": 0,
       "x": 480,
       "y": 528,
-      "zOrder": 5,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -140,13 +144,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "Player layer",
       "locked": false,
       "name": "Pos4",
       "width": 0,
       "x": 480,
       "y": 672,
-      "zOrder": 8,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -155,13 +159,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "Player layer",
       "locked": false,
       "name": "Player",
       "width": 0,
       "x": 480,
       "y": 528,
-      "zOrder": 9,
+      "zOrder": 1,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -200,13 +204,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "SidewalkTop layer",
       "locked": false,
       "name": "SidewalkTopSpawn",
       "width": 0,
       "x": 1296,
       "y": 528,
-      "zOrder": 10,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -215,13 +219,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "SidewalkDown layer",
       "locked": false,
       "name": "SidewalkDownSpawn",
       "width": 0,
       "x": 1296,
       "y": 672,
-      "zOrder": 11,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -230,13 +234,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "StreetRight layer",
       "locked": false,
       "name": "StreetRSpawn",
       "width": 0,
       "x": -192,
       "y": 624,
-      "zOrder": 13,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -245,13 +249,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "UI layer",
       "locked": false,
       "name": "LifeCounter",
       "width": 0,
       "x": 48,
       "y": 48,
-      "zOrder": 14,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -260,13 +264,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "UI layer",
       "locked": false,
       "name": "PointsCounter",
       "width": 0,
       "x": 48,
       "y": 96,
-      "zOrder": 15,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -275,13 +279,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "StreetLeft layer",
       "locked": false,
       "name": "StreetLSpawn",
       "width": 0,
       "x": 1296,
       "y": 576,
-      "zOrder": 16,
+      "zOrder": 0,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -290,13 +294,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "UI layer",
       "locked": false,
       "name": "OverlayScreen",
       "width": 0,
       "x": 192,
       "y": 144,
-      "zOrder": 17,
+      "zOrder": 1,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -305,13 +309,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "UI layer",
       "locked": false,
       "name": "ResumeButton",
       "width": 0,
       "x": 576,
       "y": 288,
-      "zOrder": 18,
+      "zOrder": 2,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -320,13 +324,13 @@
       "angle": 0,
       "customSize": false,
       "height": 0,
-      "layer": "",
+      "layer": "UI layer",
       "locked": false,
       "name": "MainMenuButton",
       "width": 0,
       "x": 576,
       "y": 432,
-      "zOrder": 19,
+      "zOrder": 2,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -610,6 +614,98 @@
       ]
     },
     {
+      "name": "PoliceEnemyL",
+      "tags": "enemy",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [
+        {
+          "name": "MovementArea",
+          "value": "0"
+        }
+      ],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "970-9705512_police-car",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car-1.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PoliceEnemyR",
+      "tags": "enemy",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [
+        {
+          "name": "MovementArea",
+          "value": "0"
+        },
+        {
+          "name": "hasStopped",
+          "value": "0"
+        }
+      ],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "police",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "resources/sprites/enemies/police-car-r/hd/police-1.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "BusREnemy",
       "tags": "enemy",
       "type": "Sprite",
@@ -704,7 +800,7 @@
       "variables": [],
       "behaviors": [],
       "content": {
-        "text": "[b]0.0m[/b]",
+        "text": "[b]0m[/b]",
         "opacity": 255,
         "fontSize": "52",
         "visible": true,
@@ -797,59 +893,6 @@
       "width": 96,
       "variables": [],
       "behaviors": []
-    },
-    {
-      "name": "PoliceEnemyL",
-      "tags": "enemy",
-      "type": "Sprite",
-      "updateIfNotVisible": false,
-      "variables": [
-        {
-          "name": "MovementArea",
-          "value": "0"
-        }
-      ],
-      "behaviors": [],
-      "animations": [
-        {
-          "name": "970-9705512_police-car",
-          "useMultipleDirections": false,
-          "directions": [
-            {
-              "looping": false,
-              "timeBetweenFrames": 0.08,
-              "sprites": [
-                {
-                  "hasCustomCollisionMask": false,
-                  "image": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car-1.png",
-                  "points": [],
-                  "originPoint": {
-                    "name": "origine",
-                    "x": 0,
-                    "y": 0
-                  },
-                  "centerPoint": {
-                    "automatic": true,
-                    "name": "centre",
-                    "x": 0,
-                    "y": 0
-                  },
-                  "customCollisionMask": []
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "PoliceEnemyR",
-      "tags": "enemy",
-      "type": "Sprite",
-      "updateIfNotVisible": false,
-      "variables": [],
-      "behaviors": [],
-      "animations": []
     }
   ],
   "events": [
@@ -864,6 +907,21 @@
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
       "events": [
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "st -> sidewalk top\nsd -> sidewalk down\nsl -> street left\nsr -> street right\nR -> Right\nL -> Left",
+          "comment2": ""
+        },
         {
           "disabled": false,
           "folded": false,
@@ -920,6 +978,105 @@
               },
               "parameters": [
                 "GameOverScreen"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"stCoronaTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"sdCoronaTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"slCarLTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"slCarRTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"slPoliceLTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"slPoliceRTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"stAlcoholTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"sdAlcoholTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"policeRPlayerBlockTimer\""
               ],
               "subInstructions": []
             }
@@ -1073,7 +1230,7 @@
                   },
                   "parameters": [
                     "",
-                    "0.3",
+                    "0.25",
                     "\"pointsCounterTimer\""
                   ],
                   "subInstructions": []
@@ -1088,7 +1245,7 @@
                   "parameters": [
                     "ScenePoints",
                     "+",
-                    "0.1"
+                    "1"
                   ],
                   "subInstructions": []
                 },
@@ -1120,7 +1277,7 @@
                   "parameters": [
                     "PointsCounter",
                     "=",
-                    "\"[b]\" + LargeNumberToString(trunc(Variable(ScenePoints) * 10)/10) + \"m\" + \"[/b]\""
+                    "\"[b]\" + LargeNumberToString(Variable(ScenePoints)) + \"m\" + \"[/b]\""
                   ],
                   "subInstructions": []
                 }
@@ -1168,6 +1325,42 @@
               "parameters": [
                 "CanSpawn",
                 "CoronaEnemy"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "Invencible - Test Only",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "=",
+                "2"
               ],
               "subInstructions": []
             }
@@ -1820,7 +2013,7 @@
                     "Player",
                     "UpMovement",
                     ">=",
-                    "48"
+                    "Variable(GridSize)"
                   ],
                   "subInstructions": []
                 }
@@ -1929,6 +2122,142 @@
                 }
               ],
               "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementArea",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ChangeLayer"
+                  },
+                  "parameters": [
+                    "Player",
+                    "\"SidewalkTop layer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementArea",
+                    "=",
+                    "2"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ChangeLayer"
+                  },
+                  "parameters": [
+                    "Player",
+                    "\"StreetLeft layer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementArea",
+                    "=",
+                    "3"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ChangeLayer"
+                  },
+                  "parameters": [
+                    "Player",
+                    "\"StreetRight layer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarObjet"
+                  },
+                  "parameters": [
+                    "Player",
+                    "MovementArea",
+                    "=",
+                    "4"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ChangeLayer"
+                  },
+                  "parameters": [
+                    "Player",
+                    "\"SidewalkDown layer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
             }
           ]
         }
@@ -1994,7 +2323,7 @@
                   "parameters": [
                     "",
                     "RandomInRange(1, 5)",
-                    "\"stESTimer\""
+                    "\"stAlcoholTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2019,7 +2348,7 @@
                   },
                   "parameters": [
                     "",
-                    "\"stESTimer\""
+                    "\"stAlcoholTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2066,7 +2395,7 @@
                         "AlcoholLife",
                         "SidewalkTopSpawn.X()",
                         "SidewalkTopSpawn.Y()",
-                        ""
+                        "\"SidewalkTop layer\""
                       ],
                       "subInstructions": []
                     },
@@ -2101,7 +2430,7 @@
                   "parameters": [
                     "",
                     "RandomInRange(1, 5)",
-                    "\"sdESTimer\""
+                    "\"sdAlcoholTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2126,7 +2455,7 @@
                   },
                   "parameters": [
                     "",
-                    "\"sdESTimer\""
+                    "\"sdAlcoholTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2173,7 +2502,7 @@
                         "AlcoholLife",
                         "SidewalkDownSpawn.X()",
                         "SidewalkDownSpawn.Y()",
-                        ""
+                        "\"SidewalkDown layer\""
                       ],
                       "subInstructions": []
                     },
@@ -2223,7 +2552,7 @@
                   "parameters": [
                     "",
                     "RandomInRange(1, 5)",
-                    "\"stESTimer\""
+                    "\"stCoronaTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2248,7 +2577,7 @@
                   },
                   "parameters": [
                     "",
-                    "\"stESTimer\""
+                    "\"stCoronaTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2295,7 +2624,7 @@
                         "CoronaEnemy",
                         "SidewalkTopSpawn.X()",
                         "SidewalkTopSpawn.Y()",
-                        ""
+                        "\"SidewalkTop layer\""
                       ],
                       "subInstructions": []
                     },
@@ -2329,8 +2658,8 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(3, 7)",
-                    "\"slESTimer\""
+                    "RandomInRange(1, 5)",
+                    "\"slCarLTimer\""
                   ],
                   "subInstructions": []
                 },
@@ -2367,7 +2696,7 @@
                   },
                   "parameters": [
                     "",
-                    "\"slESTimer\""
+                    "\"slCarLTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2414,7 +2743,7 @@
                         "CarLEnemy",
                         "StreetLSpawn.X()",
                         "StreetLSpawn.Y() - Variable(GridSize)",
-                        ""
+                        "\"StreetLeft layer\""
                       ],
                       "subInstructions": []
                     },
@@ -2433,7 +2762,65 @@
                     }
                   ],
                   "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "RandomInRange(6, 12)",
+                    "\"slPoliceLTimer\""
+                  ],
+                  "subInstructions": []
                 },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "PoliceSpawnedL",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "SLSpawn",
+                    "=",
+                    "RandomInRange(1, 6)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"slPoliceLTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
                 {
                   "disabled": false,
                   "folded": false,
@@ -2475,7 +2862,7 @@
                         "PoliceEnemyL",
                         "StreetLSpawn.X()",
                         "StreetLSpawn.Y() - Variable(GridSize)",
-                        ""
+                        "\"StreetLeft layer\""
                       ],
                       "subInstructions": []
                     },
@@ -2521,8 +2908,20 @@
                   },
                   "parameters": [
                     "",
-                    "RandomInRange(3, 7)",
-                    "\"srESTimer\""
+                    "RandomInRange(1, 5)",
+                    "\"srCarRTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "PoliceSpawnedR",
+                    "=",
+                    "0"
                   ],
                   "subInstructions": []
                 }
@@ -2547,7 +2946,7 @@
                   },
                   "parameters": [
                     "",
-                    "\"srESTimer\""
+                    "\"srCarRTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2594,7 +2993,7 @@
                         "CarREnemy",
                         "StreetRSpawn.X()",
                         "StreetRSpawn.Y() - Variable(GridSize)",
-                        ""
+                        "\"StreetRight layer\""
                       ],
                       "subInstructions": []
                     },
@@ -2628,8 +3027,151 @@
                   },
                   "parameters": [
                     "",
+                    "RandomInRange(6, 12)",
+                    "\"srPoliceRTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "PoliceSpawnedR",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "SRSpawn",
+                    "=",
+                    "RandomInRange(1, 6)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"srPoliceRTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "SRSpawn",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "SRSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "PoliceEnemyR",
+                        "StreetRSpawn.X()",
+                        "StreetRSpawn.Y() - Variable(GridSize)",
+                        "\"StreetRight layer\""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "PoliceEnemyR",
+                        "MovementArea",
+                        "=",
+                        "3"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "PoliceSpawnedR",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "PoliceRBlockPlayer",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                }
+              ]
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
                     "RandomInRange(1, 5)",
-                    "\"sdESTimer\""
+                    "\"sdCoronaTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2654,7 +3196,7 @@
                   },
                   "parameters": [
                     "",
-                    "\"sdESTimer\""
+                    "\"sdCoronaTimer\""
                   ],
                   "subInstructions": []
                 }
@@ -2701,7 +3243,7 @@
                         "CoronaEnemy",
                         "SidewalkDownSpawn.X()",
                         "SidewalkDownSpawn.Y()",
-                        ""
+                        "\"SidewalkDown layer\""
                       ],
                       "subInstructions": []
                     },
@@ -3157,7 +3699,7 @@
               "parameters": [
                 "ScenePoints",
                 "+",
-                "30"
+                "0"
               ],
               "subInstructions": []
             }
@@ -3294,7 +3836,7 @@
               "parameters": [
                 "ScenePoints",
                 "+",
-                "30"
+                "0"
               ],
               "subInstructions": []
             }
@@ -3431,7 +3973,7 @@
               "parameters": [
                 "ScenePoints",
                 "+",
-                "30"
+                "0"
               ],
               "subInstructions": []
             }
@@ -3449,9 +3991,9 @@
                 "value": "PosX"
               },
               "parameters": [
-                "CarLEnemy",
+                "PoliceEnemyL",
                 "<",
-                "-CarLEnemy.Width()"
+                "-PoliceEnemyL.Width()"
               ],
               "subInstructions": []
             }
@@ -3475,6 +4017,306 @@
               },
               "parameters": [
                 "PoliceSpawnedL",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "PoliceCarREnemy",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosX"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                ">=",
+                "Player.X() - (PoliceEnemyR.Width()/2)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                "hasStopped",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PoliceRBlockPlayer",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "PoliceRBlockPlayer",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                "+",
+                "Variable(ScrollSpeed)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                "=",
+                "StreetRSpawn.Y() - Variable(GridSize)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"policeRPlayerBlockTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "PoliceRBlockPlayer",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "5",
+                    "\"policeRPlayerBlockTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"policeRPlayerBlockTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "PoliceRBlockPlayer",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarObjet"
+                  },
+                  "parameters": [
+                    "PoliceEnemyR",
+                    "hasStopped",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Distance"
+              },
+              "parameters": [
+                "Player",
+                "PoliceEnemyR",
+                "((Player.Width()/2) + (CarREnemy.Width()/2)) + 30",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "ScenePoints",
+                "+",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosX"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                ">",
+                "SceneWindowWidth() + PoliceEnemyR.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PoliceSpawnedR",
                 "=",
                 "0"
               ],
@@ -3829,6 +4671,78 @@
             {
               "type": {
                 "inverted": false,
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Player",
+                "PoliceEnemyR",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "PoliceEnemyR",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "-",
+                "Variable(PlayerLife)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PoliceSpawnedR",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
                 "value": "VarScene"
               },
               "parameters": [
@@ -3966,6 +4880,42 @@
           "width": 0
         }
       ],
+      "effects": []
+    },
+    {
+      "name": "SidewalkTop layer",
+      "visibility": true,
+      "cameras": [],
+      "effects": []
+    },
+    {
+      "name": "StreetLeft layer",
+      "visibility": true,
+      "cameras": [],
+      "effects": []
+    },
+    {
+      "name": "StreetRight layer",
+      "visibility": true,
+      "cameras": [],
+      "effects": []
+    },
+    {
+      "name": "SidewalkDown layer",
+      "visibility": true,
+      "cameras": [],
+      "effects": []
+    },
+    {
+      "name": "Player layer",
+      "visibility": true,
+      "cameras": [],
+      "effects": []
+    },
+    {
+      "name": "UI layer",
+      "visibility": true,
+      "cameras": [],
       "effects": []
     }
   ],
