@@ -176,7 +176,7 @@
       "height": 384,
       "layer": "",
       "locked": false,
-      "name": "City",
+      "name": "CloseBackground",
       "width": 1680,
       "x": 0,
       "y": 336,
@@ -191,7 +191,7 @@
       "height": 384,
       "layer": "",
       "locked": false,
-      "name": "City",
+      "name": "CloseBackground",
       "width": 1680,
       "x": 1680,
       "y": 336,
@@ -349,6 +349,36 @@
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 720,
+      "layer": "",
+      "locked": false,
+      "name": "DistantBackground",
+      "width": 1680,
+      "x": 0,
+      "y": -144,
+      "zOrder": -2,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 720,
+      "layer": "",
+      "locked": false,
+      "name": "DistantBackground",
+      "width": 1680,
+      "x": 1680,
+      "y": -144,
+      "zOrder": -2,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
     }
   ],
   "objects": [
@@ -443,7 +473,46 @@
       "behaviors": []
     },
     {
-      "name": "City",
+      "name": "CloseBackground",
+      "tags": "",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "landscape_temp",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "resources/sprites/background/hd/landscape_temp.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DistantBackground",
       "tags": "",
       "type": "Sprite",
       "updateIfNotVisible": false,
@@ -460,7 +529,7 @@
               "sprites": [
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "resources/sprites/background/hd/landscape_temp.png",
+                  "image": "resources/sprites/background/hd/vector-buildings-silhouette-cityscape-background-modern-architecture-urban-city-landscape.jpg",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
@@ -1140,9 +1209,9 @@
                 "value": "PosX"
               },
               "parameters": [
-                "City",
+                "CloseBackground",
                 "<=",
-                "-City.Width()"
+                "-CloseBackground.Width()"
               ],
               "subInstructions": []
             }
@@ -1154,9 +1223,9 @@
                 "value": "MettreX"
               },
               "parameters": [
-                "City",
+                "CloseBackground",
                 "=",
-                "City.Width()"
+                "CloseBackground.Width()"
               ],
               "subInstructions": []
             }
@@ -1175,9 +1244,64 @@
                 "value": "MettreX"
               },
               "parameters": [
-                "City",
+                "CloseBackground",
                 "-",
                 "Variable(ScrollSpeed)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosX"
+              },
+              "parameters": [
+                "DistantBackground",
+                "<=",
+                "-DistantBackground.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "DistantBackground",
+                "=",
+                "DistantBackground.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "DistantBackground",
+                "-",
+                "Variable(ScrollSpeed)*0.01"
               ],
               "subInstructions": []
             }

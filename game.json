@@ -139,15 +139,6 @@
       },
       {
         "alwaysLoaded": false,
-        "file": "resources/sprites/background/hd/landscape_temp.png",
-        "kind": "image",
-        "metadata": "",
-        "name": "resources/sprites/background/hd/landscape_temp.png",
-        "smoothed": true,
-        "userAdded": true
-      },
-      {
-        "alwaysLoaded": false,
         "file": "resources/sprites/enemies/corona/hd/coronavirus_PNG-Images-Transparent-Background.png",
         "kind": "image",
         "metadata": "",
@@ -289,6 +280,24 @@
         "name": "resources/sprites/enemies/police-car-r/hd/police-1.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/background/hd/vector-buildings-silhouette-cityscape-background-modern-architecture-urban-city-landscape.jpg",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/background/hd/vector-buildings-silhouette-cityscape-background-modern-architecture-urban-city-landscape.jpg",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/background/hd/landscape_temp.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/background/hd/landscape_temp.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
