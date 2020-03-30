@@ -253,6 +253,24 @@
         "name": "resources/sprites/ui/screen-elements/screen-background/game-over/gameOver-1.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car.png",
+        "smoothed": true,
+        "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car-1.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
@@ -269,6 +287,10 @@
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
       "referenceTo": "/layouts/gamescene"
+    },
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/layouts/mainmenuscene"
     }
   ],
   "externalEvents": [],

@@ -56,6 +56,12 @@
         },
         {
           "name": "AlcoholLife"
+        },
+        {
+          "name": "PoliceEnemyL"
+        },
+        {
+          "name": "PoliceEnemyR"
         }
       ]
     }
@@ -103,6 +109,14 @@
     },
     {
       "name": "ResumeScene",
+      "value": "0"
+    },
+    {
+      "name": "PoliceSpawnedL",
+      "value": "0"
+    },
+    {
+      "name": "PoliceSpawnedR",
       "value": "0"
     }
   ],
@@ -690,7 +704,7 @@
       "variables": [],
       "behaviors": [],
       "content": {
-        "text": "[b]0.0[/b]",
+        "text": "[b]0.0m[/b]",
         "opacity": 255,
         "fontSize": "52",
         "visible": true,
@@ -783,6 +797,59 @@
       "width": 96,
       "variables": [],
       "behaviors": []
+    },
+    {
+      "name": "PoliceEnemyL",
+      "tags": "enemy",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [
+        {
+          "name": "MovementArea",
+          "value": "0"
+        }
+      ],
+      "behaviors": [],
+      "animations": [
+        {
+          "name": "970-9705512_police-car",
+          "useMultipleDirections": false,
+          "directions": [
+            {
+              "looping": false,
+              "timeBetweenFrames": 0.08,
+              "sprites": [
+                {
+                  "hasCustomCollisionMask": false,
+                  "image": "resources/sprites/enemies/police-car-l/hd/970-9705512_police-car-1.png",
+                  "points": [],
+                  "originPoint": {
+                    "name": "origine",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "centerPoint": {
+                    "automatic": true,
+                    "name": "centre",
+                    "x": 0,
+                    "y": 0
+                  },
+                  "customCollisionMask": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PoliceEnemyR",
+      "tags": "enemy",
+      "type": "Sprite",
+      "updateIfNotVisible": false,
+      "variables": [],
+      "behaviors": [],
+      "animations": []
     }
   ],
   "events": [
@@ -2266,6 +2333,18 @@
                     "\"slESTimer\""
                   ],
                   "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "PoliceSpawnedL",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
                 }
               ],
               "actions": [
@@ -2349,6 +2428,79 @@
                         "MovementArea",
                         "=",
                         "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarScene"
+                      },
+                      "parameters": [
+                        "SLSpawn",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "SLSpawn",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "Create"
+                      },
+                      "parameters": [
+                        "",
+                        "PoliceEnemyL",
+                        "StreetLSpawn.X()",
+                        "StreetLSpawn.Y() - Variable(GridSize)",
+                        ""
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "PoliceEnemyL",
+                        "MovementArea",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "PoliceSpawnedL",
+                        "=",
+                        "1"
                       ],
                       "subInstructions": []
                     }
@@ -3181,6 +3333,155 @@
             }
           ],
           "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
+          "comment": "PoliceCarLEnemy",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreX"
+              },
+              "parameters": [
+                "PoliceEnemyL",
+                "-",
+                "Variable(ScrollSpeed)* 0.3"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "MettreY"
+              },
+              "parameters": [
+                "PoliceEnemyL",
+                "=",
+                "StreetLSpawn.Y() - Variable(GridSize)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Distance"
+              },
+              "parameters": [
+                "Player",
+                "PoliceEnemyL",
+                "((Player.Width()/2) + (CarLEnemy.Width()/2)) + 30",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "PoliceEnemyL",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": [],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "ScenePoints",
+                "+",
+                "30"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "PosX"
+              },
+              "parameters": [
+                "CarLEnemy",
+                "<",
+                "-CarLEnemy.Width()"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "PoliceEnemyL",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PoliceSpawnedL",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
         }
       ],
       "parameters": []
@@ -3442,6 +3743,78 @@
                 "PlayerLife",
                 "-",
                 "Variable(PlayerLife)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "CollisionNP"
+              },
+              "parameters": [
+                "Player",
+                "PoliceEnemyL",
+                "",
+                "",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarObjet"
+              },
+              "parameters": [
+                "PoliceEnemyL",
+                "MovementArea",
+                "=",
+                "Player.Variable(MovementArea)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Delete"
+              },
+              "parameters": [
+                "PoliceEnemyL",
+                ""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PlayerLife",
+                "-",
+                "Variable(PlayerLife)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "PoliceSpawnedL",
+                "=",
+                "0"
               ],
               "subInstructions": []
             }
