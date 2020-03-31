@@ -22,7 +22,7 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.548
+    "zoomFactor": 0.572
   },
   "objectsGroups": [
     {
@@ -122,6 +122,18 @@
     {
       "name": "PoliceRBlockPlayer",
       "value": "0"
+    },
+    {
+      "name": "CursorLastPosY",
+      "value": "0"
+    },
+    {
+      "name": "WasSceneResumed",
+      "value": "1"
+    },
+    {
+      "name": "CountdownUntilResume",
+      "value": "3"
     }
   ],
   "instances": [
@@ -376,6 +388,21 @@
       "x": 1680,
       "y": -144,
       "zOrder": -2,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "UI layer",
+      "locked": false,
+      "name": "Countdown",
+      "width": 0,
+      "x": 576,
+      "y": 240,
+      "zOrder": 21,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -962,6 +989,25 @@
       "width": 96,
       "variables": [],
       "behaviors": []
+    },
+    {
+      "bold": true,
+      "italic": false,
+      "name": "Countdown",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "3",
+      "font": "",
+      "characterSize": 144,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
     }
   ],
   "events": [
@@ -1031,22 +1077,22 @@
             {
               "type": {
                 "inverted": false,
-                "value": "ModVarScene"
+                "value": "Cache"
               },
               "parameters": [
-                "ScenePointsWidth",
-                "=",
-                "PointsCounter_.Width()"
+                "GameOverScreen"
               ],
               "subInstructions": []
             },
             {
               "type": {
                 "inverted": false,
-                "value": "Cache"
+                "value": "ModVarScene"
               },
               "parameters": [
-                "GameOverScreen"
+                "ScenePointsWidth",
+                "=",
+                "PointsCounter_.Width()"
               ],
               "subInstructions": []
             },
@@ -1146,6 +1192,18 @@
               "parameters": [
                 "",
                 "\"policeRPlayerBlockTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "CursorLastPosY",
+                "=",
+                "1"
               ],
               "subInstructions": []
             }
@@ -1421,6 +1479,50 @@
                 "value": "VarScene"
               },
               "parameters": [
+                "WasSceneResumed",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"resumeSceneTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"countdownTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
                 "KillAllSpawnedObjects",
                 "=",
                 "1"
@@ -1607,6 +1709,100 @@
             "textG": 0,
             "textR": 0
           },
+          "comment": "Countdown",
+          "comment2": ""
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "1",
+                "\"countdownTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "CountdownUntilResume",
+                "-",
+                "1"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"countdownTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "WasSceneResumed",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "TextObject::String"
+              },
+              "parameters": [
+                "Countdown",
+                "=",
+                "LargeNumberToString(Variable(CountdownUntilResume))"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Comment",
+          "color": {
+            "b": 109,
+            "g": 230,
+            "r": 255,
+            "textB": 0,
+            "textG": 0,
+            "textR": 0
+          },
           "comment": "Game Over Screen",
           "comment2": ""
         },
@@ -1667,18 +1863,6 @@
                     "value": "ModVarScene"
                   },
                   "parameters": [
-                    "ResumeScene",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
                     "ScrollSpeed",
                     "=",
                     "5"
@@ -1727,6 +1911,29 @@
                   "parameters": [
                     "",
                     "\"afterStartTimer\""
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "WasSceneResumed",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Montre"
+                  },
+                  "parameters": [
+                    "Countdown",
+                    ""
                   ],
                   "subInstructions": []
                 }
@@ -1801,10 +2008,124 @@
             {
               "type": {
                 "inverted": false,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "3",
+                "\"resumeSceneTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Cache"
+              },
+              "parameters": [
+                "Countdown"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "CountdownUntilResume",
+                "=",
+                "3"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "WasSceneResumed",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "4",
+                "\"resumeSceneTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "CursorLastPosY",
+                "=",
+                "MouseY(\"Player layer\", 0)"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "WasSceneResumed",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
                 "value": "VarScene"
               },
               "parameters": [
                 "ScrollSpeed",
+                "!=",
+                "0"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "CursorLastPosY",
                 "!=",
                 "0"
               ],
@@ -1842,12 +2163,12 @@
                 {
                   "type": {
                     "inverted": false,
-                    "value": "ModVarGlobal"
+                    "value": "ModVarScene"
                   },
                   "parameters": [
                     "CursorLastPosY",
                     "=",
-                    "MouseY(\"\", 0)"
+                    "MouseY(\"Player layer\", 0)"
                   ],
                   "subInstructions": []
                 }
@@ -1910,12 +2231,12 @@
                         {
                           "type": {
                             "inverted": true,
-                            "value": "VarGlobal"
+                            "value": "VarScene"
                           },
                           "parameters": [
                             "CursorLastPosY",
                             "<",
-                            "MouseY(\"\", 0)"
+                            "MouseY(\"Player layer\", 0)"
                           ],
                           "subInstructions": []
                         },
@@ -1957,12 +2278,12 @@
                         {
                           "type": {
                             "inverted": false,
-                            "value": "VarGlobal"
+                            "value": "VarScene"
                           },
                           "parameters": [
                             "CursorLastPosY",
                             "<",
-                            "MouseY(\"\", 0)"
+                            "MouseY(\"Player layer\", 0)"
                           ],
                           "subInstructions": []
                         },
@@ -2431,6 +2752,18 @@
               "parameters": [
                 "ScrollSpeed",
                 "!=",
+                "0"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "WasSceneResumed",
+                "=",
                 "0"
               ],
               "subInstructions": []
@@ -4995,6 +5328,18 @@
               },
               "parameters": [
                 "ScrollSpeed",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "CursorLastPosY",
                 "=",
                 "0"
               ],

@@ -304,12 +304,7 @@
   },
   "objects": [],
   "objectsGroups": [],
-  "variables": [
-    {
-      "name": "CursorLastPosY",
-      "value": "0"
-    }
-  ],
+  "variables": [],
   "layouts": [
     {
       "__REFERENCE_TO_SPLIT_OBJECT": true,
