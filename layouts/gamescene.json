@@ -149,6 +149,10 @@
     {
       "name": "DoRewardSpawn",
       "value": "1"
+    },
+    {
+      "name": "StartRewardIATimeOn",
+      "value": "10"
     }
   ],
   "instances": [
@@ -569,6 +573,22 @@
         {
           "name": "Speed",
           "value": "6"
+        },
+        {
+          "name": "RunningOnSTTime",
+          "value": "0"
+        },
+        {
+          "name": "RunningOnSLTime",
+          "value": "0"
+        },
+        {
+          "name": "RunningOnSRTime",
+          "value": "0"
+        },
+        {
+          "name": "RunningOnSDTime",
+          "value": "0"
         }
       ],
       "behaviors": [],
@@ -1337,7 +1357,7 @@
             "textG": 0,
             "textR": 0
           },
-          "comment": "st -> sidewalk top\nsd -> sidewalk down\nsl -> street left\nsr -> street right\nR -> Right\nL -> Left",
+          "comment": "st -> sidewalk top\nsd -> sidewalk down\nsl -> street left\nsr -> street right\nR -> Right\nL -> Left\nD -> Down\nT -> Top",
           "comment2": ""
         },
         {
@@ -1495,6 +1515,17 @@
               "parameters": [
                 "",
                 "\"policeRPlayerBlockTimer\""
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"startRewardIAAfterTimer\""
               ],
               "subInstructions": []
             }
@@ -1666,14 +1697,14 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "PassiveEvents",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
       "events": [
         {
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "type": "BuiltinCommonInstructions::Standard",
           "conditions": [
             {
@@ -1982,7 +2013,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "UX-UI",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -2086,7 +2117,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "GameOver Screen",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -2295,745 +2326,6 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
-      "name": "TopDownMovement",
-      "source": "",
-      "type": "BuiltinCommonInstructions::Group",
-      "events": [
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Timer"
-              },
-              "parameters": [
-                "",
-                "3",
-                "\"resumeSceneTimer\""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "Cache"
-              },
-              "parameters": [
-                "Countdown"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "CountdownUntilResume",
-                "=",
-                "3"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarScene"
-              },
-              "parameters": [
-                "WasSceneResumed",
-                "=",
-                "1"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Timer"
-              },
-              "parameters": [
-                "",
-                "4",
-                "\"resumeSceneTimer\""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "CursorLastPosY",
-                "=",
-                "MouseY(\"Player layer\", 0)"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "WasSceneResumed",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarScene"
-              },
-              "parameters": [
-                "ScrollSpeed",
-                "!=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarScene"
-              },
-              "parameters": [
-                "CursorLastPosY",
-                "!=",
-                "0"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "SourisBouton"
-                  },
-                  "parameters": [
-                    "",
-                    "Left"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": [],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "CursorLastPosY",
-                    "=",
-                    "MouseY(\"Player layer\", 0)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "MouseButtonReleased"
-                  },
-                  "parameters": [
-                    "",
-                    "Left"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::Once"
-                  },
-                  "parameters": [],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [],
-              "events": [
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "MovementTrigger",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [],
-                  "events": [
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [
-                        {
-                          "type": {
-                            "inverted": true,
-                            "value": "VarScene"
-                          },
-                          "parameters": [
-                            "CursorLastPosY",
-                            "<",
-                            "MouseY(\"Player layer\", 0)"
-                          ],
-                          "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": true,
-                            "value": "PosY"
-                          },
-                          "parameters": [
-                            "Player",
-                            "=",
-                            "Pos1.Y()"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ModVarObjet"
-                          },
-                          "parameters": [
-                            "Player",
-                            "MovementTrigger",
-                            "=",
-                            "1"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    },
-                    {
-                      "disabled": false,
-                      "folded": false,
-                      "type": "BuiltinCommonInstructions::Standard",
-                      "conditions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "VarScene"
-                          },
-                          "parameters": [
-                            "CursorLastPosY",
-                            "<",
-                            "MouseY(\"Player layer\", 0)"
-                          ],
-                          "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": true,
-                            "value": "PosY"
-                          },
-                          "parameters": [
-                            "Player",
-                            "=",
-                            "Pos4.Y()"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ModVarObjet"
-                          },
-                          "parameters": [
-                            "Player",
-                            "MovementTrigger",
-                            "=",
-                            "2"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
-                      "events": []
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementTrigger",
-                    "=",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "UpMovement",
-                    "+",
-                    "Player.Variable(Speed)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementTrigger",
-                    "=",
-                    "2"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "DownMovement",
-                    "+",
-                    "Player.Variable(Speed)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "UpMovement",
-                    ">",
-                    "0"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "MettreY"
-                  },
-                  "parameters": [
-                    "Player",
-                    "-",
-                    "Player.Variable(Speed)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "DownMovement",
-                    ">",
-                    "0"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "MettreY"
-                  },
-                  "parameters": [
-                    "Player",
-                    "+",
-                    "Player.Variable(Speed)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "UpMovement",
-                    ">=",
-                    "Variable(GridSize)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "UpMovement",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementTrigger",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementArea",
-                    "-",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "DownMovement",
-                    ">=",
-                    "48"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "DownMovement",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementTrigger",
-                    "=",
-                    "0"
-                  ],
-                  "subInstructions": []
-                },
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementArea",
-                    "+",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementArea",
-                    "=",
-                    "1"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeLayer"
-                  },
-                  "parameters": [
-                    "Player",
-                    "\"SidewalkTop layer\""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementArea",
-                    "=",
-                    "2"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeLayer"
-                  },
-                  "parameters": [
-                    "Player",
-                    "\"StreetLeft layer\""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementArea",
-                    "=",
-                    "3"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeLayer"
-                  },
-                  "parameters": [
-                    "Player",
-                    "\"StreetRight layer\""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "VarObjet"
-                  },
-                  "parameters": [
-                    "Player",
-                    "MovementArea",
-                    "=",
-                    "4"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ChangeLayer"
-                  },
-                  "parameters": [
-                    "Player",
-                    "\"SidewalkDown layer\""
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            }
-          ]
-        }
-      ],
-      "parameters": []
-    },
-    {
-      "colorB": 228,
-      "colorG": 176,
-      "colorR": 74,
-      "creationTime": 0,
-      "disabled": false,
       "folded": false,
       "name": "RewardIA",
       "source": "",
@@ -3108,6 +2400,144 @@
             }
           ],
           "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": true,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "Variable(StartRewardIATimeOn)",
+                "\"startRewardIAAfterTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "RewardPosition",
+                "=",
+                "RandomInRange(1, 8)"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Timer"
+              },
+              "parameters": [
+                "",
+                "Variable(StartRewardIATimeOn)",
+                "\"startRewardIAAfterTimer\""
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::And"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSTTime",
+                        "<",
+                        "Player.Variable(RunningOnSLTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSTTime",
+                        "<",
+                        "Player.Variable(RunningOnSRTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSTTime",
+                        "<",
+                        "Player.Variable(RunningOnSDTime)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "RewardPosition",
+                    "=",
+                    "RandomInRange(1, 2)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "DoRewardSpawn",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            }
+          ]
         }
       ],
       "parameters": []
@@ -3172,7 +2602,7 @@
                   "colorR": 74,
                   "creationTime": 0,
                   "disabled": false,
-                  "folded": true,
+                  "folded": false,
                   "name": "Coin",
                   "source": "",
                   "type": "BuiltinCommonInstructions::Group",
@@ -3207,20 +2637,7 @@
                           "subInstructions": []
                         }
                       ],
-                      "actions": [
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "ModVarScene"
-                          },
-                          "parameters": [
-                            "RewardPosition",
-                            "=",
-                            "RandomInRange(1, 8)"
-                          ],
-                          "subInstructions": []
-                        }
-                      ],
+                      "actions": [],
                       "events": [
                         {
                           "disabled": false,
@@ -4725,7 +4142,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "RewardController",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -5726,7 +5143,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": false,
+      "folded": true,
       "name": "EnemyController",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -6220,7 +5637,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "SpecialEnemies",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -6689,6 +6106,1065 @@
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
       "events": [
+        {
+          "colorB": 228,
+          "colorG": 176,
+          "colorR": 74,
+          "creationTime": 0,
+          "disabled": false,
+          "folded": false,
+          "name": "TopDownMovement",
+          "source": "",
+          "type": "BuiltinCommonInstructions::Group",
+          "events": [
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "3",
+                    "\"resumeSceneTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Cache"
+                  },
+                  "parameters": [
+                    "Countdown"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "CountdownUntilResume",
+                    "=",
+                    "3"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "WasSceneResumed",
+                    "=",
+                    "1"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "Timer"
+                  },
+                  "parameters": [
+                    "",
+                    "4",
+                    "\"resumeSceneTimer\""
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "CursorLastPosY",
+                    "=",
+                    "MouseY(\"Player layer\", 0)"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "WasSceneResumed",
+                    "=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "ScrollSpeed",
+                    "!=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                },
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "VarScene"
+                  },
+                  "parameters": [
+                    "CursorLastPosY",
+                    "!=",
+                    "0"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "actions": [],
+              "events": [
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "SourisBouton"
+                      },
+                      "parameters": [
+                        "",
+                        "Left"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": [],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarScene"
+                      },
+                      "parameters": [
+                        "CursorLastPosY",
+                        "=",
+                        "MouseY(\"Player layer\", 0)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MouseButtonReleased"
+                      },
+                      "parameters": [
+                        "",
+                        "Left"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "BuiltinCommonInstructions::Once"
+                      },
+                      "parameters": [],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "VarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "MovementTrigger",
+                            "=",
+                            "0"
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [],
+                      "events": [
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": true,
+                                "value": "VarScene"
+                              },
+                              "parameters": [
+                                "CursorLastPosY",
+                                "<",
+                                "MouseY(\"Player layer\", 0)"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": true,
+                                "value": "PosY"
+                              },
+                              "parameters": [
+                                "Player",
+                                "=",
+                                "Pos1.Y()"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjet"
+                              },
+                              "parameters": [
+                                "Player",
+                                "MovementTrigger",
+                                "=",
+                                "1"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        },
+                        {
+                          "disabled": false,
+                          "folded": false,
+                          "type": "BuiltinCommonInstructions::Standard",
+                          "conditions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "VarScene"
+                              },
+                              "parameters": [
+                                "CursorLastPosY",
+                                "<",
+                                "MouseY(\"Player layer\", 0)"
+                              ],
+                              "subInstructions": []
+                            },
+                            {
+                              "type": {
+                                "inverted": true,
+                                "value": "PosY"
+                              },
+                              "parameters": [
+                                "Player",
+                                "=",
+                                "Pos4.Y()"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "actions": [
+                            {
+                              "type": {
+                                "inverted": false,
+                                "value": "ModVarObjet"
+                              },
+                              "parameters": [
+                                "Player",
+                                "MovementTrigger",
+                                "=",
+                                "2"
+                              ],
+                              "subInstructions": []
+                            }
+                          ],
+                          "events": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementTrigger",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "UpMovement",
+                        "+",
+                        "Player.Variable(Speed)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementTrigger",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "DownMovement",
+                        "+",
+                        "Player.Variable(Speed)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "UpMovement",
+                        ">",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MettreY"
+                      },
+                      "parameters": [
+                        "Player",
+                        "-",
+                        "Player.Variable(Speed)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "DownMovement",
+                        ">",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "MettreY"
+                      },
+                      "parameters": [
+                        "Player",
+                        "+",
+                        "Player.Variable(Speed)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "UpMovement",
+                        ">=",
+                        "Variable(GridSize)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "UpMovement",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementTrigger",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "-",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "DownMovement",
+                        ">=",
+                        "48"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "DownMovement",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementTrigger",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "+",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "=",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeLayer"
+                      },
+                      "parameters": [
+                        "Player",
+                        "\"SidewalkTop layer\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Timer"
+                          },
+                          "parameters": [
+                            "",
+                            "1",
+                            "\"playerOnSTTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "RunningOnSTTime",
+                            "+",
+                            "1"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ResetTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSTTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSLTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSRTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSDTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "=",
+                        "2"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeLayer"
+                      },
+                      "parameters": [
+                        "Player",
+                        "\"StreetLeft layer\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Timer"
+                          },
+                          "parameters": [
+                            "",
+                            "1",
+                            "\"playerOnSLTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "RunningOnSTTime",
+                            "+",
+                            "1"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ResetTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSLTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSTTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSRTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSDTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "=",
+                        "3"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeLayer"
+                      },
+                      "parameters": [
+                        "Player",
+                        "\"StreetRight layer\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Timer"
+                          },
+                          "parameters": [
+                            "",
+                            "1",
+                            "\"playerOnSRTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "RunningOnSTTime",
+                            "+",
+                            "1"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ResetTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSRTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSTTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSLTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSDTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "=",
+                        "4"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ChangeLayer"
+                      },
+                      "parameters": [
+                        "Player",
+                        "\"SidewalkDown layer\""
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": [
+                    {
+                      "disabled": false,
+                      "folded": false,
+                      "type": "BuiltinCommonInstructions::Standard",
+                      "conditions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "Timer"
+                          },
+                          "parameters": [
+                            "",
+                            "1",
+                            "\"playerOnSDTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "actions": [
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ModVarObjet"
+                          },
+                          "parameters": [
+                            "Player",
+                            "RunningOnSTTime",
+                            "+",
+                            "1"
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "ResetTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSDTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSTTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSLTimer\""
+                          ],
+                          "subInstructions": []
+                        },
+                        {
+                          "type": {
+                            "inverted": false,
+                            "value": "RemoveTimer"
+                          },
+                          "parameters": [
+                            "",
+                            "\"playerOnSRTimer\""
+                          ],
+                          "subInstructions": []
+                        }
+                      ],
+                      "events": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": []
+        },
         {
           "colorB": 228,
           "colorG": 176,
