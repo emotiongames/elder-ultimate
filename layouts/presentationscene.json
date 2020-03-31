@@ -1,8 +1,8 @@
 {
   "b": 209,
   "disableInputWhenNotFocused": true,
-  "mangledName": "mainMenuScene",
-  "name": "mainMenuScene",
+  "mangledName": "presentationScene",
+  "name": "presentationScene",
   "oglFOV": 90,
   "oglZFar": 500,
   "oglZNear": 1,
@@ -22,37 +22,22 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.64
+    "zoomFactor": 0.592
   },
   "objectsGroups": [],
   "variables": [],
   "instances": [
     {
       "angle": 0,
-      "customSize": false,
-      "height": 0,
-      "layer": "",
-      "locked": false,
-      "name": "StartButton",
-      "width": 0,
-      "x": 576,
-      "y": 384,
-      "zOrder": 1,
-      "numberProperties": [],
-      "stringProperties": [],
-      "initialVariables": []
-    },
-    {
-      "angle": 0,
       "customSize": true,
       "height": 144,
       "layer": "",
       "locked": false,
-      "name": "GameName",
-      "width": 720,
-      "x": 288,
-      "y": 96,
-      "zOrder": 3,
+      "name": "logoName",
+      "width": 624,
+      "x": 336,
+      "y": 288,
+      "zOrder": 1,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -60,30 +45,15 @@
   ],
   "objects": [
     {
-      "bottomMargin": 0,
-      "height": 144,
-      "leftMargin": 0,
-      "name": "StartButton",
-      "rightMargin": 0,
-      "tags": "",
-      "texture": "",
-      "tiled": false,
-      "topMargin": 0,
-      "type": "PanelSpriteObject::PanelSprite",
-      "width": 144,
-      "variables": [],
-      "behaviors": []
-    },
-    {
-      "name": "GameName",
+      "name": "logoName",
       "tags": "",
       "type": "BBText::BBText",
       "variables": [],
       "behaviors": [],
       "content": {
-        "text": "[b]Elder Ultimate[/b]\n[outline=yellow][font=times][spacing=4][size=120]Corona Virus[/size][/spacing][/font][/outline]\n\n",
+        "text": "[shadow=red][spacing=6][b]Emotion Games[/b][/spacing][/shadow]\n[size=30]Living a dream![/size]",
         "opacity": 255,
-        "fontSize": "30",
+        "fontSize": "70",
         "visible": true,
         "color": "#000000",
         "fontFamily": "Arial",
@@ -101,24 +71,12 @@
         {
           "type": {
             "inverted": false,
-            "value": "SourisSurObjet"
-          },
-          "parameters": [
-            "StartButton",
-            "",
-            "",
-            ""
-          ],
-          "subInstructions": []
-        },
-        {
-          "type": {
-            "inverted": false,
-            "value": "MouseButtonReleased"
+            "value": "Timer"
           },
           "parameters": [
             "",
-            "Left"
+            "5",
+            "\"changeSceneTimer\""
           ],
           "subInstructions": []
         }
@@ -127,11 +85,23 @@
         {
           "type": {
             "inverted": false,
-            "value": "PushScene"
+            "value": "Scene"
           },
           "parameters": [
             "",
-            "\"gameScene\""
+            "\"historyScene\"",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "RemoveTimer"
+          },
+          "parameters": [
+            "",
+            "\"changeSceneTimer\""
           ],
           "subInstructions": []
         }

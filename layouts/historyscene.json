@@ -1,8 +1,8 @@
 {
   "b": 209,
   "disableInputWhenNotFocused": true,
-  "mangledName": "mainMenuScene",
-  "name": "mainMenuScene",
+  "mangledName": "historyScene",
+  "name": "historyScene",
   "oglFOV": 90,
   "oglZFar": 500,
   "oglZNear": 1,
@@ -22,7 +22,7 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.64
+    "zoomFactor": 0.688
   },
   "objectsGroups": [],
   "variables": [],
@@ -33,10 +33,10 @@
       "height": 0,
       "layer": "",
       "locked": false,
-      "name": "StartButton",
+      "name": "SkipButton",
       "width": 0,
-      "x": 576,
-      "y": 384,
+      "x": 1056,
+      "y": 576,
       "zOrder": 1,
       "numberProperties": [],
       "stringProperties": [],
@@ -44,15 +44,15 @@
     },
     {
       "angle": 0,
-      "customSize": true,
-      "height": 144,
+      "customSize": false,
+      "height": 0,
       "layer": "",
       "locked": false,
-      "name": "GameName",
-      "width": 720,
-      "x": 288,
-      "y": 96,
-      "zOrder": 3,
+      "name": "NewObject",
+      "width": 0,
+      "x": 432,
+      "y": 336,
+      "zOrder": 2,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -60,10 +60,29 @@
   ],
   "objects": [
     {
+      "bold": true,
+      "italic": false,
+      "name": "NewObject",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "History here",
+      "font": "",
+      "characterSize": 70,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
+    },
+    {
       "bottomMargin": 0,
-      "height": 144,
+      "height": 96,
       "leftMargin": 0,
-      "name": "StartButton",
+      "name": "SkipButton",
       "rightMargin": 0,
       "tags": "",
       "texture": "",
@@ -73,23 +92,6 @@
       "width": 144,
       "variables": [],
       "behaviors": []
-    },
-    {
-      "name": "GameName",
-      "tags": "",
-      "type": "BBText::BBText",
-      "variables": [],
-      "behaviors": [],
-      "content": {
-        "text": "[b]Elder Ultimate[/b]\n[outline=yellow][font=times][spacing=4][size=120]Corona Virus[/size][/spacing][/font][/outline]\n\n",
-        "opacity": 255,
-        "fontSize": "30",
-        "visible": true,
-        "color": "#000000",
-        "fontFamily": "Arial",
-        "align": "center",
-        "wordWrap": true
-      }
     }
   ],
   "events": [
@@ -101,10 +103,55 @@
         {
           "type": {
             "inverted": false,
+            "value": "Timer"
+          },
+          "parameters": [
+            "",
+            "10",
+            "\"changeSceneTimer\""
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "Scene"
+          },
+          "parameters": [
+            "",
+            "\"mainMenuScene\"",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "RemoveTimer"
+          },
+          "parameters": [
+            "",
+            "\"changeSceneTimer\""
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
             "value": "SourisSurObjet"
           },
           "parameters": [
-            "StartButton",
+            "SkipButton",
             "",
             "",
             ""
@@ -127,11 +174,23 @@
         {
           "type": {
             "inverted": false,
-            "value": "PushScene"
+            "value": "Scene"
           },
           "parameters": [
             "",
-            "\"gameScene\""
+            "\"mainMenuScene\"",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "RemoveTimer"
+          },
+          "parameters": [
+            "",
+            "\"changeSceneTimer\""
           ],
           "subInstructions": []
         }
