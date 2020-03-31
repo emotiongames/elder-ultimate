@@ -1273,6 +1273,10 @@
         {
           "name": "MovementArea",
           "value": "0"
+        },
+        {
+          "name": "Speed",
+          "value": "0"
         }
       ],
       "behaviors": [],
@@ -3039,8 +3043,70 @@
           "disabled": false,
           "folded": false,
           "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [],
-          "actions": [],
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Egal"
+              },
+              "parameters": [
+                "mod(Variable(RewardPosition), 2)",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "CoinReward",
+                "Speed",
+                "=",
+                "Variable(ScrollSpeed) * 0.6"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "events": []
+        },
+        {
+          "disabled": false,
+          "folded": false,
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "Egal"
+              },
+              "parameters": [
+                "mod(Variable(RewardPosition), 2)",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarObjet"
+              },
+              "parameters": [
+                "CoinReward",
+                "Speed",
+                "=",
+                "Variable(ScrollSpeed) * 1.6"
+              ],
+              "subInstructions": []
+            }
+          ],
           "events": []
         }
       ],
@@ -4702,7 +4768,7 @@
                   "parameters": [
                     "CoinReward",
                     "-",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -4806,7 +4872,7 @@
                   "parameters": [
                     "CoinReward",
                     "+",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -4910,7 +4976,7 @@
                   "parameters": [
                     "CoinReward",
                     "-",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -5014,7 +5080,7 @@
                   "parameters": [
                     "CoinReward",
                     "+",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -5118,7 +5184,7 @@
                   "parameters": [
                     "CoinReward",
                     "-",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -5222,7 +5288,7 @@
                   "parameters": [
                     "CoinReward",
                     "+",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -5326,7 +5392,7 @@
                   "parameters": [
                     "CoinReward",
                     "-",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
@@ -5430,7 +5496,7 @@
                   "parameters": [
                     "CoinReward",
                     "+",
-                    "Variable(ScrollSpeed) * 0.7"
+                    "CoinReward.Variable(Speed)"
                   ],
                   "subInstructions": []
                 },
