@@ -22,7 +22,7 @@
     "gridWidth": 48,
     "snap": true,
     "windowMask": false,
-    "zoomFactor": 0.476
+    "zoomFactor": 0.668
   },
   "objectsGroups": [
     {
@@ -152,7 +152,11 @@
     },
     {
       "name": "StartRewardIATimeOn",
-      "value": "10"
+      "value": "360"
+    },
+    {
+      "name": "RewardIAStarted",
+      "value": "0"
     }
   ],
   "instances": [
@@ -188,12 +192,12 @@
     },
     {
       "angle": 0,
-      "customSize": false,
-      "height": 0,
+      "customSize": true,
+      "height": 103,
       "layer": "Player layer",
       "locked": false,
       "name": "Player",
-      "width": 0,
+      "width": 64,
       "x": 480,
       "y": 528,
       "zOrder": 1,
@@ -572,7 +576,7 @@
         },
         {
           "name": "Speed",
-          "value": "6"
+          "value": "10"
         },
         {
           "name": "RunningOnSTTime",
@@ -589,12 +593,20 @@
         {
           "name": "RunningOnSDTime",
           "value": "0"
+        },
+        {
+          "name": "GoingToUpMovement",
+          "value": "0"
+        },
+        {
+          "name": "GoingToDownMovement",
+          "value": "0"
         }
       ],
       "behaviors": [],
       "animations": [
         {
-          "name": "p1_stand",
+          "name": "",
           "useMultipleDirections": false,
           "directions": [
             {
@@ -603,12 +615,12 @@
               "sprites": [
                 {
                   "hasCustomCollisionMask": false,
-                  "image": "resources/sprites/player/hd/p1_stand-1.png",
+                  "image": "resources/sprites/player/hd/VELHINHA.resized.png",
                   "points": [],
                   "originPoint": {
                     "name": "origine",
                     "x": 0,
-                    "y": 48
+                    "y": 96
                   },
                   "centerPoint": {
                     "automatic": true,
@@ -1541,7 +1553,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "Background",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -1571,7 +1583,7 @@
               "parameters": [
                 "ScrollSpeed",
                 "=",
-                "5"
+                "6"
               ],
               "subInstructions": []
             }
@@ -2013,7 +2025,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "UX-UI",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -2117,7 +2129,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": true,
+          "folded": false,
           "name": "GameOver Screen",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -2191,7 +2203,7 @@
                       "parameters": [
                         "ScrollSpeed",
                         "=",
-                        "5"
+                        "6"
                       ],
                       "subInstructions": []
                     },
@@ -2408,6 +2420,30 @@
           "conditions": [
             {
               "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "RewardOnScreen",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "RewardIAStarted",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
                 "inverted": true,
                 "value": "Timer"
               },
@@ -2443,6 +2479,18 @@
             {
               "type": {
                 "inverted": false,
+                "value": "VarScene"
+              },
+              "parameters": [
+                "RewardOnScreen",
+                "=",
+                "0"
+              ],
+              "subInstructions": []
+            },
+            {
+              "type": {
+                "inverted": false,
                 "value": "Timer"
               },
               "parameters": [
@@ -2453,7 +2501,20 @@
               "subInstructions": []
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": {
+                "inverted": false,
+                "value": "ModVarScene"
+              },
+              "parameters": [
+                "RewardIAStarted",
+                "=",
+                "1"
+              ],
+              "subInstructions": []
+            }
+          ],
           "events": [
             {
               "disabled": false,
@@ -2521,16 +2582,214 @@
                     "RandomInRange(1, 2)"
                   ],
                   "subInstructions": []
-                },
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::And"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSLTime",
+                        "<",
+                        "Player.Variable(RunningOnSTTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSLTime",
+                        "<",
+                        "Player.Variable(RunningOnSRTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSLTime",
+                        "<",
+                        "Player.Variable(RunningOnSDTime)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ]
+                }
+              ],
+              "actions": [
                 {
                   "type": {
                     "inverted": false,
                     "value": "ModVarScene"
                   },
                   "parameters": [
-                    "DoRewardSpawn",
+                    "RewardPosition",
                     "=",
-                    "1"
+                    "RandomInRange(3, 4)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::And"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSRTime",
+                        "<",
+                        "Player.Variable(RunningOnSTTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSRTime",
+                        "<",
+                        "Player.Variable(RunningOnSLTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSRTime",
+                        "<",
+                        "Player.Variable(RunningOnSDTime)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "RewardPosition",
+                    "=",
+                    "RandomInRange(5, 6)"
+                  ],
+                  "subInstructions": []
+                }
+              ],
+              "events": []
+            },
+            {
+              "disabled": false,
+              "folded": false,
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "BuiltinCommonInstructions::And"
+                  },
+                  "parameters": [],
+                  "subInstructions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSDTime",
+                        "<",
+                        "Player.Variable(RunningOnSTTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSDTime",
+                        "<",
+                        "Player.Variable(RunningOnSLTime)"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "RunningOnSDTime",
+                        "<",
+                        "Player.Variable(RunningOnSRTime)"
+                      ],
+                      "subInstructions": []
+                    }
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "inverted": false,
+                    "value": "ModVarScene"
+                  },
+                  "parameters": [
+                    "RewardPosition",
+                    "=",
+                    "RandomInRange(7, 8)"
                   ],
                   "subInstructions": []
                 }
@@ -2621,18 +2880,6 @@
                             "RewardOnScreen",
                             "=",
                             "0"
-                          ],
-                          "subInstructions": []
-                        },
-                        {
-                          "type": {
-                            "inverted": false,
-                            "value": "VarScene"
-                          },
-                          "parameters": [
-                            "DoRewardSpawn",
-                            "=",
-                            "1"
                           ],
                           "subInstructions": []
                         }
@@ -5143,7 +5390,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "EnemyController",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -6470,6 +6717,19 @@
                         "Player.Variable(Speed)"
                       ],
                       "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "GoingToUpMovement",
+                        "+",
+                        "Player.Variable(Speed)"
+                      ],
+                      "subInstructions": []
                     }
                   ],
                   "events": []
@@ -6506,6 +6766,19 @@
                         "Player.Variable(Speed)"
                       ],
                       "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "GoingToDownMovement",
+                        "+",
+                        "Player.Variable(Speed)"
+                      ],
+                      "subInstructions": []
                     }
                   ],
                   "events": []
@@ -6592,69 +6865,7 @@
                       },
                       "parameters": [
                         "Player",
-                        "UpMovement",
-                        ">=",
-                        "Variable(GridSize)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "actions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "UpMovement",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "MovementTrigger",
-                        "=",
-                        "0"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "ModVarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "MovementArea",
-                        "-",
-                        "1"
-                      ],
-                      "subInstructions": []
-                    }
-                  ],
-                  "events": []
-                },
-                {
-                  "disabled": false,
-                  "folded": false,
-                  "type": "BuiltinCommonInstructions::Standard",
-                  "conditions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "DownMovement",
+                        "GoingToUpMovement",
                         ">=",
                         "48"
                       ],
@@ -6669,7 +6880,105 @@
                       },
                       "parameters": [
                         "Player",
-                        "DownMovement",
+                        "MovementArea",
+                        "-",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "GoingToUpMovement",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "GoingToDownMovement",
+                        ">=",
+                        "48"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "MovementArea",
+                        "+",
+                        "1"
+                      ],
+                      "subInstructions": []
+                    },
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "GoingToDownMovement",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "UpMovement",
+                        ">=",
+                        "Variable(GridSize)*3"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "UpMovement",
                         "=",
                         "0"
                       ],
@@ -6687,6 +6996,42 @@
                         "0"
                       ],
                       "subInstructions": []
+                    }
+                  ],
+                  "events": []
+                },
+                {
+                  "disabled": false,
+                  "folded": false,
+                  "type": "BuiltinCommonInstructions::Standard",
+                  "conditions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "VarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "DownMovement",
+                        ">=",
+                        "Variable(GridSize)*3"
+                      ],
+                      "subInstructions": []
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "inverted": false,
+                        "value": "ModVarObjet"
+                      },
+                      "parameters": [
+                        "Player",
+                        "DownMovement",
+                        "=",
+                        "0"
+                      ],
+                      "subInstructions": []
                     },
                     {
                       "type": {
@@ -6695,9 +7040,9 @@
                       },
                       "parameters": [
                         "Player",
-                        "MovementArea",
-                        "+",
-                        "1"
+                        "MovementTrigger",
+                        "=",
+                        "0"
                       ],
                       "subInstructions": []
                     }

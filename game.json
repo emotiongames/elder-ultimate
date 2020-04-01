@@ -316,6 +316,15 @@
         "name": "resources/sprites/rewards/coin/hd/coin_temp-1-0.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/player/hd/VELHINHA.resized.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/player/hd/VELHINHA.resized.png",
+        "smoothed": true,
+        "userAdded": true
       }
     ],
     "resourceFolders": []
