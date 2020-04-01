@@ -25,7 +25,20 @@
     "zoomFactor": 0.64
   },
   "objectsGroups": [],
-  "variables": [],
+  "variables": [
+    {
+      "name": "Exists",
+      "value": "0"
+    },
+    {
+      "name": "Typing",
+      "value": "0"
+    },
+    {
+      "name": "RequestSent",
+      "value": "0"
+    }
+  ],
   "instances": [
     {
       "angle": 0,
@@ -36,7 +49,7 @@
       "name": "StartButton",
       "width": 0,
       "x": 576,
-      "y": 384,
+      "y": 528,
       "zOrder": 1,
       "numberProperties": [],
       "stringProperties": [],
@@ -53,6 +66,81 @@
       "x": 288,
       "y": 96,
       "zOrder": 3,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "EmailEntryText",
+      "width": 0,
+      "x": -48,
+      "y": 672,
+      "zOrder": 4,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": true,
+      "height": 48,
+      "layer": "",
+      "locked": false,
+      "name": "EmailInput",
+      "width": 1152,
+      "x": 48,
+      "y": 336,
+      "zOrder": 5,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "EmailText",
+      "width": 0,
+      "x": 59,
+      "y": 336,
+      "zOrder": 6,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "CursorTextBox",
+      "width": 0,
+      "x": 48,
+      "y": 336,
+      "zOrder": 7,
+      "numberProperties": [],
+      "stringProperties": [],
+      "initialVariables": []
+    },
+    {
+      "angle": 0,
+      "customSize": false,
+      "height": 0,
+      "layer": "",
+      "locked": false,
+      "name": "ErrorMessage",
+      "width": 0,
+      "x": 480,
+      "y": 432,
+      "zOrder": 8,
       "numberProperties": [],
       "stringProperties": [],
       "initialVariables": []
@@ -90,9 +178,373 @@
         "align": "center",
         "wordWrap": true
       }
+    },
+    {
+      "name": "EmailEntryText",
+      "tags": "",
+      "type": "TextEntryObject::TextEntry",
+      "variables": [],
+      "behaviors": [
+        {
+          "name": "TextEntryVirtualKeyboard",
+          "type": "TextEntryVirtualKeyboard::TextEntryVirtualKeyboard"
+        }
+      ]
+    },
+    {
+      "bottomMargin": 0,
+      "height": 48,
+      "leftMargin": 0,
+      "name": "EmailInput",
+      "rightMargin": 0,
+      "tags": "",
+      "texture": "resources/sprites/ui/screen-elements/textbox/hd/textbox-1.png",
+      "tiled": true,
+      "topMargin": 0,
+      "type": "PanelSpriteObject::PanelSprite",
+      "width": 48,
+      "variables": [],
+      "behaviors": []
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "EmailText",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "Tester e-mail",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
+    },
+    {
+      "bold": false,
+      "italic": false,
+      "name": "CursorTextBox",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "|",
+      "font": "",
+      "characterSize": 40,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
+    },
+    {
+      "bold": true,
+      "italic": false,
+      "name": "ErrorMessage",
+      "smoothed": true,
+      "tags": "",
+      "type": "TextObject::Text",
+      "underlined": false,
+      "variables": [],
+      "behaviors": [],
+      "string": "Invalid Email",
+      "font": "",
+      "characterSize": 52,
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 0
+      }
     }
   ],
   "events": [
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "DepartScene"
+          },
+          "parameters": [
+            ""
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "Cache"
+          },
+          "parameters": [
+            "CursorTextBox"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "Cache"
+          },
+          "parameters": [
+            "ErrorMessage"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "SourisSurObjet"
+          },
+          "parameters": [
+            "EmailInput",
+            "",
+            "",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "MouseButtonReleased"
+          },
+          "parameters": [
+            "",
+            "Left"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextEntryObject::Activate"
+          },
+          "parameters": [
+            "EmailEntryText",
+            "yes"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextEntryVirtualKeyboard::openKeyboard"
+          },
+          "parameters": [
+            "",
+            "EmailEntryText",
+            "TextEntryVirtualKeyboard",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "Montre"
+          },
+          "parameters": [
+            "CursorTextBox",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "ModVarScene"
+          },
+          "parameters": [
+            "Typing",
+            "=",
+            "1"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": true,
+            "value": "SourisSurObjet"
+          },
+          "parameters": [
+            "EmailInput",
+            "",
+            "",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "MouseButtonReleased"
+          },
+          "parameters": [
+            "",
+            "Left"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextEntryObject::Activate"
+          },
+          "parameters": [
+            "EmailEntryText",
+            "no"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextEntryVirtualKeyboard::closeKeyboard"
+          },
+          "parameters": [
+            "EmailEntryText",
+            "EmailEntryText",
+            "TextEntryVirtualKeyboard",
+            ""
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "Cache"
+          },
+          "parameters": [
+            "CursorTextBox"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "ModVarScene"
+          },
+          "parameters": [
+            "Typing",
+            "=",
+            "0"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextEntryObject::String"
+          },
+          "parameters": [
+            "EmailEntryText",
+            "=",
+            "\"\""
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextObject::String"
+          },
+          "parameters": [
+            "EmailText",
+            "=",
+            "\"Tester e-mail\""
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "BehaviorActivated"
+          },
+          "parameters": [
+            "EmailEntryText",
+            "TextEntryVirtualKeyboard"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "VarScene"
+          },
+          "parameters": [
+            "Typing",
+            "=",
+            "1"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "TextObject::String"
+          },
+          "parameters": [
+            "EmailText",
+            "=",
+            "EmailEntryText.String()"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
     {
       "disabled": false,
       "folded": false,
@@ -127,11 +579,105 @@
         {
           "type": {
             "inverted": false,
+            "value": "SendRequest"
+          },
+          "parameters": [
+            "\"https://api.backendless.com/2C4A95E1-350F-9088-FF00-61C030C97100/E736C626-131A-469C-B577-25EBEA7EA772\"",
+            "\"/services/testers_api/exists?email='\" + EmailEntryText.String() + \"'\"",
+            "\"\"",
+            "\"GET\"",
+            "\"application/json\"",
+            "Exists"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "ModVarScene"
+          },
+          "parameters": [
+            "RequestSent",
+            "=",
+            "1"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "VarScene"
+          },
+          "parameters": [
+            "Exists",
+            "=",
+            "1"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
             "value": "PushScene"
           },
           "parameters": [
             "",
             "\"gameScene\""
+          ],
+          "subInstructions": []
+        }
+      ],
+      "events": []
+    },
+    {
+      "disabled": false,
+      "folded": false,
+      "type": "BuiltinCommonInstructions::Standard",
+      "conditions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "VarScene"
+          },
+          "parameters": [
+            "Exists",
+            "=",
+            "0"
+          ],
+          "subInstructions": []
+        },
+        {
+          "type": {
+            "inverted": false,
+            "value": "VarScene"
+          },
+          "parameters": [
+            "RequestSent",
+            "=",
+            "1"
+          ],
+          "subInstructions": []
+        }
+      ],
+      "actions": [
+        {
+          "type": {
+            "inverted": false,
+            "value": "Montre"
+          },
+          "parameters": [
+            "ErrorMessage",
+            ""
           ],
           "subInstructions": []
         }
@@ -158,5 +704,10 @@
       "effects": []
     }
   ],
-  "behaviorsSharedData": []
+  "behaviorsSharedData": [
+    {
+      "name": "TextEntryVirtualKeyboard",
+      "type": "TextEntryVirtualKeyboard::TextEntryVirtualKeyboard"
+    }
+  ]
 }

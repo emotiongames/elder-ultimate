@@ -325,6 +325,15 @@
         "name": "resources/sprites/player/hd/VELHINHA.resized.png",
         "smoothed": true,
         "userAdded": true
+      },
+      {
+        "alwaysLoaded": false,
+        "file": "resources/sprites/ui/screen-elements/textbox/hd/textbox-1.png",
+        "kind": "image",
+        "metadata": "",
+        "name": "resources/sprites/ui/screen-elements/textbox/hd/textbox-1.png",
+        "smoothed": true,
+        "userAdded": false
       }
     ],
     "resourceFolders": []
@@ -351,7 +360,12 @@
     }
   ],
   "externalEvents": [],
-  "eventsFunctionsExtensions": [],
+  "eventsFunctionsExtensions": [
+    {
+      "__REFERENCE_TO_SPLIT_OBJECT": true,
+      "referenceTo": "/eventsFunctionsExtensions/textentryvirtualkeyboard"
+    }
+  ],
   "externalLayouts": [],
   "externalSourceFiles": []
 }

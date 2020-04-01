@@ -2429,30 +2429,6 @@
                 "0"
               ],
               "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarScene"
-              },
-              "parameters": [
-                "RewardIAStarted",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": true,
-                "value": "Timer"
-              },
-              "parameters": [
-                "",
-                "Variable(StartRewardIATimeOn)",
-                "\"startRewardIAAfterTimer\""
-              ],
-              "subInstructions": []
             }
           ],
           "actions": [
@@ -2470,333 +2446,6 @@
             }
           ],
           "events": []
-        },
-        {
-          "disabled": false,
-          "folded": false,
-          "type": "BuiltinCommonInstructions::Standard",
-          "conditions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "VarScene"
-              },
-              "parameters": [
-                "RewardOnScreen",
-                "=",
-                "0"
-              ],
-              "subInstructions": []
-            },
-            {
-              "type": {
-                "inverted": false,
-                "value": "Timer"
-              },
-              "parameters": [
-                "",
-                "Variable(StartRewardIATimeOn)",
-                "\"startRewardIAAfterTimer\""
-              ],
-              "subInstructions": []
-            }
-          ],
-          "actions": [
-            {
-              "type": {
-                "inverted": false,
-                "value": "ModVarScene"
-              },
-              "parameters": [
-                "RewardIAStarted",
-                "=",
-                "1"
-              ],
-              "subInstructions": []
-            }
-          ],
-          "events": [
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::And"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSTTime",
-                        "<",
-                        "Player.Variable(RunningOnSLTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSTTime",
-                        "<",
-                        "Player.Variable(RunningOnSRTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSTTime",
-                        "<",
-                        "Player.Variable(RunningOnSDTime)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "RewardPosition",
-                    "=",
-                    "RandomInRange(1, 2)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::And"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSLTime",
-                        "<",
-                        "Player.Variable(RunningOnSTTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSLTime",
-                        "<",
-                        "Player.Variable(RunningOnSRTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSLTime",
-                        "<",
-                        "Player.Variable(RunningOnSDTime)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "RewardPosition",
-                    "=",
-                    "RandomInRange(3, 4)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::And"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSRTime",
-                        "<",
-                        "Player.Variable(RunningOnSTTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSRTime",
-                        "<",
-                        "Player.Variable(RunningOnSLTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSRTime",
-                        "<",
-                        "Player.Variable(RunningOnSDTime)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "RewardPosition",
-                    "=",
-                    "RandomInRange(5, 6)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            },
-            {
-              "disabled": false,
-              "folded": false,
-              "type": "BuiltinCommonInstructions::Standard",
-              "conditions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "BuiltinCommonInstructions::And"
-                  },
-                  "parameters": [],
-                  "subInstructions": [
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSDTime",
-                        "<",
-                        "Player.Variable(RunningOnSTTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSDTime",
-                        "<",
-                        "Player.Variable(RunningOnSLTime)"
-                      ],
-                      "subInstructions": []
-                    },
-                    {
-                      "type": {
-                        "inverted": false,
-                        "value": "VarObjet"
-                      },
-                      "parameters": [
-                        "Player",
-                        "RunningOnSDTime",
-                        "<",
-                        "Player.Variable(RunningOnSRTime)"
-                      ],
-                      "subInstructions": []
-                    }
-                  ]
-                }
-              ],
-              "actions": [
-                {
-                  "type": {
-                    "inverted": false,
-                    "value": "ModVarScene"
-                  },
-                  "parameters": [
-                    "RewardPosition",
-                    "=",
-                    "RandomInRange(7, 8)"
-                  ],
-                  "subInstructions": []
-                }
-              ],
-              "events": []
-            }
-          ]
         }
       ],
       "parameters": []
@@ -2861,7 +2510,7 @@
                   "colorR": 74,
                   "creationTime": 0,
                   "disabled": false,
-                  "folded": false,
+                  "folded": true,
                   "name": "Coin",
                   "source": "",
                   "type": "BuiltinCommonInstructions::Group",
@@ -4389,7 +4038,7 @@
       "colorR": 74,
       "creationTime": 0,
       "disabled": false,
-      "folded": true,
+      "folded": false,
       "name": "RewardController",
       "source": "",
       "type": "BuiltinCommonInstructions::Group",
@@ -4400,7 +4049,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": false,
+          "folded": true,
           "name": "Coin",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -5279,7 +4928,7 @@
                   "parameters": [
                     "AlcoholLife",
                     "-",
-                    "Variable(ScrollSpeed) * 0.3"
+                    "Variable(ScrollSpeed) * 0.5"
                   ],
                   "subInstructions": []
                 },
@@ -5326,7 +4975,7 @@
                   "parameters": [
                     "AlcoholLife",
                     "-",
-                    "Variable(ScrollSpeed) * 0.3"
+                    "Variable(ScrollSpeed) * 0.5"
                   ],
                   "subInstructions": []
                 },
@@ -5401,7 +5050,7 @@
           "colorR": 74,
           "creationTime": 0,
           "disabled": false,
-          "folded": true,
+          "folded": false,
           "name": "CommonEnemies",
           "source": "",
           "type": "BuiltinCommonInstructions::Group",
@@ -6184,7 +5833,7 @@
                           },
                           "parameters": [
                             "",
-                            "5",
+                            "2",
                             "\"policeRPlayerBlockTimer\""
                           ],
                           "subInstructions": []
