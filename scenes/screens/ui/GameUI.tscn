@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/screens/ui/elements/containers/HeartContainer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/screens/ui/elements/containers/BoostContainer.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/screens/ui/elements/containers/PointsContainer.tscn" type="PackedScene" id=3]
+
+[node name="GameUI" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 0.222
+margin_bottom = 0.239975
+size_flags_horizontal = 15
+size_flags_vertical = 15
+custom_constants/separation = 240
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartContainer" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 480.0
+margin_bottom = 239.0
+
+[node name="BoostContainer" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 720.0
+margin_right = 1200.0
+margin_bottom = 239.0
+
+[node name="PointsContainer" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1440.0
+margin_right = 1920.0
+margin_bottom = 239.0

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/ui/screen-elements/buttons/restart/restartButton.resized.png" type="Texture" id=1]
+
+[node name="Boost" type="CenterContainer"]
+anchor_right = 0.125
+anchor_bottom = 0.222
+margin_bottom = 0.239975
+size_flags_stretch_ratio = 2.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 180.0
+margin_bottom = 180.0
+size_flags_horizontal = 15
+size_flags_vertical = 15
+texture = ExtResource( 1 )
