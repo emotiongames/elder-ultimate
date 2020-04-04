@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/InfiniteBG.gd" type="Script" id=1]
+[ext_resource path="res://sprites/background/hd/landscape_temp.png" type="Texture" id=2]
+
+[node name="Close" type="Node2D"]
+script = ExtResource( 1 )
+scroll_speed = 300
+id = 1
+
+[node name="TextureOne" type="Sprite" parent="."]
+position = Vector2( 0, 120 )
+scale = Vector2( 1.69761, 1.33333 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="TextureTwo" type="Sprite" parent="."]
+position = Vector2( 1920, 120 )
+scale = Vector2( 1.69761, 1.33333 )
+texture = ExtResource( 2 )
+centered = false

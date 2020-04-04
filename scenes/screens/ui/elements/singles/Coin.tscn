@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/rewards/coin/hd/coin_temp-1-0.png" type="Texture" id=1]
+
+[node name="Coin" type="CenterContainer"]
+anchor_right = 0.062
+anchor_bottom = 0.111
+margin_right = 0.959991
+margin_bottom = 0.119987
+size_flags_horizontal = 15
+size_flags_vertical = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture" type="TextureRect" parent="."]
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 84.0
+margin_bottom = 84.0
+texture = ExtResource( 1 )

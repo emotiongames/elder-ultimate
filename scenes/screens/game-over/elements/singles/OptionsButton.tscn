@@ -1,0 +1,12 @@
+[gd_scene format=2]
+
+[node name="OptionsButton" type="Button"]
+anchor_right = 0.062
+anchor_bottom = 0.111
+margin_right = 0.959991
+margin_bottom = 0.119987
+rect_min_size = Vector2( 120, 120 )
+text = "Options"
+__meta__ = {
+"_edit_use_anchors_": false
+}

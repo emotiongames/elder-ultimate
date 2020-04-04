@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/screens/game-over/elements/singles/MainMenuButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/screens/game-over/elements/singles/ResumeButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/screens/game-over/elements/singles/OptionsButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scripts/behaviors/ResumeButton.gd" type="Script" id=4]
+[ext_resource path="res://scripts/behaviors/MainMenuButton.gd" type="Script" id=5]
+
+[node name="BackgroundContainer" type="PanelContainer"]
+anchor_right = 0.746
+anchor_bottom = 0.778
+margin_right = 7.67993
+margin_bottom = -0.240051
+rect_min_size = Vector2( 1440, 840 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 12.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Centralizer" type="CenterContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1433.0
+margin_bottom = 833.0
+
+[node name="Options" type="VBoxContainer" parent="Centralizer"]
+margin_left = 653.0
+margin_top = 173.0
+margin_right = 773.0
+margin_bottom = 653.0
+size_flags_stretch_ratio = 12.0
+custom_constants/separation = 60
+alignment = 1
+
+[node name="ResumeButton" parent="Centralizer/Options" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 120.0
+margin_bottom = 120.0
+script = ExtResource( 4 )
+
+[node name="OptionsButton" parent="Centralizer/Options" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 180.0
+margin_right = 120.0
+margin_bottom = 300.0
+
+[node name="MainMenuButton" parent="Centralizer/Options" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 360.0
+margin_right = 120.0
+margin_bottom = 480.0
+script = ExtResource( 5 )
+[connection signal="pressed" from="Centralizer/Options/ResumeButton" to="Centralizer/Options/ResumeButton" method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="Centralizer/Options/MainMenuButton" to="Centralizer/Options/MainMenuButton" method="_on_MainMenuButton_pressed"]

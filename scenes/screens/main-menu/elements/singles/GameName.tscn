@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/ui/Ultra-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 150
+font_data = ExtResource( 1 )
+
+[node name="GameName" type="Label"]
+anchor_right = 0.71
+anchor_bottom = 0.18
+margin_right = -0.200073
+margin_bottom = -0.400009
+custom_fonts/font = SubResource( 1 )
+text = "Elder Ultimate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
