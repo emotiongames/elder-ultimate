@@ -3,11 +3,12 @@
 [ext_resource path="res://sprites/enemies/car-l/hd/car.png" type="Texture" id=1]
 [ext_resource path="res://scripts/behaviors/EnemyBehavior.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 215.701, 73.3764 )
+[sub_resource type="ConcavePolygonShape2D" id=1]
+segments = PoolVector2Array( -205, 0, -170, -15, -170, -15, -110, -15, -110, -15, -20, -60, -20, -60, 120, -60, 120, -60, 195, -25, 195, -25, 205, 10, 205, 10, 200, 30, 200, 30, 180, 40, 180, 40, 140, 70, 140, 70, 100, 40, 100, 40, -120, 40, -120, 40, -140, 70, -140, 70, -200, 40, -200, 40, -205, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource( 2 )
+speed = 1200
 
 [node name="Texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )

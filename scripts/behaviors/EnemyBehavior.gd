@@ -2,13 +2,14 @@ extends Area2D
 
 export var speed = 300 setget set_speed
 var orientation = 0 setget set_orientation
-var bias_position = Vector2(0, 0) setget set_bias_position
 var from_spawn = -1 setget set_from_spawn
 
 var collision_with_player_moving = false
 var collision_with_player_stopped = false
 
 var player_collision = -1
+var spawn_position = Vector2(0, 0)
+var bias_position = Vector2(0, 0)
 
 func set_speed(new_speed):
 	speed = new_speed
@@ -24,6 +25,12 @@ func set_from_spawn(new_from_spawn):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var screen_width = ProjectSettings.get_setting("display/window/size/width")
+	var enemy_width = self.get_child(0).texture.get_width()
+	
+	spawn_position = self.position
+	bias_position.x = screen_width + enemy_width + spawn_position.x
+	
 	add_to_group("enemy")
 	var _area_entered_connection =  connect("area_entered", self, "_on_area_entered")
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
@@ -36,7 +43,7 @@ func _process(delta):
 func move(delta):
 	self.translate(Vector2((speed * delta) * orientation, 0))
 	if orientation == -1:
-		if self.position.x <= bias_position.x:
+		if self.position.x <= -bias_position.x:
 			queue_free()
 	elif orientation == 1:
 		if self.position.x >= bias_position.x:

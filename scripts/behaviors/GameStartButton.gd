@@ -13,13 +13,13 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
 func _on_GameStartButton_pressed():
 	validate_password()
 
 func validate_password():
 	if password.length() == 6 and password.is_valid_integer():
 		var http_request = get_parent().get_child(1)
+		Events.emit_signal("update_message_text", "Connecting with remote server.")
 		http_request.request(host + path + password)
 	elif password.empty():
 		Events.emit_signal("update_message_text", "Type your password.")

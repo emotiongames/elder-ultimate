@@ -4,10 +4,11 @@
 [ext_resource path="res://scripts/behaviors/EnemyBehavior.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 248.61, 101.133 )
+extents = Vector2( 240.165, 79.668 )
 
 [node name="Police" type="Area2D"]
 script = ExtResource( 2 )
+speed = 800
 
 [node name="Texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )

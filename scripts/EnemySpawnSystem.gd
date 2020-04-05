@@ -31,14 +31,10 @@ func spawn_sidewalk_enemies():
 	if self.get_child(spawn_index).get_child_count() == 0:
 		if spawn_index % 2 == 0:
 			var enemy = sidewalk_enemies[int(rand_range(0, sidewalk_enemies.size()))]
-			var bias = self.get_child(spawn_index + 1).position
-			bias.x = self.get_child(spawn_index).position.x - bias.x
-			spawn_enemies(enemy, spawn_index, -1, -bias)
+			spawn_enemies(enemy, spawn_index, -1)
 		else:
 			var enemy = sidewalk_enemies[int(rand_range(0, sidewalk_enemies.size()))]
-			var bias = self.get_child(spawn_index - 1).position
-			bias.x -= self.get_child(spawn_index).position.x
-			spawn_enemies(enemy, spawn_index, 1, bias)
+			spawn_enemies(enemy, spawn_index, 1)
 
 func spawn_street_enemies():
 	randomize()
@@ -49,19 +45,14 @@ func spawn_street_enemies():
 	if self.get_child(spawn_index).get_child_count() == 0:
 		if spawn_index % 2 == 0:
 			var enemy = street_top_enemies[int(rand_range(0, street_top_enemies.size()))]
-			var bias = self.get_child(spawn_index + 1).position
-			bias.x = self.get_child(spawn_index).position.x - bias.x
-			spawn_enemies(enemy, spawn_index, -1, -bias)
+			spawn_enemies(enemy, spawn_index, -1)
 		else:
 			var enemy = street_bottom_enemies[int(rand_range(0, street_bottom_enemies.size()))]
-			var bias = self.get_child(spawn_index - 1).position
-			bias.x -= self.get_child(spawn_index).position.x
-			spawn_enemies(enemy, spawn_index, 1, bias)
+			spawn_enemies(enemy, spawn_index, 1)
 
-func spawn_enemies(enemy, spawn, orientation, bias):
+func spawn_enemies(enemy, spawn, orientation):
 	var enemy_instance = enemy.instance()
 	enemy_instance.set_orientation(orientation)
-	enemy_instance.set_bias_position(bias)
 	enemy_instance.set_from_spawn(spawn)
 	self.get_child(spawn).add_child(enemy_instance)
 
