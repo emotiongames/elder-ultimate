@@ -12,7 +12,12 @@ func create_timer(wait_time):
 	add_child(timer)
 	timer.start()
 	return timer
+
+func random_range(value_range):
+	randomize()
+	return int(rand_range(value_range[0], value_range[1]))
 	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -130,9 +130,14 @@ wait_time = 3.0
 autostart = true
 script = ExtResource( 11 )
 label = "coin_group_spawn"
+
+[node name="LifeSpawnTimer" type="Timer" parent="Timers"]
+script = ExtResource( 11 )
+label = "life_spawn"
 [connection signal="swiped" from="SwipeDetector" to="PlayerController/Player" method="_on_SwipeDetector_swiped"]
 [connection signal="timeout" from="Timers/DistanceScoreTimer" to="PlayerController/Player" method="_on_DistanceScoreTimer_timeout"]
 [connection signal="timeout" from="Timers/SidewalkEnemySpawnTimer" to="EnemyController" method="_on_SidewalkEnemySpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/StreetEnemySpawnTimer" to="EnemyController" method="_on_StreetEnemySpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/EffectSpawnTimer" to="RewardController" method="_on_EffectTimer_timeout"]
 [connection signal="timeout" from="Timers/CoinGroupSpawnTimer" to="RewardController" method="_on_CoinGroupSpawnTimer_timeout"]
+[connection signal="timeout" from="Timers/LifeSpawnTimer" to="RewardController" method="_on_LifeSpawnTimer_timeout"]

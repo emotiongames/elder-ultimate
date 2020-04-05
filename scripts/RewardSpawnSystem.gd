@@ -14,6 +14,10 @@ var coin_patterns = [
 	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern11.tscn")
 ]
 
+var life = [
+	preload("res://scenes/chapters/first/rewards/single/Alcohol.tscn")
+]
+
 var do_spawn = true
 
 # Called when the node enters the scene tree for the first time.
@@ -56,3 +60,9 @@ func spawn_coin_group():
 	var pattern = int(rand_range(0, coin_patterns.size()))
 	var coin_group_instance = coin_patterns[pattern].instance()
 	self.get_child(0).add_child(coin_group_instance)
+
+func _on_LifeSpawnTimer_timeout():
+	var life_instance = life[0].instance()
+	self.get_child(int(rand_range(1, 5))).add_child(life_instance)
+	
+	Events.emit_signal("stop_timer", "life_spawn")

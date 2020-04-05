@@ -10,6 +10,7 @@ signal start_timer(label)
 signal stop_timer(label)
 signal show_main_menu
 signal update_message_text(new_text)
+signal life_increment
 
 # Declare member variables here. Examples:
 # var a = 2

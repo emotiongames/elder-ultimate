@@ -29,8 +29,9 @@ func _on_show_game_over():
 	self.stop()
 
 func _on_resume_game():
-	self.start()
+	if label != "life_spawn":
+		self.start()
 
 func _on_update_timer(local_label, value):
-	if self.label == local_label:
+	if label == local_label:
 		self.wait_time = value
