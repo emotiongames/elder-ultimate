@@ -16,7 +16,6 @@ func _ready():
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	move(delta)

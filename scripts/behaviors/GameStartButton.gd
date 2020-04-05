@@ -8,7 +8,6 @@ var path = "/services/testers_api/exists?password="
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
@@ -28,7 +27,6 @@ func validate_password():
 
 func _on_PasswordTextBar_text_changed(new_text):
 	password = new_text
-
 
 func _on_HTTPRequest_request_completed(_result, response_code, _headers, body):
 	if response_code == 200:

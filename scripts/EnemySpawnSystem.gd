@@ -23,29 +23,29 @@ func _ready():
 #func _process(delta):
 
 func spawn_sidewalk_enemies():
-	randomize()
-	
 	var available_spawns = [0, 6]
-	var spawn_orientation_index = int(rand_range(0, available_spawns.size()))
+	var spawn_orientation_index = Utils.random_range([0, available_spawns.size()])
 	var spawn_index = available_spawns[spawn_orientation_index]
 	
 	if self.get_child(spawn_index).get_child_count() == 0:
-		var enemy_type = int(rand_range(0, sidewalk_enemies.size()))
-		var enemy = sidewalk_enemies[enemy_type]
+		var enemy_index = Utils.random_range([0, sidewalk_enemies.size()])
+		var enemy = sidewalk_enemies[enemy_index]
 		spawn_enemies(enemy, spawn_index, -1)
 
 func spawn_street_enemies():
 	randomize()
 	var available_spawns = [2, 5]
-	var spawn_orientation_index = int(rand_range(0, available_spawns.size()))
+	var spawn_orientation_index = Utils.random_range([0, available_spawns.size()])
 	var spawn_index = available_spawns[spawn_orientation_index]
 	
 	if self.get_child(spawn_index).get_child_count() == 0:
 		if spawn_index % 2 == 0:
-			var enemy = street_top_enemies[int(rand_range(0, street_top_enemies.size()))]
+			var enemy_index = Utils.random_range([0, street_top_enemies.size()])
+			var enemy = street_top_enemies[enemy_index]
 			spawn_enemies(enemy, spawn_index, -1)
 		else:
-			var enemy = street_bottom_enemies[int(rand_range(0, street_bottom_enemies.size()))]
+			var enemy_index = Utils.random_range([0, street_bottom_enemies.size()])
+			var enemy = street_bottom_enemies[enemy_index]
 			spawn_enemies(enemy, spawn_index, 1)
 
 func spawn_enemies(enemy, spawn, orientation):
@@ -61,11 +61,13 @@ func _on_resume_game():
 	do_spawn = true
 
 func _on_SidewalkEnemySpawnTimer_timeout():
+	var timer = Utils.random_range([1, 4])
+	
 	spawn_sidewalk_enemies()
-	randomize()
-	Events.emit_signal("update_timer", "sidewalk_enemy_spawn", int(rand_range(1, 4)))
+	Events.emit_signal("update_timer", "sidewalk_enemy_spawn", timer)
 
 func _on_StreetEnemySpawnTimer_timeout():
+	var timer = Utils.random_range([1, 5])
+	
 	spawn_street_enemies()
-	randomize()
-	Events.emit_signal("update_timer", "street_enemy_spawn", int(rand_range(1, 5)))
+	Events.emit_signal("update_timer", "street_enemy_spawn", timer)

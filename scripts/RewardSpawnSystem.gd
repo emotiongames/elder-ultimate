@@ -50,19 +50,20 @@ func spawn_effect():
 
 func _on_CoinGroupSpawnTimer_timeout():
 	if do_spawn:
+		var timer = Utils.random_range([1, 4])
+		
 		spawn_coin_group()
-		randomize()
-		Events.emit_signal("update_timer", "coin_group_spawn", int(rand_range(1, 4)))
+		Events.emit_signal("update_timer", "coin_group_spawn", timer)
 	pass # Replace with function body.
 
 func spawn_coin_group():
-	randomize()
-	var pattern = int(rand_range(0, coin_patterns.size()))
+	var pattern = Utils.random_range([0, coin_patterns.size()])
 	var coin_group_instance = coin_patterns[pattern].instance()
 	self.get_child(0).add_child(coin_group_instance)
 
 func _on_LifeSpawnTimer_timeout():
 	var life_instance = life[0].instance()
-	self.get_child(int(rand_range(1, 5))).add_child(life_instance)
+	var spawn_index = Utils.random_range([1, 5])
+	self.get_child(spawn_index).add_child(life_instance)
 	
 	Events.emit_signal("stop_timer", "life_spawn")

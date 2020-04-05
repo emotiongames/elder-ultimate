@@ -7,7 +7,6 @@ func _ready():
 	Events.connect("count_coin", self, "_on_count_coin")
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	self.get_child(0).text = str(coins)

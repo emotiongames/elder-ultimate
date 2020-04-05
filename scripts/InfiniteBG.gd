@@ -13,10 +13,6 @@ func _ready():
 	aux_scroll_speed = scroll_speed
 	width = int(self.get_child(0).texture.get_width() * self.get_child(0).scale.x)
 	
-	#while true:
-		#Events.emit_signal("count_point", 1)
-		#yield(Utils.create_timer(1.5), "timeout")
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	self.get_child(0).translate(Vector2(-scroll_speed * delta, 0))

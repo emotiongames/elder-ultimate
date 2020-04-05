@@ -4,6 +4,7 @@ export var speed = 900
 
 var bias_position = Vector2(0, 0)
 var spawn_position = Vector2(0, 0)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var screen_width = ProjectSettings.get_setting("display/window/size/width")
@@ -16,7 +17,6 @@ func _ready():
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	move(delta)
@@ -27,7 +27,6 @@ func move(delta):
 		var timer = Utils.random_range([2, 15])
 		Events.emit_signal("update_timer", "life_spawn", timer)
 		queue_free()
-
 
 func _on_Heart_area_entered(area):
 	if area.is_in_group("player"):
