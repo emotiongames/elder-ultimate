@@ -1,7 +1,16 @@
 extends Node2D
 
 var coin_patterns = [
-	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern1.tscn")
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern1.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern2.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern3.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern4.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern5.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern6.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern7.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern8.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern9.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern10.tscn")
 ]
 
 var do_spawn = true
@@ -42,5 +51,7 @@ func _on_CoinGroupSpawnTimer_timeout():
 	pass # Replace with function body.
 
 func spawn_coin_group():
-	var coin_group_instance = coin_patterns[0].instance()
+	randomize()
+	var pattern = int(rand_range(0, coin_patterns.size()))
+	var coin_group_instance = coin_patterns[pattern].instance()
 	self.get_child(0).add_child(coin_group_instance)

@@ -30,10 +30,12 @@ func spawn_sidewalk_enemies():
 	var spawn_index = available_spawns[spawn_orientation_index]
 	if self.get_child(spawn_index).get_child_count() == 0:
 		if spawn_index % 2 == 0:
-			var enemy = sidewalk_enemies[int(rand_range(0, sidewalk_enemies.size()))]
+			var enemy_type = int(rand_range(0, sidewalk_enemies.size()))
+			var enemy = sidewalk_enemies[enemy_type]
 			spawn_enemies(enemy, spawn_index, -1)
 		else:
-			var enemy = sidewalk_enemies[int(rand_range(0, sidewalk_enemies.size()))]
+			var enemy_type = int(rand_range(0, sidewalk_enemies.size()))
+			var enemy = sidewalk_enemies[enemy_type]
 			spawn_enemies(enemy, spawn_index, 1)
 
 func spawn_street_enemies():
