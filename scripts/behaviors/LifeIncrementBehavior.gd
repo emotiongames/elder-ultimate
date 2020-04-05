@@ -23,9 +23,12 @@ func _process(delta):
 
 func move(delta):
 	self.translate(Vector2(-speed * delta, 0))
+	print("LifeIncrement ", position)
 	if self.position.x <= -bias_position.x:
-		var timer = Utils.random_range([2, 15])
+		var timer = Utils.random_range([6, 15])
+		print("LifeIncrement timer ", timer)
 		Events.emit_signal("update_timer", "life_spawn", timer)
+		Events.emit_signal("start_timer", "life_spawn")
 		queue_free()
 
 func _on_Heart_area_entered(area):

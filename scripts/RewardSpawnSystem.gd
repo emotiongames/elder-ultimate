@@ -62,6 +62,7 @@ func spawn_coin_group():
 	self.get_child(0).add_child(coin_group_instance)
 
 func _on_LifeSpawnTimer_timeout():
+	print("RewardSpawn - timeout")
 	var life_instance = life[0].instance()
 	var spawn_index = Utils.random_range([1, 5])
 	self.get_child(spawn_index).add_child(life_instance)
