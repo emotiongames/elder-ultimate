@@ -10,7 +10,8 @@ var coin_patterns = [
 	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern7.tscn"),
 	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern8.tscn"),
 	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern9.tscn"),
-	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern10.tscn")
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern10.tscn"),
+	preload("res://scenes/chapters/first/rewards/containers/coin-patterns/Pattern11.tscn")
 ]
 
 var do_spawn = true
@@ -47,7 +48,7 @@ func _on_CoinGroupSpawnTimer_timeout():
 	if do_spawn:
 		spawn_coin_group()
 		randomize()
-		Events.emit_signal("update_timer", "coin_group_spawn", int(rand_range(1, 3)))
+		Events.emit_signal("update_timer", "coin_group_spawn", int(rand_range(1, 4)))
 	pass # Replace with function body.
 
 func spawn_coin_group():
