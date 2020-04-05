@@ -2,8 +2,9 @@
 
 [ext_resource path="res://sprites/player/hd/VELHINHA.png" type="Texture" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 59.6312, 94.3876 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 44.9692
+height = 95.5791
 
 [node name="Player" type="Area2D"]
 

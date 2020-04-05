@@ -3,12 +3,12 @@
 [ext_resource path="res://sprites/enemies/police-car-r/hd/police.png" type="Texture" id=1]
 [ext_resource path="res://scripts/behaviors/EnemyBehavior.gd" type="Script" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 240.165, 79.668 )
+[sub_resource type="ConcavePolygonShape2D" id=1]
+segments = PoolVector2Array( 240, 10, 240, 55, 240, 55, 160, 90, 160, 90, 100, 55, 100, 55, -100, 55, -100, 55, -130, 90, -130, 90, -190, 55, -190, 55, -230, 55, -230, 55, -230, -30, -230, -30, -180, -75, -180, -75, 40, -75, 40, -75, 120, -30, 120, -30, 220, -20, 220, -20, 240, 10 )
 
 [node name="Police" type="Area2D"]
 script = ExtResource( 2 )
-speed = 800
+speed = 700
 
 [node name="Texture" type="Sprite" parent="."]
 texture = ExtResource( 1 )
