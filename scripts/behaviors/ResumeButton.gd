@@ -11,5 +11,6 @@ func _process(_delta):
 	pass
 
 func _on_ResumeButton_pressed():
+	Events.emit_signal("start_timer", "countdown")
 	Events.emit_signal("resume_game")
 	pass # Replace with function body.

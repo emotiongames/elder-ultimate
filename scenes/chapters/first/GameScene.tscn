@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/chapters/first/backgrounds/close/Close.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/chapters/first/backgrounds/far/Far.tscn" type="PackedScene" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://scripts/behaviors/GameOverScreen.gd" type="Script" id=10]
 [ext_resource path="res://scripts/behaviors/TimerBehavior.gd" type="Script" id=11]
 [ext_resource path="res://scripts/RewardSpawnSystem.gd" type="Script" id=12]
+[ext_resource path="res://scripts/behaviors/CameraController.gd" type="Script" id=13]
+[ext_resource path="res://scenes/screens/countdown/Countdown.tscn" type="PackedScene" id=14]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 7 )
@@ -88,6 +90,7 @@ position = Vector2( 2160, 840 )
 position = Vector2( 2160, 960 )
 
 [node name="GameUI" parent="." instance=ExtResource( 8 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1920.0
@@ -134,6 +137,28 @@ label = "coin_group_spawn"
 [node name="LifeSpawnTimer" type="Timer" parent="Timers"]
 script = ExtResource( 11 )
 label = "life_spawn"
+
+[node name="CountdownTimer" type="Timer" parent="Timers"]
+autostart = true
+script = ExtResource( 11 )
+label = "countdown"
+
+[node name="CameraController" type="Position2D" parent="."]
+position = Vector2( 960, 540 )
+
+[node name="Camera" type="Camera2D" parent="CameraController"]
+position = Vector2( -360, 60 )
+current = true
+zoom = Vector2( 0.3, 0.3 )
+smoothing_enabled = true
+editor_draw_drag_margin = true
+script = ExtResource( 13 )
+
+[node name="Countdown" parent="CameraController/Camera" instance=ExtResource( 14 )]
+margin_left = -299.0
+margin_top = -180.0
+margin_right = 300.0
+margin_bottom = 180.0
 [connection signal="swiped" from="SwipeDetector" to="PlayerController/Player" method="_on_SwipeDetector_swiped"]
 [connection signal="timeout" from="Timers/DistanceScoreTimer" to="PlayerController/Player" method="_on_DistanceScoreTimer_timeout"]
 [connection signal="timeout" from="Timers/SidewalkEnemySpawnTimer" to="EnemyController" method="_on_SidewalkEnemySpawnTimer_timeout"]
@@ -141,3 +166,4 @@ label = "life_spawn"
 [connection signal="timeout" from="Timers/EffectSpawnTimer" to="RewardController" method="_on_EffectTimer_timeout"]
 [connection signal="timeout" from="Timers/CoinGroupSpawnTimer" to="RewardController" method="_on_CoinGroupSpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/LifeSpawnTimer" to="RewardController" method="_on_LifeSpawnTimer_timeout"]
+[connection signal="timeout" from="Timers/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]

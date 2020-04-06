@@ -25,6 +25,7 @@ func _ready():
 	limit_top_position = get_parent().get_node("TopLimit").position
 	limit_bottom_position = get_parent().get_node("BottomLimit").position
 	
+	
 	if not invencible:
 		add_to_group("player")
 		var _area_entered_connection = connect("area_entered", self, "_on_area_entered")

@@ -11,6 +11,8 @@ signal stop_timer(label)
 signal show_main_menu
 signal update_message_text(new_text)
 signal life_increment
+signal game_start
+signal decrement_countdown
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

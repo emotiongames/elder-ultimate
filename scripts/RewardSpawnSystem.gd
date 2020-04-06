@@ -18,12 +18,12 @@ var life = [
 	preload("res://scenes/chapters/first/rewards/single/Alcohol.tscn")
 ]
 
-var do_spawn = true
+var do_spawn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
-	var _resume_game_connection = Events.connect("resume_game", self, "_on_resume_game")
+	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
 	pass # Replace with function body.
 
 
@@ -33,9 +33,6 @@ func _ready():
 
 func _on_show_game_over():
 	do_spawn = false
-
-func _on_resume_game():
-	do_spawn = true
 
 func _on_EffectTimer_timeout():
 	#spawn_effect()
@@ -68,3 +65,6 @@ func _on_LifeSpawnTimer_timeout():
 	self.get_child(spawn_index).add_child(life_instance)
 	
 	Events.emit_signal("stop_timer", "life_spawn")
+
+func _on_game_start():
+	do_spawn = true

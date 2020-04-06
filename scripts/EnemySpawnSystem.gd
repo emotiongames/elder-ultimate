@@ -12,12 +12,12 @@ var street_bottom_enemies = [
 	preload("res://scenes/chapters/first/characters/enemies/vehicles/specials/r-direction/Police.tscn")
 ]
 
-var do_spawn = true
+var do_spawn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
-	var _resume_game_connection = Events.connect("resume_game", self, "_on_resume_game")
+	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -57,17 +57,19 @@ func spawn_enemies(enemy, spawn, orientation):
 func _on_show_game_over():
 	do_spawn = false
 
-func _on_resume_game():
-	do_spawn = true
-
 func _on_SidewalkEnemySpawnTimer_timeout():
-	var timer = Utils.random_range([1, 4])
-	
-	spawn_sidewalk_enemies()
-	Events.emit_signal("update_timer", "sidewalk_enemy_spawn", timer)
+	if do_spawn:
+		var timer = Utils.random_range([1, 4])
+		
+		spawn_sidewalk_enemies()
+		Events.emit_signal("update_timer", "sidewalk_enemy_spawn", timer)
 
 func _on_StreetEnemySpawnTimer_timeout():
-	var timer = Utils.random_range([1, 5])
-	
-	spawn_street_enemies()
-	Events.emit_signal("update_timer", "street_enemy_spawn", timer)
+	if do_spawn:
+		var timer = Utils.random_range([1, 5])
+		
+		spawn_street_enemies()
+		Events.emit_signal("update_timer", "street_enemy_spawn", timer)
+
+func _on_game_start():
+	do_spawn = true
