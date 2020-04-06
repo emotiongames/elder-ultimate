@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://sprites/buffs/acohol/hd/alcool-70-1l-prolink-15274-01.png" type="Texture" id=1]
+[ext_resource path="res://sprites/buffs/alcohol/hd/alcool-70-1l-prolink-15274-01.png" type="Texture" id=1]
 [ext_resource path="res://scripts/behaviors/LifeIncrementBehavior.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]

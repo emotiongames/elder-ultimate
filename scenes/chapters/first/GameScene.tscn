@@ -143,6 +143,11 @@ autostart = true
 script = ExtResource( 11 )
 label = "countdown"
 
+[node name="EffectDurationTimer" type="Timer" parent="Timers"]
+one_shot = true
+script = ExtResource( 11 )
+label = "effect_duration"
+
 [node name="CameraController" type="Position2D" parent="."]
 position = Vector2( 960, 540 )
 
@@ -167,3 +172,4 @@ margin_bottom = 180.0
 [connection signal="timeout" from="Timers/CoinGroupSpawnTimer" to="RewardController" method="_on_CoinGroupSpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/LifeSpawnTimer" to="RewardController" method="_on_LifeSpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
+[connection signal="timeout" from="Timers/EffectDurationTimer" to="PlayerController/Player" method="_on_EffectDurationTimer_timeout"]

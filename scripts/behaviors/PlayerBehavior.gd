@@ -13,11 +13,14 @@ var on_top = true
 var on_bottom = false
 var died = false
 var is_flicking = false
+var speed_reduced = false
 
 var limit_top_position = 0
 var limit_bottom_position = 0
 var on_collision_with_enemy = -1
 var flick_counter = 0
+
+var effect_to_use = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,13 +28,12 @@ func _ready():
 	limit_top_position = get_parent().get_node("TopLimit").position
 	limit_bottom_position = get_parent().get_node("BottomLimit").position
 	
-	
-	if not invencible:
-		add_to_group("player")
-		var _area_entered_connection = connect("area_entered", self, "_on_area_entered")
-		var _area_exited_connection = connect("area_exited", self, "_on_area_exited")
-		var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
-		var _resume_game_connection = Events.connect("resume_game", self, "_on_resume_game")
+	add_to_group("player")
+	var _area_entered_connection = connect("area_entered", self, "_on_area_entered")
+	var _area_exited_connection = connect("area_exited", self, "_on_area_exited")
+	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
+	var _resume_game_connection = Events.connect("resume_game", self, "_on_resume_game")
+	var _use_effect_connect = Events.connect("use_effect", self, "on_use_effect")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -67,18 +69,19 @@ func move(delta):
 			self.get_parent().z_index = 0
 
 func detect_collision():
-	if on_collision_with_enemy in SIDEWALK_SPAWN_POSITIONS and (
-		on_top or on_bottom
-	):
-		Events.emit_signal("player_damage", "on_sidewalk")
-		is_flicking = true
-		on_collision_with_enemy = -1
-	elif on_collision_with_enemy in STREET_SPAWN_POSITIONS and (
-		to_up or to_down
-	):
-		Events.emit_signal("player_damage", "on_street")
-		is_flicking = true
-		on_collision_with_enemy = -1
+	if not invencible:
+		if on_collision_with_enemy in SIDEWALK_SPAWN_POSITIONS and (
+			on_top or on_bottom
+		):
+			Events.emit_signal("player_damage", "on_sidewalk")
+			is_flicking = true
+			on_collision_with_enemy = -1
+		elif on_collision_with_enemy in STREET_SPAWN_POSITIONS and (
+			to_up or to_down
+		):
+			Events.emit_signal("player_damage", "on_street")
+			is_flicking = true
+			on_collision_with_enemy = -1
 
 func _on_SwipeDetector_swiped(gesture):
 	if not died:
@@ -91,7 +94,7 @@ func _on_SwipeDetector_swiped(gesture):
 
 # Instructions occurrs when start collision
 func _on_area_entered(other):
-	if other.is_in_group("enemy"):
+	if other.is_in_group("enemy") and not invencible:
 		on_collision_with_enemy = other.from_spawn
 
 func _on_area_exited(other):
@@ -106,3 +109,23 @@ func _on_resume_game():
 
 func _on_DistanceScoreTimer_timeout():
 	Events.emit_signal("count_point", 1)
+
+func on_use_effect(effect):
+	effect_to_use = effect
+	match effect:
+		"invencibility": 
+			invencible = true
+			Events.emit_signal("update_timer", "effect_duration", 3)
+			Events.emit_signal("start_timer", "effect_duration")
+		"reduce_speed": 
+			print("Player Behavior - Effect ", effect)
+			speed_reduced = true
+
+
+func _on_EffectDurationTimer_timeout():
+	if invencible:
+		invencible = false
+	if speed_reduced:
+		speed_reduced = false
+	
+	effect_to_use = ""

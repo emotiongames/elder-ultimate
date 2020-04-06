@@ -18,13 +18,17 @@ var life = [
 	preload("res://scenes/chapters/first/rewards/single/Alcohol.tscn")
 ]
 
+var effects = [
+	preload("res://scenes/chapters/first/rewards/single/Invencibility.tscn"),
+	preload("res://scenes/chapters/first/rewards/single/ReduceSpeed.tscn")
+]
+
 var do_spawn = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
 	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -35,23 +39,20 @@ func _on_show_game_over():
 	do_spawn = false
 
 func _on_EffectTimer_timeout():
-	#spawn_effect()
-	#randomize()
-	#Events.emit_signal("update_timer", "effect_spawn", int(rand_range(5, 7)))
-	pass # Replace with function body.
-	
+	if do_spawn:
+		spawn_effect()
+		Events.emit_signal("update_timer", "effect_spawn", Utils.random_range([13, 30]))
+
 func spawn_effect():
-	#randomize()
-	#var reward_spawn = int(rand_range(0, self.get_child_count()))
-	pass
+	var effect_to_spawn = Utils.random_range([0, effects.size()])
+	var effect_instance = effects[effect_to_spawn].instance()
+	var spawn_index = Utils.random_range([1, self.get_child_count()])
+	self.get_child(spawn_index).add_child(effect_instance)
 
 func _on_CoinGroupSpawnTimer_timeout():
 	if do_spawn:
-		var timer = Utils.random_range([1, 4])
-		
 		spawn_coin_group()
-		Events.emit_signal("update_timer", "coin_group_spawn", timer)
-	pass # Replace with function body.
+		Events.emit_signal("update_timer", "coin_group_spawn", Utils.random_range([1, 4]))
 
 func spawn_coin_group():
 	var pattern = Utils.random_range([0, coin_patterns.size()])
@@ -59,7 +60,6 @@ func spawn_coin_group():
 	self.get_child(0).add_child(coin_group_instance)
 
 func _on_LifeSpawnTimer_timeout():
-	print("RewardSpawn - timeout")
 	var life_instance = life[0].instance()
 	var spawn_index = Utils.random_range([1, 5])
 	self.get_child(spawn_index).add_child(life_instance)

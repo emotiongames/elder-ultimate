@@ -13,6 +13,8 @@ signal update_message_text(new_text)
 signal life_increment
 signal game_start
 signal decrement_countdown
+signal start_effect_shuffle(shuffle_until)
+signal use_effect(effect)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
