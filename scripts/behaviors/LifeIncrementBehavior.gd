@@ -9,6 +9,7 @@ var freq = 5
 var amplitude = 130
 var time = 0
 var velocity = 0
+var speed_factor = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,7 @@ func _ready():
 	
 	add_to_group("life_increment")
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
+	var _scroll_speed_updated_connect = Events.connect("scroll_speed_updated", self, "_on_scroll_speed_updated")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,7 +30,6 @@ func _process(delta):
 
 func move(delta):
 	time += delta
-	#sin(PI/2 + time*freq)*amplitude
 	velocity = Vector2(-speed, cos(time*freq)*amplitude)
 	
 	self.translate(velocity * delta)
@@ -46,4 +47,8 @@ func _on_Heart_area_entered(area):
 
 func _on_show_game_over():
 	queue_free()
+	pass
+
+func _on_scroll_speed_updated(new_speed):
+	speed = new_speed * Utils.get_speed_factor("LIFE_INCREMENT")
 	pass

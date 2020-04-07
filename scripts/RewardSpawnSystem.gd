@@ -25,11 +25,13 @@ var effects = [
 
 var do_spawn = false
 
+var coin_speed = Utils.get_speed("COIN")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
 	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
-
+	var _scroll_speed_updated_connect = Events.connect("scroll_speed_updated", self, "_on_scroll_speed_updated")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -57,7 +59,8 @@ func _on_CoinGroupSpawnTimer_timeout():
 func spawn_coin_group():
 	var pattern = Utils.random_range([0, coin_patterns.size()])
 	var coin_group_instance = coin_patterns[pattern].instance()
-	self.get_child(0).add_child(coin_group_instance)
+	coin_group_instance.set_speed(coin_speed)
+	self.get_node("CoinsGroupSpawn").add_child(coin_group_instance)
 
 func _on_LifeSpawnTimer_timeout():
 	var life_instance = life[0].instance()
@@ -68,3 +71,7 @@ func _on_LifeSpawnTimer_timeout():
 
 func _on_game_start():
 	do_spawn = true
+
+func _on_scroll_speed_updated(speed):
+	coin_speed = speed
+	pass

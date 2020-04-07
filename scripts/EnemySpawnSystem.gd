@@ -30,7 +30,8 @@ func spawn_sidewalk_enemies():
 	if self.get_child(spawn_index).get_child_count() == 0:
 		var enemy_index = Utils.random_range([0, sidewalk_enemies.size()])
 		var enemy = sidewalk_enemies[enemy_index]
-		spawn_enemies(enemy, spawn_index, -1)
+		var speed = Utils.get_speed("SIDEWALK_ENEMY")
+		spawn_enemies(enemy, spawn_index, -1, speed, "SIDEWALK_ENEMY")
 
 func spawn_street_enemies():
 	randomize()
@@ -42,16 +43,36 @@ func spawn_street_enemies():
 		if spawn_index % 2 == 0:
 			var enemy_index = Utils.random_range([0, street_top_enemies.size()])
 			var enemy = street_top_enemies[enemy_index]
-			spawn_enemies(enemy, spawn_index, -1)
+			var speed = 0
+			var label = ""
+			
+			if enemy_index == 0:
+				speed = Utils.get_speed("STREET_CAR_L_ENEMY")
+				label = "STREET_CAR_L_ENEMY"
+			else:
+				speed = Utils.get_speed("STREET_POLICE_L_ENEMY")
+				label = "STREET_POLICE_L_ENEMY"
+			spawn_enemies(enemy, spawn_index, -1, speed, label)
 		else:
 			var enemy_index = Utils.random_range([0, street_bottom_enemies.size()])
 			var enemy = street_bottom_enemies[enemy_index]
-			spawn_enemies(enemy, spawn_index, 1)
+			var speed = 0
+			var label = ""
+			
+			if enemy_index == 0:
+				speed = Utils.get_speed("STREET_CAR_R_ENEMY")
+				label = "STREET_CAR_R_ENEMY"
+			else:
+				speed = Utils.get_speed("STREET_POLICE_R_ENEMY")
+				label = "STREET_POLICE_R_ENEMY"
+			spawn_enemies(enemy, spawn_index, 1, speed, label)
 
-func spawn_enemies(enemy, spawn, orientation):
+func spawn_enemies(enemy, spawn, orientation, speed, label):
 	var enemy_instance = enemy.instance()
 	enemy_instance.set_orientation(orientation)
 	enemy_instance.set_from_spawn(spawn)
+	enemy_instance.set_speed(speed)
+	enemy_instance.set_label(label)
 	self.get_child(spawn).add_child(enemy_instance)
 
 func _on_show_game_over():

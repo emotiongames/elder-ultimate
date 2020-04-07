@@ -42,10 +42,11 @@ func on_use_effect(_effect):
 
 func _on_ShuffleTimer_timeout():
 	do_shuffle = false
-	self.get_child(effect_to_use).show()
+	if effect_to_use != -1:
+		self.get_child(effect_to_use).show()
 	
-	var index = 0
-	while index < self.get_child_count() - 1:
-		if index != effect_to_use:
-			self.get_child(index).hide()
-		index = index + 1
+		var index = 0
+		while index < self.get_child_count() - 1:
+			if index != effect_to_use:
+				self.get_child(index).hide()
+			index = index + 1

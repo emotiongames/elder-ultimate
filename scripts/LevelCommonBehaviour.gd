@@ -8,9 +8,8 @@ func _ready():
 	var _start_effect_shuffle_connect = Events.connect("start_effect_shuffle", self, "on_start_effect_shuffle")
 	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	pass
 
 func _input(ev):
 	if ev is InputEventMouseButton and ev.pressed and ev.doubleclick:
@@ -26,7 +25,7 @@ func _on_CountdownTimer_timeout():
 	Events.emit_signal("decrement_countdown")
 
 func _on_game_start():
-	self.get_child(5).show()
+	self.get_node("GameUI").show()
 
 func on_start_effect_shuffle(until_effect):
 	effect_to_use = until_effect

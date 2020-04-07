@@ -15,6 +15,8 @@ signal game_start
 signal decrement_countdown
 signal start_effect_shuffle(shuffle_until)
 signal use_effect(effect)
+signal stop_effect(effect)
+signal scroll_speed_updated(speed)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

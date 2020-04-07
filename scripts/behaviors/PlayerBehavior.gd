@@ -118,14 +118,17 @@ func on_use_effect(effect):
 			Events.emit_signal("update_timer", "effect_duration", 3)
 			Events.emit_signal("start_timer", "effect_duration")
 		"reduce_speed": 
-			print("Player Behavior - Effect ", effect)
+			Events.emit_signal("update_timer", "effect_duration", 10)
+			Events.emit_signal("start_timer", "effect_duration")
 			speed_reduced = true
 
 
 func _on_EffectDurationTimer_timeout():
 	if invencible:
 		invencible = false
+		#Events.emit_signal("stop_effect", "invencible")
 	if speed_reduced:
 		speed_reduced = false
+		Events.emit_signal("stop_effect", "reduce_speed")
 	
 	effect_to_use = ""

@@ -26,10 +26,8 @@ directions_mode = "Four Directions"
 z_index = -2
 
 [node name="Far" parent="Backgrounds" instance=ExtResource( 2 )]
-scroll_speed = 60
 
 [node name="Close" parent="Backgrounds" instance=ExtResource( 1 )]
-scroll_speed = 900
 
 [node name="EnemyController" type="Node2D" parent="."]
 script = ExtResource( 3 )
