@@ -33,7 +33,7 @@ func _ready():
 	var _area_exited_connection = connect("area_exited", self, "_on_area_exited")
 	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
 	var _resume_game_connection = Events.connect("resume_game", self, "_on_resume_game")
-	var _use_effect_connect = Events.connect("use_effect", self, "on_use_effect")
+	var _use_effect_connect = Events.connect("use_effect", self, "_on_use_effect")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -110,15 +110,15 @@ func _on_resume_game():
 func _on_DistanceScoreTimer_timeout():
 	Events.emit_signal("count_point", 1)
 
-func on_use_effect(effect):
+func _on_use_effect(effect):
 	effect_to_use = effect
 	match effect:
 		"invencibility": 
 			invencible = true
-			Events.emit_signal("update_timer", "effect_duration", 3)
+			Events.emit_signal("update_timer", "effect_duration", 5)
 			Events.emit_signal("start_timer", "effect_duration")
 		"reduce_speed": 
-			Events.emit_signal("update_timer", "effect_duration", 10)
+			Events.emit_signal("update_timer", "effect_duration", 5)
 			Events.emit_signal("start_timer", "effect_duration")
 			speed_reduced = true
 

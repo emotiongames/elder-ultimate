@@ -171,3 +171,4 @@ margin_bottom = 180.0
 [connection signal="timeout" from="Timers/LifeSpawnTimer" to="RewardController" method="_on_LifeSpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
 [connection signal="timeout" from="Timers/EffectDurationTimer" to="PlayerController/Player" method="_on_EffectDurationTimer_timeout"]
+[connection signal="timeout" from="Timers/EffectDurationTimer" to="." method="_on_EffectDurationTimer_timeout"]

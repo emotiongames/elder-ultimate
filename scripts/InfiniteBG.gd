@@ -51,6 +51,10 @@ func move(delta):
 		self.get_child(1).position.x = width
 
 func _on_show_game_over():
+	if do_effect:
+		do_effect = false
+		decrease_speed = false
+		increase_speed = false
 	scroll_speed = 0
 
 func _on_resume_game():
@@ -61,9 +65,13 @@ func _on_use_effect(label):
 	if label == "reduce_speed":
 		do_effect = true
 		decrease_speed = true
+		Events.emit_signal("update_timer", "distance_score", 0.4)
+		Events.emit_signal("start_timer", "distance_score")
 
 func _on_stop_effect(label):
 	if label == "reduce_speed":
 		decrease_speed = false
 		increase_speed = true
 		do_effect = true
+		Events.emit_signal("update_timer", "distance_score", 0.2)
+		Events.emit_signal("start_timer", "distance_score")

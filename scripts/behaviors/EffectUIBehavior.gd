@@ -6,7 +6,7 @@ var effect_to_use = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _start_effect_shuffle_connect = Events.connect("start_effect_shuffle", self, "on_start_effect_shuffle")
-	var _use_effect_connect = Events.connect("use_effect", self, "on_use_effect")
+	var _use_effect_connect = Events.connect("use_effect", self, "_on_use_effect")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +31,7 @@ func on_start_effect_shuffle(shuffle_until):
 		"reduce_speed": effect_to_use = 1
 	Events.emit_signal("start_timer", "effect_shuffle")
 
-func on_use_effect(_effect):
+func _on_use_effect(_effect):
 	effect_to_use = -1
 	if do_shuffle:
 		do_shuffle = false

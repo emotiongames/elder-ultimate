@@ -1,6 +1,7 @@
 extends Node2D
 
 var effect_to_use = ""
+var not_running_effect = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,9 +14,10 @@ func _process(delta):
 
 func _input(ev):
 	if ev is InputEventMouseButton and ev.pressed and ev.doubleclick:
-		if effect_to_use != "":
+		if effect_to_use != "" and not_running_effect:
 			Events.emit_signal("use_effect", effect_to_use)
 			effect_to_use = ""
+			not_running_effect = false
 
 func _on_show_main_menu():
 	queue_free()
@@ -29,3 +31,6 @@ func _on_game_start():
 
 func on_start_effect_shuffle(until_effect):
 	effect_to_use = until_effect
+
+func _on_EffectDurationTimer_timeout():
+	not_running_effect = true
