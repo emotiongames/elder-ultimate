@@ -9,7 +9,7 @@ func _ready():
 	var _start_effect_shuffle_connect = Events.connect("start_effect_shuffle", self, "on_start_effect_shuffle")
 	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
 	
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _input(ev):
@@ -21,7 +21,7 @@ func _input(ev):
 
 func _on_show_main_menu():
 	queue_free()
-	get_tree().change_scene("res://scenes/screens/main-menu/MainMenu.tscn")
+	var _scene_changed = get_tree().change_scene("res://scenes/screens/main-menu/MainMenu.tscn")
 
 func _on_CountdownTimer_timeout():
 	Events.emit_signal("decrement_countdown")

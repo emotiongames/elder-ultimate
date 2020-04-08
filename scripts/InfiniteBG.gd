@@ -1,7 +1,6 @@
-extends Node2D
+extends ParallaxBackground
 
 export var id = -1
-
 var scroll_speed = 0
 var aux_scroll_speed = 0
 var width = 0
@@ -23,11 +22,11 @@ func _ready():
 	elif id == 1:
 		scroll_speed = Utils.get_speed("CLOSE_SCROLL")
 	aux_scroll_speed = scroll_speed
-	#width = int(self.get_child(0).texture.get_width() * self.get_child(0).scale.x)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	move(delta)
+	pass
 
 func move(delta):
 	if do_effect:
@@ -43,17 +42,7 @@ func move(delta):
 				do_effect = false
 			scroll_speed = lerp(scroll_speed, aux_scroll_speed/2, delta * running_speed)
 			Events.emit_signal("scroll_speed_updated", scroll_speed)
-	#self.get_node("Texture").material.set_shader_param("speed_scale", scroll_speed * delta)
-	
-	
-	#self.get_child(0).translate(Vector2(-scroll_speed * delta, 0))
-	#self.get_child(1).translate(Vector2(-scroll_speed * delta, 0))
-	
-#	if self.get_child(0).position.x <= -width:
-#		self.get_child(0).position.x = width
-#
-#	if self.get_child(1).position.x <= -width:
-#		self.get_child(1).position.x = width
+	$ParallaxLayer.motion_offset.x -= scroll_speed
 
 func _on_show_game_over():
 	if do_effect:
