@@ -19,7 +19,7 @@ func _ready():
 
 func _on_decrement_countdown():
 	if countdown == 0:
-		self.text = "JÁ"
+		self.text = "GO!"
 		Events.emit_signal("game_start")
 		countdown = -1
 	elif countdown == -1:
