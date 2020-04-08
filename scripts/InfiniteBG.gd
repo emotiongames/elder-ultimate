@@ -9,7 +9,7 @@ var running_speed = 0.7
 
 var decrease_speed = false
 var increase_speed = false
-var do_effect = false
+var do_effect = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,9 +18,12 @@ func _ready():
 	var _use_effect_connect = Events.connect("use_effect", self, "_on_use_effect")
 	var _stop_effect_connect = Events.connect("stop_effect", self, "_on_stop_effect")
 	
-	scroll_speed = Utils.get_speed("SCROLL")
+	if id == 0:
+		scroll_speed = Utils.get_speed("FAR_SCROLL")
+	elif id == 1:
+		scroll_speed = Utils.get_speed("CLOSE_SCROLL")
 	aux_scroll_speed = scroll_speed
-	width = int(self.get_child(0).texture.get_width() * self.get_child(0).scale.x)
+	#width = int(self.get_child(0).texture.get_width() * self.get_child(0).scale.x)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -40,15 +43,17 @@ func move(delta):
 				do_effect = false
 			scroll_speed = lerp(scroll_speed, aux_scroll_speed/2, delta * running_speed)
 			Events.emit_signal("scroll_speed_updated", scroll_speed)
-
-	self.get_child(0).translate(Vector2(-scroll_speed * delta, 0))
-	self.get_child(1).translate(Vector2(-scroll_speed * delta, 0))
+	#self.get_node("Texture").material.set_shader_param("speed_scale", scroll_speed * delta)
 	
-	if self.get_child(0).position.x <= -width:
-		self.get_child(0).position.x = width
-		
-	if self.get_child(1).position.x <= -width:
-		self.get_child(1).position.x = width
+	
+	#self.get_child(0).translate(Vector2(-scroll_speed * delta, 0))
+	#self.get_child(1).translate(Vector2(-scroll_speed * delta, 0))
+	
+#	if self.get_child(0).position.x <= -width:
+#		self.get_child(0).position.x = width
+#
+#	if self.get_child(1).position.x <= -width:
+#		self.get_child(1).position.x = width
 
 func _on_show_game_over():
 	if do_effect:

@@ -41,4 +41,4 @@ func _on_show_game_over():
 	pass
 
 func _on_scroll_speed_updated(new_speed):
-	speed = new_speed
+	speed = new_speed * Utils.get_speed_factor("COIN")
