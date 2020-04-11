@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var sidewalk_enemies = [
 	preload("res://scenes/chapters/first/characters/enemies/contaminated-person/ContaminatedPerson.tscn")
 ]
@@ -14,13 +15,33 @@ var street_bottom_enemies = [
 
 var do_spawn = false
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var _show_game_over_connection = Events.connect("show_game_over", self, "_on_show_game_over")
-	var _game_start_connect = Events.connect("game_start", self, "_on_game_start")
+	do_connections()
+
+
+func do_connections():
+	var _show_game_over_connection = Events.connect(
+		"show_game_over",
+		self,
+		"_on_show_game_over"
+	)
+	var _game_start_connect = Events.connect(
+		"game_start",
+		self,
+		"_on_game_start"
+	)
+	var _scroll_speed_updated_connect = Events.connect(
+		"scroll_speed_updated",
+		self,
+		"_on_scroll_speed_updated"
+	)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
+
 
 func spawn_sidewalk_enemies():
 	var available_spawns = [0, 6]
@@ -32,6 +53,7 @@ func spawn_sidewalk_enemies():
 		var enemy = sidewalk_enemies[enemy_index]
 		var speed = Utils.get_speed("SIDEWALK_ENEMY")
 		spawn_enemies(enemy, spawn_index, -1, speed, "SIDEWALK_ENEMY")
+
 
 func spawn_street_enemies():
 	randomize()
@@ -67,6 +89,7 @@ func spawn_street_enemies():
 				label = "STREET_POLICE_R_ENEMY"
 			spawn_enemies(enemy, spawn_index, 1, speed, label)
 
+
 func spawn_enemies(enemy, spawn, orientation, speed, label):
 	var enemy_instance = enemy.instance()
 	enemy_instance.set_orientation(orientation)
@@ -75,22 +98,26 @@ func spawn_enemies(enemy, spawn, orientation, speed, label):
 	enemy_instance.set_label(label)
 	self.get_child(spawn).add_child(enemy_instance)
 
+
 func _on_show_game_over():
 	do_spawn = false
 
+
 func _on_SidewalkEnemySpawnTimer_timeout():
 	if do_spawn:
-		var timer = Utils.random_range([1, 4])
+		var timer = Utils.random_range([1, 6])
 		
 		spawn_sidewalk_enemies()
 		Events.emit_signal("update_timer", "sidewalk_enemy_spawn", timer)
 
+
 func _on_StreetEnemySpawnTimer_timeout():
 	if do_spawn:
-		var timer = Utils.random_range([1, 5])
+		var timer = Utils.random_range([4, 9])
 		
 		spawn_street_enemies()
 		Events.emit_signal("update_timer", "street_enemy_spawn", timer)
+
 
 func _on_game_start():
 	do_spawn = true

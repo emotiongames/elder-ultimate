@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/chapters/first/backgrounds/close/Close.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/chapters/first/backgrounds/far/Far.tscn" type="PackedScene" id=2]
@@ -9,11 +9,12 @@
 [ext_resource path="res://scripts/LevelCommonBehaviour.gd" type="Script" id=7]
 [ext_resource path="res://scenes/screens/ui/GameUI.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/screens/game-over/GameOver.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scripts/behaviors/GameOverScreen.gd" type="Script" id=10]
+[ext_resource path="res://scripts/ui_behaviors/GameOverScreen.gd" type="Script" id=10]
 [ext_resource path="res://scripts/behaviors/TimerBehavior.gd" type="Script" id=11]
 [ext_resource path="res://scripts/RewardSpawnSystem.gd" type="Script" id=12]
-[ext_resource path="res://scripts/behaviors/CameraController.gd" type="Script" id=13]
+[ext_resource path="res://scripts/ui_behaviors/CameraController.gd" type="Script" id=13]
 [ext_resource path="res://scenes/screens/countdown/Countdown.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scripts/EffectsController.gd" type="Script" id=15]
 
 [node name="Base" type="Node2D"]
 script = ExtResource( 7 )
@@ -164,6 +165,9 @@ margin_left = -299.0
 margin_top = -180.0
 margin_right = 300.0
 margin_bottom = 180.0
+
+[node name="EffectsController" type="Node2D" parent="."]
+script = ExtResource( 15 )
 [connection signal="swiped" from="SwipeDetector" to="PlayerController/Player" method="_on_SwipeDetector_swiped"]
 [connection signal="timeout" from="Timers/DistanceScoreTimer" to="PlayerController/Player" method="_on_DistanceScoreTimer_timeout"]
 [connection signal="timeout" from="Timers/SidewalkEnemySpawnTimer" to="EnemyController" method="_on_SidewalkEnemySpawnTimer_timeout"]
@@ -172,5 +176,4 @@ margin_bottom = 180.0
 [connection signal="timeout" from="Timers/CoinGroupSpawnTimer" to="RewardController" method="_on_CoinGroupSpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/LifeSpawnTimer" to="RewardController" method="_on_LifeSpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
-[connection signal="timeout" from="Timers/EffectDurationTimer" to="." method="_on_EffectDurationTimer_timeout"]
-[connection signal="timeout" from="Timers/EffectDurationTimer" to="PlayerController/Player" method="_on_EffectDurationTimer_timeout"]
+[connection signal="timeout" from="Timers/EffectDurationTimer" to="EffectsController" method="_on_EffectDurationTimer_timeout"]
