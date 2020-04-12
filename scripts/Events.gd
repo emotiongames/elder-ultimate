@@ -24,6 +24,7 @@ signal increase_scroll_speed
 signal scroll_speed_updated(speed)
 signal reduce_speed_done
 
+signal power_ended
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

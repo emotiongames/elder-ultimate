@@ -129,7 +129,12 @@ func _on_SwipeDetector_swiped(gesture):
 
 # Instructions occurrs when start collision
 func _on_area_entered(other):
-	if other.is_in_group("enemy") and not invencible:
+	if(
+		other.is_in_group("enemy")
+		and not invencible
+		and not other.is_flicking
+		and not is_flicking
+	):
 		on_collision_with_enemy = other.from_spawn
 
 

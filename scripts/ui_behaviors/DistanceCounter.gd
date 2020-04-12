@@ -1,8 +1,6 @@
 extends MarginContainer
 
 
-const INCREASE_SPEED_ON_EACH = 20
-
 var points = 0
 
 
@@ -22,5 +20,3 @@ func _process(_delta):
 
 func _on_count_point(point):
 	points = points + point
-	if points % INCREASE_SPEED_ON_EACH == 0:
-		Events.emit_signal("increase_scroll_speed")

@@ -7,9 +7,13 @@ var ReduceSpeed = load("res://scripts/effects/ReduceSpeed.gd").new()
 var actual_effect = EffectBase.new()
 var last_effect = EffectBase.new()
 
+var screen_width = 0
+
+var is_game_over = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	screen_width = ProjectSettings.get_setting("display/window/size/width")
 	last_effect.set_state("done")
 	do_connections()
 
@@ -30,6 +34,11 @@ func do_connections():
 		self,
 		"_on_show_game_over"
 	)
+	var _resume_game_connection = Events.connect(
+		"resume_game",
+		self,
+		"_on_resume_game"
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,7 +47,13 @@ func do_connections():
 
 
 func _input(ev):
-	if ev is InputEventMouseButton and ev.pressed and ev.doubleclick:
+	if(
+		ev is InputEventMouseButton
+		and ev.pressed
+		and ev.doubleclick
+		and ev.position.x >= screen_width/2
+		and not is_game_over
+	):
 		if(
 			actual_effect.get_label() == "invencibility"
 			and actual_effect.get_state() == EffectBase.Status.READY_TO_USE
@@ -79,9 +94,14 @@ func _on_EffectDurationTimer_timeout():
 
 func _on_show_game_over():
 	restart_state()
+	is_game_over = true
 
 
 func restart_state():
 	actual_effect = EffectBase.new()
 	last_effect = EffectBase.new()
 	last_effect.set_state("done")
+
+
+func _on_resume_game():
+	is_game_over = false
