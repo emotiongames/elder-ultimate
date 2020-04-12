@@ -3,8 +3,9 @@
 [ext_resource path="res://scripts/behaviors/EnemyBehavior.gd" type="Script" id=1]
 [ext_resource path="res://sprites/player/hd/VELHINHA.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 58.9475, 93.9432 )
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 48.89
+height = 76.1779
 
 [node name="Area2D" type="Area2D"]
 script = ExtResource( 1 )
