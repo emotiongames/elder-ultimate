@@ -5,6 +5,10 @@ var t = 0.0
 var speed = 0.75
 var rotation_speed = 15
 
+var tap_counter = 0
+var time_between_taps = 0.0
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var _area_entered_connection = connect(
