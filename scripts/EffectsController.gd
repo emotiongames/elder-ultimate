@@ -43,6 +43,7 @@ func do_connections():
 		self,
 		"_on_resume_game"
 	)
+	var _run_effect_connection = Events.connect("run_effect", self, "_on_run_effect")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,44 +61,41 @@ func _process(delta):
 	pass
 
 
-func _input(ev):
-	#print(ev)
-	#print(ev.device)
-	
-	if(
-		ev is InputEventScreenTouch
-		and ev.position.x >= screen_width/2
-		and ev.pressed
-		and not is_game_over
-	):
-		if not double_tap_started:
-			double_tap_started = true
-		tap_counter += 1
-	elif(
-		ev is InputEventMouseButton
-		and Input.is_action_pressed("ui_touch")
-		and ev.pressed
-		and ev.doubleclick
-		and ev.position.x >= screen_width/2
-		and not is_game_over
-	):
-		double_tap = true
-	
-	if double_tap:
-		if(
-			actual_effect.get_label() == "invencibility"
-			and actual_effect.get_state() == EffectBase.Status.READY_TO_USE
-			and last_effect.get_state() == EffectBase.Status.DONE
-		):
-			actual_effect.start()
-		elif (
-			actual_effect.get_label() == "reduce_speed"
-			and actual_effect.get_state() == EffectBase.Status.READY_TO_USE
-			and last_effect.get_state() == EffectBase.Status.DONE
-		):
-			actual_effect.start()
-		tap_counter = 0
-		double_tap = false
+#func _input(ev):
+#	if(
+#		ev is InputEventScreenTouch
+#		and ev.position.x >= screen_width/2
+#		and ev.pressed
+#		and not is_game_over
+#	):
+#		if not double_tap_started:
+#			double_tap_started = true
+#		tap_counter += 1
+#	elif(
+#		ev is InputEventMouseButton
+#		and Input.is_action_pressed("ui_touch")
+#		and ev.pressed
+#		and ev.doubleclick
+#		and ev.position.x >= screen_width/2
+#		and not is_game_over
+#	):
+#		double_tap = true
+#
+#	if double_tap:
+#		if(
+#			#actual_effect.get_label() == "invencibility" and
+#			actual_effect.get_state() == EffectBase.Status.READY_TO_USE
+#			and last_effect.get_state() == EffectBase.Status.DONE
+#		):
+#			actual_effect.start()
+#		elif (
+#			#actual_effect.get_label() == "reduce_speed" and
+#			actual_effect.get_state() == EffectBase.Status.READY_TO_USE
+#			and last_effect.get_state() == EffectBase.Status.DONE
+#		):
+#			actual_effect.start()
+#		tap_counter = 0
+#		double_tap = false
 
 
 func _on_start_effect_behavior(label):
@@ -137,3 +135,11 @@ func restart_state():
 
 func _on_resume_game():
 	is_game_over = false
+
+func _on_run_effect():
+	if(
+		#actual_effect.get_label() == "invencibility" and
+		actual_effect.get_state() == EffectBase.Status.READY_TO_USE
+		and last_effect.get_state() == EffectBase.Status.DONE
+	):
+		actual_effect.start()

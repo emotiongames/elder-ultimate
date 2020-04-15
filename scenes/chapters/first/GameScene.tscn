@@ -173,7 +173,11 @@ margin_bottom = 180.0
 
 [node name="EffectsController" type="Node2D" parent="."]
 script = ExtResource( 15 )
-[connection signal="swiped" from="SwipeDetector" to="PlayerController/Player" method="_on_SwipeDetector_swiped"]
+[connection signal="swipe_failed" from="SwipeDetector" to="PlayerController" method="_on_SwipeDetector_swipe_failed"]
+[connection signal="swipe_started" from="SwipeDetector" to="PlayerController" method="_on_SwipeDetector_swipe_started"]
+[connection signal="swiped" from="SwipeDetector" to="PlayerController" method="_on_SwipeDetector_swiped"]
+[connection signal="move_to" from="PlayerController" to="PlayerController/Player" method="_on_PlayerController_move_to"]
+[connection signal="final_position" from="PlayerController/Player" to="PlayerController" method="_on_Player_final_position"]
 [connection signal="timeout" from="Timers/DistanceScoreTimer" to="PlayerController/Player" method="_on_DistanceScoreTimer_timeout"]
 [connection signal="timeout" from="Timers/SidewalkEnemySpawnTimer" to="EnemyController" method="_on_SidewalkEnemySpawnTimer_timeout"]
 [connection signal="timeout" from="Timers/StreetEnemySpawnTimer" to="EnemyController" method="_on_StreetEnemySpawnTimer_timeout"]

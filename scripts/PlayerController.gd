@@ -2,7 +2,11 @@ extends Node2D
 
 
 signal launch_power
-signal run_effect
+
+signal move_to(direction)
+
+
+const DOUBLE_TAP_TIME_LIMIT = 0.5
 
 
 onready var power_spawn = get_node("Player/PowerLaunch")
@@ -21,6 +25,11 @@ var time_between_taps = 0.0
 var is_game_over = false
 var double_tap = false
 var double_tap_started = false
+var to_up = false
+var to_down = false
+var on_top = true
+var on_bottom = false
+var block_input = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -51,20 +60,21 @@ func _process(delta):
 func verify_double_tap(delta):
 	if double_tap_started:
 		time_between_taps += delta
-		if time_between_taps <= 0.5 and tap_counter == 2:
+		if time_between_taps <= DOUBLE_TAP_TIME_LIMIT and tap_counter == 2:
 			double_tap = true
 			double_tap_started = false
 			time_between_taps = 0.0
-		if time_between_taps > 0.5:
+		if time_between_taps > DOUBLE_TAP_TIME_LIMIT:
 			double_tap_started = false
 			time_between_taps = 0.0
 			tap_counter = 0
 
 
 func _input(event):
-	power_input(event)
-	effect_input(event)
-	pass
+	#print(block_input)
+	if not block_input:
+		power_input(event)
+		effect_input(event)
 
 
 func power_input(ev):
@@ -87,16 +97,39 @@ func power_input(ev):
 	):
 		double_tap = true
 	
-	if double_tap and count_power_on_scene < 2:
+	if double_tap and count_power_on_scene < 1:
 		count_power_on_scene += 1
 		var power_instance = power.instance()
-		self.add_child(power_instance)
+		power_spawn.add_child(power_instance)
 		tap_counter = 0
 		double_tap = false
 
 
 func effect_input(ev):
-	pass
+	if(
+		ev is InputEventScreenTouch
+		and ev.position.x >= screen_width/2
+		and ev.pressed
+		and not is_game_over
+	):
+		print("EFFECT HERE")
+		if not double_tap_started:
+			double_tap_started = true
+		tap_counter += 1
+	elif(
+		ev is InputEventMouseButton
+		and Input.is_action_pressed("ui_touch")
+		and ev.pressed
+		and ev.doubleclick
+		and ev.position.x >= screen_width/2
+		and not is_game_over
+	):
+		double_tap = true
+	
+	if double_tap:
+		Events.emit_signal("run_effect")
+		tap_counter = 0
+		double_tap = false
 
 
 func _on_power_ended():
@@ -109,3 +142,33 @@ func _on_show_game_over():
 
 func _on_resume_game():
 	is_game_over = false
+
+
+func _on_SwipeDetector_swipe_started(_partial_gesture):
+	block_input = true
+
+
+func _on_SwipeDetector_swipe_failed():
+	block_input = false
+
+
+func _on_SwipeDetector_swiped(gesture):
+	if block_input:
+		if gesture.get_direction() == "up" and not on_top:
+			to_up = true
+			to_down = false
+		elif gesture.get_direction() == "down" and not on_bottom:
+			to_up = false
+			to_down = true
+		emit_signal("move_to", gesture.get_direction())
+		block_input = false
+
+
+func _on_Player_final_position(position):
+	match position:
+		"top": 
+			on_top = true
+			on_bottom = false
+		"bottom": 
+			on_top = false
+			on_bottom = true
