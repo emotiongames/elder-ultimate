@@ -73,7 +73,6 @@ func verify_double_tap(delta):
 
 
 func _input(event):
-	#print(block_input)
 	if not block_input:
 		if event.position.x > screen_width/2:
 			right_side = true

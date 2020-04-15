@@ -63,6 +63,11 @@ func do_connections():
 		self,
 		"_on_player_invencibility"
 	)
+	var _player_magnet_connect = Events.connect(
+		"player_magnet",
+		self,
+		"_on_player_magnet"
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -95,6 +100,7 @@ func move(delta):
 		limit_top_position.y,
 		limit_bottom_position.y
 	)
+	Events.emit_signal("player_position_updated", self.global_position)
 
 
 func detect_collision():
@@ -160,6 +166,11 @@ func _on_DistanceScoreTimer_timeout():
 
 func _on_player_invencibility(state):
 	invencible = state
+
+
+func _on_player_magnet(state):
+	self.get_node("MagnetArea/Particles2D").emitting = state
+	self.get_node("MagnetArea/CollisionShape2D").disabled = not state
 
 
 func _on_PlayerController_move_to(direction):
