@@ -1,6 +1,9 @@
 extends Area2D
 
 
+const FLICK_LIMIT = 31
+
+
 var speed = 300 setget set_speed
 var orientation = 0 setget set_orientation
 var from_spawn = -1 setget set_from_spawn
@@ -8,11 +11,14 @@ var label = "" setget set_label
 
 var collision_with_player_moving = false
 var collision_with_player_stopped = false
+var is_flicking = false
 
-var player_collision = -1
 var spawn_position = Vector2(0, 0)
 var bias_position = Vector2(0, 0)
+
+var player_collision = -1
 var speed_factor = 0
+var flick_counter = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -51,6 +57,7 @@ func do_connections():
 func _process(delta):
 	move(delta)
 	detect_collision()
+	flick_verification()
 
 
 func move(delta):
@@ -76,12 +83,29 @@ func detect_collision():
 			queue_free()
 
 
+func flick_verification():
+	if is_flicking:
+		if flick_counter < FLICK_LIMIT:
+			if flick_counter % 2 == 0:
+				self.hide()
+				flick_counter = flick_counter + 1
+			else:
+				self.show()
+				flick_counter = flick_counter + 1
+		else:
+			self.show()
+			is_flicking = false
+			flick_counter = 0
+
+
 # Instructions occurrs when start collision
 func _on_area_entered(other):
 	if other.is_in_group("player"):
 		collision_with_player_moving = other.to_down or other.to_up
 		collision_with_player_stopped = other.on_bottom or other.on_top
 		player_collision = other.on_collision_with_enemy
+	if other.is_in_group("power"):
+		is_flicking = true
 
 
 func _on_show_game_over():

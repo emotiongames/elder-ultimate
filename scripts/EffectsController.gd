@@ -7,9 +7,18 @@ var ReduceSpeed = load("res://scripts/effects/ReduceSpeed.gd").new()
 var actual_effect = EffectBase.new()
 var last_effect = EffectBase.new()
 
+var screen_width = 0
+var tap_counter = 0
+var time_between_taps = 0.0
+
+var is_game_over = false
+var double_tap = false
+var double_tap_started = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	screen_width = ProjectSettings.get_setting("display/window/size/width")
 	last_effect.set_state("done")
 	do_connections()
 
@@ -30,27 +39,26 @@ func do_connections():
 		self,
 		"_on_show_game_over"
 	)
+	var _resume_game_connection = Events.connect(
+		"resume_game",
+		self,
+		"_on_resume_game"
+	)
+	var _run_effect_connection = Events.connect("run_effect", self, "_on_run_effect")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(_delta):
-#	pass
-
-
-func _input(ev):
-	if ev is InputEventMouseButton and ev.pressed and ev.doubleclick:
-		if(
-			actual_effect.get_label() == "invencibility"
-			and actual_effect.get_state() == EffectBase.Status.READY_TO_USE
-			and last_effect.get_state() == EffectBase.Status.DONE
-		):
-			actual_effect.start()
-		elif (
-			actual_effect.get_label() == "reduce_speed"
-			and actual_effect.get_state() == EffectBase.Status.READY_TO_USE
-			and last_effect.get_state() == EffectBase.Status.DONE
-		):
-			actual_effect.start()
+func _process(delta):
+	if double_tap_started:
+		time_between_taps += delta
+		if time_between_taps <= 0.5 and tap_counter == 2:
+			double_tap = true
+			double_tap_started = false
+			time_between_taps = 0.0
+		if time_between_taps > 0.5:
+			double_tap_started = false
+			time_between_taps = 0.0
+			tap_counter = 0
 
 
 func _on_start_effect_behavior(label):
@@ -79,9 +87,22 @@ func _on_EffectDurationTimer_timeout():
 
 func _on_show_game_over():
 	restart_state()
+	is_game_over = true
 
 
 func restart_state():
 	actual_effect = EffectBase.new()
 	last_effect = EffectBase.new()
 	last_effect.set_state("done")
+
+
+func _on_resume_game():
+	is_game_over = false
+
+
+func _on_run_effect():
+	if(
+		actual_effect.get_state() == EffectBase.Status.READY_TO_USE
+		and last_effect.get_state() == EffectBase.Status.DONE
+	):
+		actual_effect.start()

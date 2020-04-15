@@ -32,11 +32,6 @@ func do_connections():
 		self,
 		"_on_game_start"
 	)
-	var _scroll_speed_updated_connect = Events.connect(
-		"scroll_speed_updated",
-		self,
-		"_on_scroll_speed_updated"
-	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

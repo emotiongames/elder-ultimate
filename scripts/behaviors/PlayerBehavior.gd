@@ -1,6 +1,9 @@
 extends Area2D
 
 
+signal final_position(position)
+
+
 const FLICK_LIMIT = 31
 const SIDEWALK_SPAWN_POSITIONS = [0, 1, 6, 7]
 const STREET_SPAWN_POSITIONS = [2, 5]
@@ -64,9 +67,10 @@ func do_connections():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	move(delta)
-	detect_collision()
-	flick_verification()
+	if not died:
+		move(delta)
+		detect_collision()
+		flick_verification()
 
 
 func move(delta):
@@ -76,6 +80,7 @@ func move(delta):
 			to_up = false
 			on_bottom = false
 			on_top = true
+			emit_signal("final_position", "top")
 			self.get_parent().z_index = -1
 	elif to_down and not on_bottom:
 		self.translate(Vector2(0, speed * delta))
@@ -83,7 +88,13 @@ func move(delta):
 			to_down = false
 			on_top = false
 			on_bottom = true
+			emit_signal("final_position", "bottom")
 			self.get_parent().z_index = 0
+	self.position.y = clamp(
+		self.position.y,
+		limit_top_position.y,
+		limit_bottom_position.y
+	)
 
 
 func detect_collision():
@@ -117,19 +128,14 @@ func flick_verification():
 			flick_counter = 0
 
 
-func _on_SwipeDetector_swiped(gesture):
-	if not died:
-		if gesture.get_direction() == "up" and not on_top:
-			to_up = true
-			to_down = false
-		elif gesture.get_direction() == "down" and not on_bottom:
-			to_up = false
-			to_down = true
-
-
 # Instructions occurrs when start collision
 func _on_area_entered(other):
-	if other.is_in_group("enemy") and not invencible:
+	if(
+		other.is_in_group("enemy")
+		and not invencible
+		and not other.is_flicking
+		and not is_flicking
+	):
 		on_collision_with_enemy = other.from_spawn
 
 
@@ -154,3 +160,15 @@ func _on_DistanceScoreTimer_timeout():
 
 func _on_player_invencibility(state):
 	invencible = state
+
+
+func _on_PlayerController_move_to(direction):
+	match direction:
+		"up": 
+			if not on_top:
+				to_up = true
+				to_down = false
+		"down": 
+			if not on_bottom:
+				to_up = false
+				to_down = true

@@ -79,8 +79,6 @@ margin_bottom = 240.0
 script = ExtResource( 5 )
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Centralizer/Items/Options"]
-[connection signal="focus_entered" from="Centralizer/Items/PasswordContainer/VBoxContainer/PasswordTextBar" to="Centralizer/Items/PasswordContainer/VBoxContainer/PasswordTextBar" method="_on_PasswordTextBar_focus_entered"]
-[connection signal="focus_exited" from="Centralizer/Items/PasswordContainer/VBoxContainer/PasswordTextBar" to="Centralizer/Items/PasswordContainer/VBoxContainer/PasswordTextBar" method="_on_PasswordTextBar_focus_exited"]
 [connection signal="text_changed" from="Centralizer/Items/PasswordContainer/VBoxContainer/PasswordTextBar" to="Centralizer/Items/Options/GameStartButton" method="_on_PasswordTextBar_text_changed"]
 [connection signal="pressed" from="Centralizer/Items/Options/GameStartButton" to="Centralizer/Items/Options/GameStartButton" method="_on_GameStartButton_pressed"]
 [connection signal="request_completed" from="Centralizer/Items/Options/HTTPRequest" to="Centralizer/Items/Options/GameStartButton" method="_on_HTTPRequest_request_completed"]
