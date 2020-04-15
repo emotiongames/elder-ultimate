@@ -112,7 +112,6 @@ func effect_input(ev):
 		and ev.pressed
 		and not is_game_over
 	):
-		print("EFFECT HERE")
 		if not double_tap_started:
 			double_tap_started = true
 		tap_counter += 1
