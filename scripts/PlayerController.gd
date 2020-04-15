@@ -30,6 +30,8 @@ var to_down = false
 var on_top = true
 var on_bottom = false
 var block_input = false
+var right_side = false
+var left_side = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -73,6 +75,15 @@ func verify_double_tap(delta):
 func _input(event):
 	#print(block_input)
 	if not block_input:
+		if event.position.x > screen_width/2:
+			right_side = true
+			left_side = false
+		elif event.position.x < screen_width/2:
+			right_side = false
+			left_side = true
+		else:
+			right_side = false
+			left_side = false
 		power_input(event)
 		effect_input(event)
 
@@ -80,7 +91,7 @@ func _input(event):
 func power_input(ev):
 	if(
 		ev is InputEventScreenTouch
-		and ev.position.x <= screen_width/2
+		and left_side
 		and ev.pressed
 		and not is_game_over
 	):
@@ -92,12 +103,12 @@ func power_input(ev):
 		and Input.is_action_pressed("ui_touch")
 		and ev.pressed
 		and ev.doubleclick
-		and ev.position.x <= screen_width/2
+		and left_side
 		and not is_game_over
 	):
 		double_tap = true
 	
-	if double_tap and count_power_on_scene < 1:
+	if double_tap and count_power_on_scene < 1 and left_side:
 		count_power_on_scene += 1
 		var power_instance = power.instance()
 		power_spawn.add_child(power_instance)
@@ -108,7 +119,7 @@ func power_input(ev):
 func effect_input(ev):
 	if(
 		ev is InputEventScreenTouch
-		and ev.position.x >= screen_width/2
+		and right_side
 		and ev.pressed
 		and not is_game_over
 	):
@@ -120,12 +131,12 @@ func effect_input(ev):
 		and Input.is_action_pressed("ui_touch")
 		and ev.pressed
 		and ev.doubleclick
-		and ev.position.x >= screen_width/2
+		and right_side
 		and not is_game_over
 	):
 		double_tap = true
 	
-	if double_tap:
+	if double_tap and right_side:
 		Events.emit_signal("run_effect")
 		tap_counter = 0
 		double_tap = false

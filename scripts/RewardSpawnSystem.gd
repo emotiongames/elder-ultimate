@@ -18,8 +18,9 @@ var life = [
 	preload("res://scenes/chapters/first/rewards/single/Alcohol.tscn"),
 ]
 var effects = [
-	"invencibility",
-	"reduce_speed",
+	#"invencibility",
+	#"reduce_speed",
+	"increase_speed",
 ]
 
 var do_spawn = false

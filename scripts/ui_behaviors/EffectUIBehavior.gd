@@ -53,6 +53,8 @@ func _on_start_effect_shuffle(shuffle_until):
 			effect_to_use = 0
 		"reduce_speed":
 			effect_to_use = 1
+		"increase_speed":
+			effect_to_use = 2
 	Events.emit_signal("start_timer", "effect_shuffle")
 
 

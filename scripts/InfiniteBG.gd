@@ -59,16 +59,16 @@ func _process(delta):
 func move(delta):
 	if do_effect:
 		if increase_speed:
-			if scroll_speed >= aux_scroll_speed:
+			if scroll_speed >= aux_scroll_speed * 2:
 				increase_speed = false
 				do_effect = false
-			scroll_speed = lerp(scroll_speed, aux_scroll_speed, delta * running_speed)
+			scroll_speed = lerp(scroll_speed, aux_scroll_speed * 2, delta * running_speed)
 			Events.emit_signal("scroll_speed_updated", scroll_speed)
 		elif decrease_speed:
-			if scroll_speed <= aux_scroll_speed/2:
+			if scroll_speed <= aux_scroll_speed:
 				decrease_speed = false
 				do_effect = false
-			scroll_speed = lerp(scroll_speed, aux_scroll_speed/2, delta * running_speed)
+			scroll_speed = lerp(scroll_speed, aux_scroll_speed, delta * running_speed)
 			Events.emit_signal("scroll_speed_updated", scroll_speed)
 	$ParallaxLayer.motion_offset.x -= scroll_speed
 
@@ -78,7 +78,6 @@ func _on_show_game_over():
 		do_effect = false
 		decrease_speed = false
 		increase_speed = false
-	aux_scroll_speed = scroll_speed
 	scroll_speed = 0
 
 
@@ -94,7 +93,7 @@ func _on_scroll_speed_effect(action):
 		Events.emit_signal(
 			"update_timer",
 			"distance_score",
-			0.4
+			0.2
 		)
 		Events.emit_signal("start_timer", "distance_score")
 	elif action == "increment":
@@ -104,6 +103,6 @@ func _on_scroll_speed_effect(action):
 		Events.emit_signal(
 			"update_timer",
 			"distance_score",
-			0.2
+			0.1
 		)
 		Events.emit_signal("start_timer", "distance_score")
