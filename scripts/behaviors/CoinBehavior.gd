@@ -3,11 +3,13 @@ extends Area2D
 
 export var speed = 900 setget set_speed
 
-
 var bias_position = Vector2(0, 0)
 var spawn_position = Vector2(0, 0)
+var player_last_position = Vector2(0, 0)
 
 var speed_factor = 0
+
+var seek_player = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -29,6 +31,11 @@ func do_connections():
 		self,
 		"_on_scroll_speed_updated"
 	)
+	var _player_position_updated_connect = Events.connect(
+		"player_position_updated",
+		self,
+		"_on_player_position_updated"
+	)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,7 +44,11 @@ func _process(delta):
 
 
 func move(delta):
-	self.translate(Vector2(-speed * delta, 0))
+	if seek_player:
+		var direction = (player_last_position - self.global_position).normalized()
+		self.translate(direction * 25)
+	else:
+		self.translate(Vector2(-speed * delta, 0))
 	if self.position.x <= -bias_position.x:
 			queue_free()
 
@@ -54,3 +65,7 @@ func _on_scroll_speed_updated(new_speed):
 
 func set_speed(new_speed):
 	speed = new_speed
+
+
+func _on_player_position_updated(position):
+	player_last_position = position

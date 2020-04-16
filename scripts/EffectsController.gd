@@ -3,6 +3,8 @@ extends Node2D
 
 var Invencibility = load("res://scripts/effects/Invencibility.gd").new()
 var ReduceSpeed = load("res://scripts/effects/ReduceSpeed.gd").new()
+var IncreaseSpeed = load("res://scripts/effects/IncreaseSpeed.gd").new()
+var Magnet = load("res://scripts/effects/Magnet.gd").new()
 
 var actual_effect = EffectBase.new()
 var last_effect = EffectBase.new()
@@ -71,6 +73,14 @@ func _on_start_effect_behavior(label):
 			Events.emit_signal("start_effect_shuffle", label)
 			actual_effect = ReduceSpeed
 			actual_effect.set_state("available")
+		"increase_speed":
+			Events.emit_signal("start_effect_shuffle", label)
+			actual_effect = IncreaseSpeed
+			actual_effect.set_state("available")
+		"magnet":
+			Events.emit_signal("start_effect_shuffle", label)
+			actual_effect = Magnet
+			actual_effect.set_state("available")
 
 
 func _on_update_effect_state(state):
@@ -102,7 +112,8 @@ func _on_resume_game():
 
 func _on_run_effect():
 	if(
-		actual_effect.get_state() == EffectBase.Status.READY_TO_USE
+		actual_effect.get_label() != ""
+		and actual_effect.get_state() == EffectBase.Status.READY_TO_USE
 		and last_effect.get_state() == EffectBase.Status.DONE
 	):
 		actual_effect.start()

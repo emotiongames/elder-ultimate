@@ -19,7 +19,9 @@ var life = [
 ]
 var effects = [
 	"invencibility",
-	"reduce_speed",
+	#"reduce_speed",
+	"increase_speed",
+	"magnet",
 ]
 
 var do_spawn = false
