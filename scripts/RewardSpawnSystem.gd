@@ -18,9 +18,9 @@ var life = [
 	preload("res://scenes/chapters/first/rewards/single/Alcohol.tscn"),
 ]
 var effects = [
-	#"invencibility",
+	"invencibility",
 	#"reduce_speed",
-	#"increase_speed",
+	"increase_speed",
 	"magnet",
 ]
 

@@ -5,7 +5,7 @@
 [ext_resource path="res://scripts/behaviors/MagnetBehavior.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 240.0
+radius = 480.0
 
 [sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.474074, 1 )
@@ -25,7 +25,7 @@ flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 4.0
+scale = 8.0
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 

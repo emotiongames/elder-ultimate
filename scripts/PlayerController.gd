@@ -74,16 +74,16 @@ func verify_double_tap(delta):
 
 func _input(event):
 	if not block_input:
-		if event.position.x > screen_width/2:
-			right_side = true
-			left_side = false
-		elif event.position.x < screen_width/2:
-			right_side = false
-			left_side = true
-		else:
-			right_side = false
-			left_side = false
-		power_input(event)
+#		if event.position.x > screen_width/2:
+#			right_side = true
+#			left_side = false
+#		elif event.position.x < screen_width/2:
+#			right_side = false
+#			left_side = true
+#		else:
+#			right_side = false
+#			left_side = false
+		#power_input(event)
 		effect_input(event)
 
 
@@ -108,17 +108,21 @@ func power_input(ev):
 		double_tap = true
 	
 	if double_tap and count_power_on_scene < 1 and left_side:
-		count_power_on_scene += 1
-		var power_instance = power.instance()
-		power_spawn.add_child(power_instance)
+		launch_power()
 		tap_counter = 0
 		double_tap = false
+
+
+func launch_power():
+	count_power_on_scene += 1
+	var power_instance = power.instance()
+	power_spawn.add_child(power_instance)
 
 
 func effect_input(ev):
 	if(
 		ev is InputEventScreenTouch
-		and right_side
+#		and right_side
 		and ev.pressed
 		and not is_game_over
 	):
@@ -130,12 +134,12 @@ func effect_input(ev):
 		and Input.is_action_pressed("ui_touch")
 		and ev.pressed
 		and ev.doubleclick
-		and right_side
+#		and right_side
 		and not is_game_over
 	):
 		double_tap = true
 	
-	if double_tap and right_side:
+	if double_tap: # and right_side:
 		Events.emit_signal("run_effect")
 		tap_counter = 0
 		double_tap = false
@@ -162,13 +166,15 @@ func _on_SwipeDetector_swipe_failed():
 
 
 func _on_SwipeDetector_swiped(gesture):
-	if block_input:
+	if block_input and not is_game_over:
 		if gesture.get_direction() == "up" and not on_top:
 			to_up = true
 			to_down = false
 		elif gesture.get_direction() == "down" and not on_bottom:
 			to_up = false
 			to_down = true
+		elif gesture.get_direction() == "right" and count_power_on_scene < 1:
+			launch_power()
 		emit_signal("move_to", gesture.get_direction())
 		block_input = false
 
