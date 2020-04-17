@@ -14,6 +14,8 @@ var seek_player = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("coins")
+	
 	var screen_width = ProjectSettings.get_setting("display/window/size/width")
 	var coin_width = self.get_child(0).texture.get_width()
 	
@@ -21,7 +23,6 @@ func _ready():
 	bias_position.x = spawn_position.x + screen_width + coin_width
 	speed_factor = Utils.get_speed_factor("COIN")
 	
-	add_to_group("coins")
 	do_connections()
 
 
