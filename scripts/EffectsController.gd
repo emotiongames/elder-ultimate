@@ -96,6 +96,13 @@ func _on_EffectDurationTimer_timeout():
 
 
 func _on_show_game_over():
+	print(actual_effect.get_state())
+	if(
+		actual_effect.get_state() != EffectBase.Status.DONE
+		and actual_effect.get_state() != EffectBase.Status.UNAVAILABLE
+	):
+		actual_effect.stop()
+		Events.emit_signal("stop_timer", "effect_duration")
 	restart_state()
 	is_game_over = true
 

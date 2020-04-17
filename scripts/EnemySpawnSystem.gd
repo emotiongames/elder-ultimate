@@ -15,9 +15,15 @@ var street_bottom_enemies = [
 
 var do_spawn = false
 
+var noise = OpenSimplexNoise.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	noise.seed = randi()
+	noise.octaves = 4
+	noise.period = 8.0
+	noise.persistence = 0.8
 	do_connections()
 
 
@@ -40,8 +46,11 @@ func do_connections():
 
 func spawn_sidewalk_enemies():
 	var available_spawns = [0, 6]
-	var spawn_orientation_index = Utils.random_range([0, available_spawns.size()])
-	var spawn_index = available_spawns[spawn_orientation_index]
+	var spawn_index = -1
+	if Utils.get_noise(noise) >= 0:
+		spawn_index = available_spawns[0]
+	else:
+		spawn_index = available_spawns[1]
 	
 	if self.get_child(spawn_index).get_child_count() == 0:
 		var enemy_index = Utils.random_range([0, sidewalk_enemies.size()])
@@ -51,10 +60,12 @@ func spawn_sidewalk_enemies():
 
 
 func spawn_street_enemies():
-	randomize()
 	var available_spawns = [2, 5]
-	var spawn_orientation_index = Utils.random_range([0, available_spawns.size()])
-	var spawn_index = available_spawns[spawn_orientation_index]
+	var spawn_index = -1
+	if Utils.get_noise(noise) >= 0:
+		spawn_index = available_spawns[0]
+	else:
+		spawn_index = available_spawns[1]
 	
 	if self.get_child(spawn_index).get_child_count() == 0:
 		if spawn_index % 2 == 0:
@@ -100,7 +111,7 @@ func _on_show_game_over():
 
 func _on_SidewalkEnemySpawnTimer_timeout():
 	if do_spawn:
-		var timer = Utils.random_range([1, 6])
+		var timer = Utils.random_range([1, 3])
 		
 		spawn_sidewalk_enemies()
 		Events.emit_signal("update_timer", "sidewalk_enemy_spawn", timer)

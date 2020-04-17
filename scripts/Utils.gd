@@ -44,6 +44,11 @@ func random_range(value_range):
 	return int(rand_range(value_range[0], value_range[1]))
 
 
+func get_noise(noise):
+	randomize()
+	return noise.get_noise_2d(randf(), randf())
+
+
 func get_speed(from : String):
 	if SPEED_FROM.has(from):
 		return SPEED_FROM[from]
