@@ -30,8 +30,6 @@ var to_down = false
 var on_top = true
 var on_bottom = false
 var block_input = false
-var right_side = false
-var left_side = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -74,43 +72,7 @@ func verify_double_tap(delta):
 
 func _input(event):
 	if not block_input:
-#		if event.position.x > screen_width/2:
-#			right_side = true
-#			left_side = false
-#		elif event.position.x < screen_width/2:
-#			right_side = false
-#			left_side = true
-#		else:
-#			right_side = false
-#			left_side = false
-		#power_input(event)
 		effect_input(event)
-
-
-func power_input(ev):
-	if(
-		ev is InputEventScreenTouch
-		and left_side
-		and ev.pressed
-		and not is_game_over
-	):
-		if not double_tap_started:
-			double_tap_started = true
-		tap_counter += 1
-	elif(
-		ev is InputEventMouseButton
-		and Input.is_action_pressed("ui_touch")
-		and ev.pressed
-		and ev.doubleclick
-		and left_side
-		and not is_game_over
-	):
-		double_tap = true
-	
-	if double_tap and count_power_on_scene < 1 and left_side:
-		launch_power()
-		tap_counter = 0
-		double_tap = false
 
 
 func launch_power():
@@ -122,7 +84,6 @@ func launch_power():
 func effect_input(ev):
 	if(
 		ev is InputEventScreenTouch
-#		and right_side
 		and ev.pressed
 		and not is_game_over
 	):
@@ -134,12 +95,11 @@ func effect_input(ev):
 		and Input.is_action_pressed("ui_touch")
 		and ev.pressed
 		and ev.doubleclick
-#		and right_side
 		and not is_game_over
 	):
 		double_tap = true
 	
-	if double_tap: # and right_side:
+	if double_tap:
 		Events.emit_signal("run_effect")
 		tap_counter = 0
 		double_tap = false
@@ -151,10 +111,12 @@ func _on_power_ended():
 
 func _on_show_game_over():
 	is_game_over = true
+	get_parent().get_node("BackgroundAudio").stop()
 
 
 func _on_resume_game():
 	is_game_over = false
+	get_parent().get_node("BackgroundAudio").play()
 
 
 func _on_SwipeDetector_swipe_started(_partial_gesture):

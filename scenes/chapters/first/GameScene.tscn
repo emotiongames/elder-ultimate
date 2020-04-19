@@ -170,6 +170,10 @@ margin_bottom = 180.0
 
 [node name="EffectsController" type="Node2D" parent="."]
 script = ExtResource( 15 )
+
+[node name="BackgroundAudio" type="AudioStreamPlayer2D" parent="."]
+volume_db = -15.0
+autoplay = true
 [connection signal="swipe_failed" from="SwipeDetector" to="PlayerController" method="_on_SwipeDetector_swipe_failed"]
 [connection signal="swipe_started" from="SwipeDetector" to="PlayerController" method="_on_SwipeDetector_swipe_started"]
 [connection signal="swiped" from="SwipeDetector" to="PlayerController" method="_on_SwipeDetector_swiped"]

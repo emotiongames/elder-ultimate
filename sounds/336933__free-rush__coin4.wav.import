@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/336933__free-rush__coin4.wav-250ade6ee47ceeb31170fab1f03d3395.sample"
+
+[deps]
+
+source_file="res://sounds/336933__free-rush__coin4.wav"
+dest_files=[ "res://.import/336933__free-rush__coin4.wav-250ade6ee47ceeb31170fab1f03d3395.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

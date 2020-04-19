@@ -57,7 +57,8 @@ func move(delta):
 func _on_Coin_area_entered(area):
 	if area.is_in_group("player"):
 		Events.emit_signal("count_coin", 1)
-		queue_free()
+		$CoinAudio.play()
+		hide()
 
 
 func _on_scroll_speed_updated(new_speed):
@@ -70,3 +71,7 @@ func set_speed(new_speed):
 
 func _on_player_position_updated(position):
 	player_last_position = position
+
+
+func _on_CoinAudio_finished():
+	queue_free()
