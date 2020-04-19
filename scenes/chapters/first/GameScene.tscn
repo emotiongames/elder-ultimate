@@ -37,42 +37,46 @@ id = 1
 script = ExtResource( 3 )
 
 [node name="SpawnLSTSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( 2160, 600 )
+position = Vector2( 2160, 775 )
 
 [node name="SpawnRSTSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( -240, 600 )
+position = Vector2( -240, 775 )
 
 [node name="SpawnLTSSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( 2160, 720 )
+position = Vector2( 2160, 802 )
 
 [node name="SpawnRTSSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( -240, 720 )
+position = Vector2( -240, 802 )
 
 [node name="SpawnLBSSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( 2160, 840 )
+position = Vector2( 2160, 868 )
 
 [node name="SpawnRBSSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( -240, 840 )
+position = Vector2( -240, 868 )
 
 [node name="SpawnLSDSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( 2160, 960 )
+position = Vector2( 2160, 900 )
 
 [node name="SpawnRSDSystem" type="Position2D" parent="EnemyController"]
-position = Vector2( -240, 960 )
+position = Vector2( -240, 900 )
 
 [node name="PlayerController" type="Node2D" parent="."]
 script = ExtResource( 17 )
 
 [node name="TopLimit" type="Position2D" parent="PlayerController"]
-position = Vector2( 600, 600 )
+position = Vector2( 600, 775 )
+scale = Vector2( 0.6, 0.6 )
 
 [node name="BottomLimit" type="Position2D" parent="PlayerController"]
-position = Vector2( 600, 960 )
+position = Vector2( 530, 900 )
+scale = Vector2( 1.7, 1.7 )
 
 [node name="Player" parent="PlayerController" instance=ExtResource( 4 )]
-position = Vector2( 600, 600 )
+position = Vector2( 600, 775 )
+scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 6 )
 speed = 900
+invencible = true
 
 [node name="RewardController" type="Node2D" parent="."]
 script = ExtResource( 12 )
@@ -152,6 +156,7 @@ script = ExtResource( 11 )
 label = "effect_duration"
 
 [node name="CameraController" type="Position2D" parent="."]
+visible = false
 position = Vector2( 960, 540 )
 
 [node name="Camera" type="Camera2D" parent="CameraController"]

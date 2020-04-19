@@ -17,6 +17,7 @@ var coin_patterns = [
 var life = [
 	preload("res://scenes/chapters/first/rewards/single/Alcohol.tscn"),
 ]
+var effect = preload("res://scenes/chapters/first/rewards/single/Effect.tscn")
 var effects = [
 	"invencibility",
 	#"reduce_speed",
@@ -27,6 +28,7 @@ var effects = [
 var do_spawn = false
 
 var coin_speed = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,7 +67,6 @@ func _on_EffectTimer_timeout():
 func spawn_effect():
 	var effect_to_spawn = Utils.random_range([0, effects.size()])
 	var effect_label = effects[effect_to_spawn]
-	var effect = preload("res://scenes/chapters/first/rewards/single/Effect.tscn")
 	var effect_instance = effect.instance()
 	effect_instance.set_label(effect_label)
 	var spawn_index = Utils.random_range([1, self.get_child_count()])
@@ -75,7 +76,7 @@ func spawn_effect():
 func _on_CoinGroupSpawnTimer_timeout():
 	if do_spawn:
 		spawn_coin_group()
-		Events.emit_signal("update_timer", "coin_group_spawn", Utils.random_range([1, 4]))
+		Events.emit_signal("update_timer", "coin_group_spawn", Utils.random_range([3, 9]))
 
 
 func spawn_coin_group():
@@ -87,9 +88,8 @@ func spawn_coin_group():
 
 func _on_LifeSpawnTimer_timeout():
 	var life_instance = life[0].instance()
-	var spawn_index = Utils.random_range([1, 5])
+	var spawn_index = Utils.random_range([2, 5])
 	self.get_child(spawn_index).add_child(life_instance)
-	
 	Events.emit_signal("stop_timer", "life_spawn")
 
 

@@ -9,7 +9,7 @@ const SIDEWALK_SPAWN_POSITIONS = [0, 6]
 const STREET_SPAWN_POSITIONS = [2, 5]
 
 
-export var speed = 400
+export var speed = 10
 export var invencible = false
 
 
@@ -21,8 +21,8 @@ var died = false
 var is_flicking = false
 var speed_reduced = false
 
-var limit_top_position = 0
-var limit_bottom_position = 0
+var limit_top = 0
+var limit_bottom = 0
 var flick_counter = 0
 
 var effect_to_use = ""
@@ -31,8 +31,8 @@ var effect_to_use = ""
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.get_parent().z_index = -1
-	limit_top_position = get_parent().get_node("TopLimit").position
-	limit_bottom_position = get_parent().get_node("BottomLimit").position
+	limit_top = get_parent().get_node("TopLimit")
+	limit_bottom = get_parent().get_node("BottomLimit")
 	
 	add_to_group("player")
 	do_connections()
@@ -73,27 +73,50 @@ func _process(delta):
 
 func move(delta):
 	if to_up and not on_top:
-		self.translate(Vector2(0, -speed * delta))
-		if self.position.y <= limit_top_position.y:
-			to_up = false
-			on_bottom = false
-			on_top = true
-			emit_signal("final_position", "top")
-			self.get_parent().z_index = -1
+		#self.translate(Vector2(0, -speed * delta))
+		#self.scale = lerp(self.scale, Vector2(0.6, 0.6), 10 * delta)
+		#self.transform = lerp(self.transform, limit_top.transform, 10 * delta)
+		self.transform = self.transform.interpolate_with(limit_top.transform, 10 * delta)
+		#print(1)
+		
 	elif to_down and not on_bottom:
-		self.translate(Vector2(0, speed * delta))
-		if self.position.y >= limit_bottom_position.y:
-			to_down = false
-			on_top = false
-			on_bottom = true
-			emit_signal("final_position", "bottom")
-			self.get_parent().z_index = 0
-	self.position.y = clamp(
-		self.position.y,
-		limit_top_position.y,
-		limit_bottom_position.y
+		#self.translate(Vector2(0, speed * delta))
+		#self.scale = lerp(self.scale, Vector2(1.7, 1.7), 10 * delta)
+		#self.transform = lerp(self.transform, limit_bottom.transform, 10 * delta)
+		self.transform = self.transform.interpolate_with(limit_bottom.transform, 10 * delta)
+		
+	#print(self.get_parent().z_index)
+#	self.position.y = clamp(
+#		self.position.y,
+#		limit_top.position.y,
+#		limit_bottom.position.y
+#	)
+	self.scale.y = clamp(
+		self.scale.y,
+		limit_top.scale.y,
+		limit_bottom.scale.y
+	)
+	self.scale.x = clamp(
+		self.scale.x,
+		limit_top.scale.x,
+		limit_bottom.scale.x
 	)
 	Events.emit_signal("player_position_updated", self.global_position)
+	print(self.position.y)
+	print(limit_top.position.y)
+	print(limit_bottom.position.y)
+	if self.position.y <= limit_top.position.y:
+		to_up = false
+		on_bottom = false
+		on_top = true
+		emit_signal("final_position", "top")
+		self.get_parent().z_index = -1
+	elif self.position.y >= limit_bottom.position.y:
+		to_down = false
+		on_top = false
+		on_bottom = true
+		emit_signal("final_position", "bottom")
+		self.get_parent().z_index = 0
 
 
 func flick_verification():

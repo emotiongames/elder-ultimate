@@ -21,6 +21,9 @@ func _on_scroll_speed_updated(new_speed):
 
 func _on_area_entered(other):
 	if other.is_in_group("player") and not is_flicking:
-		queue_free()
+		if other.on_top and .get_from_spawn() == 0:
+			queue_free()
+		elif other.on_bottom and .get_from_spawn() == 6:
+			queue_free()
 	if other.is_in_group("power") and not is_flicking:
 		is_flicking = true

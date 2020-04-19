@@ -45,17 +45,20 @@ func do_connections():
 
 
 func spawn_sidewalk_enemies():
+	var scale
 	var available_spawns = [0, 6]
 	var spawn_index = -1
 	if Utils.get_noise(noise) >= 0:
 		spawn_index = available_spawns[0]
+		scale = 0.7
 	else:
 		spawn_index = available_spawns[1]
+		scale = 1.7
 	
 	if self.get_child(spawn_index).get_child_count() == 0:
 		var enemy_index = Utils.random_range([0, sidewalk_enemies.size()])
 		var enemy = sidewalk_enemies[enemy_index]
-		spawn_enemies(enemy, spawn_index)
+		spawn_enemies(enemy, spawn_index, scale)
 
 
 func spawn_street_enemies():
@@ -77,9 +80,10 @@ func spawn_street_enemies():
 			spawn_enemies(enemy, spawn_index)
 
 
-func spawn_enemies(enemy, spawn):
+func spawn_enemies(enemy, spawn, scale = 1):
 	var enemy_instance = enemy.instance()
 	enemy_instance.set_from_spawn(spawn)
+	enemy_instance.scale = Vector2(scale, scale)
 	self.get_child(spawn).add_child(enemy_instance)
 
 
