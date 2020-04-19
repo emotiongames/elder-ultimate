@@ -23,7 +23,6 @@ var speed_reduced = false
 
 var limit_top_position = 0
 var limit_bottom_position = 0
-var on_collision_with_enemy = -1
 var flick_counter = 0
 
 var effect_to_use = ""
@@ -69,7 +68,7 @@ func do_connections():
 func _process(delta):
 	if not died:
 		move(delta)
-		detect_collision()
+		
 		flick_verification()
 
 
@@ -98,22 +97,6 @@ func move(delta):
 	Events.emit_signal("player_position_updated", self.global_position)
 
 
-func detect_collision():
-	if not invencible:
-		if on_collision_with_enemy in SIDEWALK_SPAWN_POSITIONS and (
-			on_top or on_bottom
-		):
-			Events.emit_signal("player_damage", "on_sidewalk")
-			is_flicking = true
-			on_collision_with_enemy = -1
-		elif on_collision_with_enemy in STREET_SPAWN_POSITIONS and (
-			to_up or to_down
-		):
-			Events.emit_signal("player_damage", "on_street")
-			is_flicking = true
-			on_collision_with_enemy = -1
-
-
 func flick_verification():
 	if is_flicking:
 		if flick_counter < FLICK_LIMIT:
@@ -137,7 +120,20 @@ func _on_area_entered(other):
 		and not other.is_flicking
 		and not is_flicking
 	):
-		on_collision_with_enemy = other.get_from_spawn()
+		var area_spawned_from = other.get_from_spawn()
+		detect_collision(area_spawned_from)
+
+
+func detect_collision(area_from):
+	if not invencible:
+		if area_from in SIDEWALK_SPAWN_POSITIONS:
+			Events.emit_signal("player_damage", "on_sidewalk")
+			is_flicking = true
+		elif area_from in STREET_SPAWN_POSITIONS and (
+			to_up or to_down
+		):
+			Events.emit_signal("player_damage", "on_street")
+			is_flicking = true
 
 
 func _on_show_game_over():
@@ -169,7 +165,9 @@ func _on_PlayerController_move_to(direction):
 			if not on_top:
 				to_up = true
 				to_down = false
+				on_bottom = false
 		"down": 
 			if not on_bottom:
 				to_up = false
 				to_down = true
+				on_top = false
