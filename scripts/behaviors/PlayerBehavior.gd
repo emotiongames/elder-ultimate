@@ -5,7 +5,7 @@ signal final_position(position)
 
 
 const FLICK_LIMIT = 31
-const SIDEWALK_SPAWN_POSITIONS = [0, 1, 6, 7]
+const SIDEWALK_SPAWN_POSITIONS = [0, 6]
 const STREET_SPAWN_POSITIONS = [2, 5]
 
 
@@ -42,11 +42,6 @@ func _ready():
 func do_connections():
 	var _area_entered_connection = connect(
 		"area_entered", self, "_on_area_entered"
-	)
-	var _area_exited_connection = connect(
-		"area_exited",
-		self,
-		"_on_area_exited"
 	)
 	var _show_game_over_connection = Events.connect(
 		"show_game_over",
@@ -142,12 +137,7 @@ func _on_area_entered(other):
 		and not other.is_flicking
 		and not is_flicking
 	):
-		on_collision_with_enemy = other.from_spawn
-
-
-func _on_area_exited(other):
-	if other.is_in_group("enemy"):
-		on_collision_with_enemy = -1
+		on_collision_with_enemy = other.get_from_spawn()
 
 
 func _on_show_game_over():

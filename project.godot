@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "EffectBase",
 "language": "GDScript",
 "path": "res://scripts/effects/EffectBase.gd"
+}, {
+"base": "Area2D",
+"class": "EnemyBase",
+"language": "GDScript",
+"path": "res://scripts/enemies/EnemyBase.gd"
 } ]
 _global_script_class_icons={
-"EffectBase": ""
+"EffectBase": "",
+"EnemyBase": ""
 }
 
 [application]

@@ -19,10 +19,6 @@ func do_connections():
 	)
 
 
-# func _process(_delta):
-#	pass
-
-
 func _on_show_main_menu():
 	queue_free()
 	var _scene_changed = get_tree().change_scene("res://scenes/screens/main-menu/MainMenu.tscn")

@@ -1,36 +1,66 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/screens/ui/elements/containers/HeartContainer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/screens/ui/elements/containers/BoostContainer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/screens/ui/elements/containers/PointsContainer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/screens/ui/elements/singles/PauseButton.tscn" type="PackedScene" id=4]
 
-[node name="GameUI" type="HBoxContainer"]
+[node name="GameUI" type="VBoxContainer"]
 anchor_right = 1.0
-anchor_bottom = 0.222
-margin_bottom = 0.239975
-size_flags_horizontal = 15
-size_flags_vertical = 15
-custom_constants/separation = 240
+anchor_bottom = 0.354
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.32
+size_flags_stretch_ratio = 16.0
+custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HeartContainer" parent="." instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 480.0
-margin_bottom = 239.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 1880.0
+margin_bottom = 120.0
+size_flags_stretch_ratio = 16.0
 
-[node name="BoostContainer" parent="." instance=ExtResource( 2 )]
+[node name="HeartContainer" parent="HBoxContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 720.0
-margin_right = 1200.0
-margin_bottom = 239.0
+margin_right = 260.0
+margin_bottom = 120.0
+size_flags_horizontal = 5
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+custom_constants/hseparation = 20
+
+[node name="BoostContainer" parent="HBoxContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 264.0
+margin_right = 1553.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 1557.0
+margin_right = 1880.0
+margin_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureButton" parent="HBoxContainer/CenterContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 101.0
+margin_right = 221.0
+margin_bottom = 120.0
 
 [node name="PointsContainer" parent="." instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 1440.0
-margin_right = 1920.0
-margin_bottom = 239.0
+margin_top = 140.0
+margin_right = 204.0
+margin_bottom = 362.0
+size_flags_horizontal = 0
+custom_constants/separation = 20

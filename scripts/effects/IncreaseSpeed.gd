@@ -18,27 +18,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func get_label():
-	return .get_label()
-
-
-func get_duration_time():
-	return .get_duration_time()
-
-
-func set_state(new_state):
-	.set_state(new_state)
-
-
-func get_state():
-	return .get_state()
-
-
 func start():
 	Events.emit_signal("remove_effect_from_ui")
 	Events.emit_signal("scroll_speed_effect", "increment")

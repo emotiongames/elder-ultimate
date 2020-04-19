@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/ui/screen-elements/buttons/pause/hd/588a64d2d06f6719692a2d0e.png" type="Texture" id=1]
+
+[node name="TextureButton" type="TextureButton"]
+anchor_right = 0.062
+anchor_bottom = 0.111
+margin_right = 0.959999
+margin_bottom = 0.119995
+rect_min_size = Vector2( 120, 120 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

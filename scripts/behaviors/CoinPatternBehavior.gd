@@ -18,11 +18,6 @@ func do_connections():
 	)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func update_child_speed():
 	for coin in self.get_children():
 		coin.set_speed(speed)

@@ -38,11 +38,6 @@ func do_connections():
 	)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_start_timer(local_label):
 	if label == local_label:
 		self.start()

@@ -52,11 +52,6 @@ func do_connections():
 	)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_show_game_over():
 	do_spawn = false
 

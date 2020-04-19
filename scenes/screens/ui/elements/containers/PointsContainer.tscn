@@ -7,8 +7,6 @@
 anchor_right = 0.25
 anchor_bottom = 0.222
 margin_bottom = 0.239975
-size_flags_horizontal = 15
-size_flags_vertical = 15
 size_flags_stretch_ratio = 4.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -18,11 +16,16 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 480.0
-margin_bottom = 116.0
+margin_bottom = 115.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
 
 [node name="DistanceContainer" parent="." instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 120.0
+margin_top = 119.0
 margin_right = 480.0
-margin_bottom = 240.0
+margin_bottom = 239.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 0

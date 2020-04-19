@@ -9,11 +9,11 @@ const SPEED_FROM = {
 	"COIN": SCROLL_SPEED * 60.0,
 	"LIFE_INCREMENT": SCROLL_SPEED * 66.0,
 	"EFFECT": SCROLL_SPEED * 72.0,
-	"SIDEWALK_ENEMY": SCROLL_SPEED * 60.0,
-	"STREET_CAR_L_ENEMY": SCROLL_SPEED * 96.0,
-	"STREET_CAR_R_ENEMY": SCROLL_SPEED * 36.0,
-	"STREET_POLICE_L_ENEMY": SCROLL_SPEED * 84.0,
-	"STREET_POLICE_R_ENEMY": SCROLL_SPEED * 24.0
+	"CONTAMINATED": SCROLL_SPEED * 60.0,
+	"CAR_TO_LEFT": SCROLL_SPEED * 96.0,
+	"CAR_TO_RIGHT": SCROLL_SPEED * 36.0,
+	"POLICE_CAR_TO_LEFT": SCROLL_SPEED * 84.0,
+	"POLICE_CAR_TO_RIGHT": SCROLL_SPEED * 24.0
 }
 const FACTOR_FROM = {
 	"FAR_SCROLL": 0.015,
@@ -21,22 +21,17 @@ const FACTOR_FROM = {
 	"COIN": 60.0,
 	"LIFE_INCREMENT": 66.0,
 	"EFFECT": 72.0,
-	"SIDEWALK_ENEMY": 60.0,
-	"STREET_CAR_L_ENEMY": 96.0,
-	"STREET_CAR_R_ENEMY": 36.0,
-	"STREET_POLICE_L_ENEMY":  84.0,
-	"STREET_POLICE_R_ENEMY": 24.0 
+	"CONTAMINATED": 60.0,
+	"CAR_TO_LEFT": 96.0,
+	"CAR_TO_RIGHT": 36.0,
+	"POLICE_CAR_TO_LEFT":  84.0,
+	"POLICE_CAR_TO_RIGHT": 24.0 
 }
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func random_range(value_range):
