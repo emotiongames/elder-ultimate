@@ -15,7 +15,6 @@ func _ready():
 		"area_entered", self, "_on_area_entered"
 	)
 	add_to_group("power")
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,7 +26,6 @@ func _process(delta):
 	if self.position <= self.get_parent().position:
 		queue_free()
 		Events.emit_signal("power_ended")
-	pass
 
 func _on_area_entered(other):
 	if other.is_in_group("enemy"):

@@ -68,7 +68,6 @@ func do_connections():
 func _process(delta):
 	if not died:
 		move(delta)
-		
 		flick_verification()
 
 
